@@ -61,7 +61,11 @@ const AnimateText = ({ children }) => {
   return (
     <div ref={containerRef}>
       {children.split("\n").map((line, index) => (
-        <div key={index} className={st.splitText}>
+        <div
+          key={index}
+          className={st.splitText}
+          style={{ overflow: "hidden" }}
+        >
           {line}
         </div>
       ))}
