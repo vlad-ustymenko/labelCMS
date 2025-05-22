@@ -5,6 +5,7 @@
   text-transform: uppercase;
   overflow: hidden;
   display: inline-block;
+  /* white-space: pre-line; */
 }
 
 .grid {
@@ -38,8 +39,6 @@
   will-change: transform, opacity;
   transform: translateZ(0);
   word-break: break-word;
-  white-space: normal;
-  overflow-wrap: break-word;
 }
 
 .mission {
