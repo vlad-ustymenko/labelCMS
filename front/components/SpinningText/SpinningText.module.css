@@ -1,0 +1,10 @@
+.text {
+  font-family: "bahnschrift", sans-serif;
+  font-size: 2rem;
+  margin: 0;
+  line-height: 0;
+}
+
+.text:nth-child(even) {
+  color: var(--accent);
+}

@@ -1,0 +1,36 @@
+.mainScreen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.button {
+  right: 2%;
+  top: 4%;
+  transform: translate(-50, -50%);
+}
+
+.spinningText {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 2;
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .spinningText {
+    width: 100%;
+    bottom: 25%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 0.5rem;
+  }
+  .button {
+    right: 5%;
+    top: 3%;
+    transform: translate(-50, -50%);
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "luarchitecture",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.0.7",
+    "@react-three/fiber": "^9.1.2",
+    "gsap": "^3.12.7",
+    "locomotive-scroll": "^4.1.4",
+    "next": "^15.3.2",
+    "next-view-transitions": "^0.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "split-type": "^0.3.4",
+    "three": "^0.176.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.1"
+  }
+}

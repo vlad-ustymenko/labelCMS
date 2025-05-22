@@ -1,0 +1,29 @@
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.current,
+.next {
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.next {
+  z-index: 2; /* поверх поточного */
+}

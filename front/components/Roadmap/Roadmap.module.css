@@ -1,0 +1,114 @@
+.roadmapWrapper {
+  width: 100%;
+  height: 400vh;
+  /* overflow: hidden; */
+  position: relative;
+}
+
+.roadmapTitle {
+  position: absolute;
+  top: 10%;
+  left: 3%;
+  font-family: "bahnschrift", sans-serif;
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+
+.roadmapHorizontal {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.roadmapSvg {
+  width: 90%;
+  height: 100vh;
+  display: block;
+}
+
+.labelHorizontal {
+  position: relative;
+  font-size: clamp(1.5rem, 2rem, 2.5rem);
+}
+
+.firstImageWrapper {
+  position: absolute;
+  top: 3%;
+  left: 0;
+  width: 100%;
+  height: 200vh;
+  overflow: hidden;
+}
+
+.secondImageWrapper {
+  position: absolute;
+  top: 200vh;
+  right: 0;
+  width: 100%;
+  height: 200vh;
+  overflow: hidden;
+}
+
+.firstImage {
+  position: absolute;
+  top: 10%;
+  left: 100px;
+  filter: brightness(30%) blur(5px);
+  width: 25%;
+  height: auto;
+}
+
+.secondImage {
+  position: absolute;
+  top: 10%;
+  right: 100px;
+  filter: brightness(30%) blur(2px);
+  width: 25%;
+  height: auto;
+}
+
+@media (width < 768px) {
+  .roadmapHorizontal {
+    position: sticky;
+    top: 10%;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .labelHorizontal {
+    position: relative;
+    font-size: 1rem;
+  }
+
+  .roadmapTitle {
+    position: absolute;
+    top: 0;
+    left: 3%;
+    font-family: "bahnschrift", sans-serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+  .roadmapSvg {
+    width: 100%;
+    height: 90vh;
+    display: block;
+  }
+  .firstImage {
+    position: sticky;
+    top: 20%;
+    left: 100px;
+    width: 90%;
+    height: auto;
+  }
+  .secondImage {
+    position: absolute;
+    top: 10%;
+    right: 100px;
+    width: 90%;
+    height: auto;
+  }
+}
