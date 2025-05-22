@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import SplitTextJS from "split-text-js";
+import SplitType from "split-type";
 import { gsap } from "gsap";
 import styles from "./SpinningText.module.css";
 
@@ -19,7 +19,7 @@ const SpinningText = ({ textArray, className }) => {
     tl.current = gsap.timeline({ repeat: -1 });
 
     titles.forEach((title) => {
-      const split = new SplitTextJS(title);
+      const split = new SplitType(title, { types: "chars" });
       splitInstances.current.push(split);
 
       tl.current
