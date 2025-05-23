@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_ui_spinning_texts",
+  "info": {
+    "displayName": "SpinningText"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}
