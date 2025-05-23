@@ -16,7 +16,7 @@ const About = ({ data }) => {
   const containerRef = useRef(null);
   const imageRef = useRef(null);
 
-  const { title, description, text } = data.data;
+  const { title, text } = data;
 
   // console.log(text);
 
@@ -144,13 +144,13 @@ const About = ({ data }) => {
         ref={imageRef}
       />
       <h2 className={`${st.wrapper}`}>
-        <AnimateText>{text}</AnimateText>
+        <AnimateText>{title}</AnimateText>
       </h2>
 
       <div className={st.grid}>
         <div style={{ zIndex: 1 }}></div>
         <div className={st.text}>
-          <AnimateText>{description}</AnimateText>
+          <AnimateText>{text}</AnimateText>
         </div>
       </div>
     </div>

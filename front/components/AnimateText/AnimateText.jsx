@@ -39,7 +39,6 @@ const AnimateText = ({ children }) => {
           trigger: containerRef.current,
           scroller: isMobile ? "body" : "[data-scroll-container]",
           start: "top 80%",
-          markers: true,
           toggleActions: "restart none none reverse",
         },
       });
@@ -57,6 +56,8 @@ const AnimateText = ({ children }) => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [isMobile]);
+
+  if (children === null) return null;
 
   return (
     <div ref={containerRef}>

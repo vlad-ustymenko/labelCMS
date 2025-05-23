@@ -56,7 +56,7 @@ const SpinningText = ({ textArray, className }) => {
     <div className={className} ref={spinningRef}>
       {textArray.map((text, index) => (
         <p key={index} className={styles.text}>
-          {text}
+          {text.text}
         </p>
       ))}
     </div>

@@ -7,14 +7,8 @@ import SpinningText from "../SpinningText/SpinningText";
 
 import { gsap } from "gsap";
 
-const MainScreen = () => {
-  const spinningText = [
-    "Авторський нагляд",
-    "3D візуалізація",
-    "Ландшафтний дизайн",
-    "Дизайн інтер'єру",
-    "Дизайн просторів",
-  ];
+const MainScreen = ({ data }) => {
+  const { slogan, companyName, companySubname, button, spinningText } = data;
 
   useEffect(() => {
     gsap.to(".title", {
@@ -70,20 +64,21 @@ const MainScreen = () => {
           zIndex: "2",
         }}
       ></div>
-      <Button title="Портфоліо" className={styles.button} />
+      <Button
+        title={button.title}
+        className={styles.button}
+        href={button.href}
+      />
 
       <h1 className="title" data-scroll data-scroll-speed="-2">
-        LABEL
+        {companyName}
       </h1>
       <div className="title2" data-scroll data-scroll-speed="-2">
-        LABEL
-        <h2 className="subtitle">studio</h2>
+        {companyName}
+        <h2 className="subtitle">{companySubname}</h2>
       </div>
 
-      <div className="subtitle2">
-        Ми створюємо інтер’єри, які надихають.
-        <br /> Інтер’єри, в які хочеться повертатись.
-      </div>
+      <div className="subtitle2">{slogan}</div>
 
       <SpinningText textArray={spinningText} className={styles.spinningText} />
       <Sofa />
