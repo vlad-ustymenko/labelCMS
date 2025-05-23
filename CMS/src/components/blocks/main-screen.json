@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_blocks_main_screens",
+  "info": {
+    "displayName": "Main Screen",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "companyName": {
+      "type": "string",
+      "required": true
+    },
+    "slogan": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ui.button",
+      "required": true
+    },
+    "spinningText": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ui.spinning-text"
+    },
+    "companySubname": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
