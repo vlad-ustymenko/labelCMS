@@ -1,3 +1,4 @@
 .splitText {
   position: relative;
+  will-change: transform;
 }
