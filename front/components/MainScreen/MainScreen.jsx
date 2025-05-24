@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import styles from "./MainScreen.module.css";
+import st from "./MainScreen.module.css";
 import Sofa from "@/components/Sofa/Sofa";
 import Button from "@/components/Button/Button";
 import SpinningText from "../SpinningText/SpinningText";
@@ -11,49 +11,32 @@ const MainScreen = ({ data }) => {
   const { slogan, companyName, companySubname, button, spinningText } = data;
 
   useEffect(() => {
-    gsap.to(".title", {
-      letterSpacing: "0px",
-      ease: "power2.out",
-      delay: 1,
-      duration: 2,
-    });
-    gsap.to(".title2", {
-      letterSpacing: "0px",
-      ease: "power2.out",
-      delay: 1,
-      duration: 2,
-    });
-    gsap.to(".subtitle", {
-      letterSpacing: "0px",
-      ease: "power2.out",
-      delay: 1,
-      duration: 2,
-    });
-
-    gsap.to(".subtitle", {
-      letterSpacing: "0px",
-      ease: "power2.out",
-      delay: 1,
-      duration: 2,
-    });
-
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: `.${styles.mainScreen}`,
+        trigger: `.${st.mainScreen}`,
         scroller: "[data-scroll-container]",
         start: "top top",
         end: "bottom top",
-        scrub: true,
+        markers: true,
+        scrub: true, // плавне скролювання
       },
     });
 
-    tl.to(".title", { letterSpacing: "10px" })
-      .to(".title2", { letterSpacing: "10px" }, "<")
-      .to(".subtitle", { letterSpacing: "10px" }, "<");
+    tl.to(`.${st.title}`, {
+      scale: 1.1,
+      y: 100,
+      transformOrigin: "left",
+    })
+      .to(
+        `.${st.strokeTitle}`,
+        { scale: 1.1, y: 100, transformOrigin: "left" },
+        "<"
+      )
+      .to(`.${st.subtitle}`, { scale: 1.05, transformOrigin: "left" }, "<");
   }, []);
 
   return (
-    <section className={`${styles.mainScreen} main`}>
+    <section className={`${st.mainScreen} main`}>
       <div
         style={{
           width: "100%",
@@ -64,23 +47,19 @@ const MainScreen = ({ data }) => {
           zIndex: "2",
         }}
       ></div>
-      <Button
-        title={button.title}
-        className={styles.button}
-        href={button.href}
-      />
+      <Button title={button.title} className={st.button} href={button.href} />
 
-      <h1 className="title" data-scroll data-scroll-speed="-2">
+      <h1 className={st.title} data-scroll data-scroll-speed="-2">
         {companyName}
       </h1>
-      <div className="title2" data-scroll data-scroll-speed="-2">
+      <div className={st.strokeTitle} data-scroll data-scroll-speed="-2">
         {companyName}
-        <h2 className="subtitle">{companySubname}</h2>
+        <h2 className={st.subtitle}>{companySubname}</h2>
       </div>
 
-      <div className="subtitle2">{slogan}</div>
+      <div className={st.slogan}>{slogan}</div>
 
-      <SpinningText textArray={spinningText} className={styles.spinningText} />
+      <SpinningText textArray={spinningText} className={st.spinningText} />
       <Sofa />
     </section>
   );
