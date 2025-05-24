@@ -1,17 +1,19 @@
-.wrapper {
+.container {
+  height: 100vh;
+  position: relative;
+}
+
+.title {
   width: 80%;
-  font-size: clamp(2rem, 4vw, 5rem);
-  line-height: clamp(2rem, 4vw, 5rem);
+  font-size: clamp(3rem, 4vw, 6rem);
+  line-height: clamp(3rem, 4vw, 6rem);
   text-transform: uppercase;
-  overflow: hidden;
-  display: inline-block;
-  /* white-space: pre-line; */
 }
 
 .grid {
   display: grid;
   grid-template-columns: 33vw 1fr;
-  margin-left: 2vw;
+  margin-top: clamp(2rem, 4vw, 6rem);
 }
 .text {
   font-family: "bahnschriftRegular", sans-serif;
@@ -51,20 +53,22 @@
   font-size: 1.5rem;
 }
 
-@media (width < 768px) {
-  .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    filter: brightness(30%);
-    transform-origin: left center;
-  }
+@media (max-width: 767px) {
   .grid {
     display: grid;
     grid-template-columns: 1fr;
   }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1919px) {
+}
+
+@media (min-width: 1920px) {
 }

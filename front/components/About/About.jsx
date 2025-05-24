@@ -9,6 +9,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
+import Container from "../Container/Container";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,32 +129,33 @@ const About = ({ data }) => {
   // }, [isMobile]);
 
   return (
-    <div
-      style={{ height: "100vh", position: "relative" }}
-      className="about"
+    <section
+      className={st.container}
       data-scroll
       data-scroll-speed="1"
       ref={containerRef}
     >
-      <Image
-        src="/2.png"
-        alt="background"
-        width={1000}
-        height={1000}
-        className={st.background}
-        ref={imageRef}
-      />
-      <h2 className={`${st.wrapper}`}>
-        <AnimateText>{title}</AnimateText>
-      </h2>
+      <Container>
+        <Image
+          src="/2.png"
+          alt="background"
+          width={1000}
+          height={1000}
+          className={st.background}
+          ref={imageRef}
+        />
+        <h2 className={`${st.title}`}>
+          <AnimateText>{title}</AnimateText>
+        </h2>
 
-      <div className={st.grid}>
-        <div style={{ zIndex: 1 }}></div>
-        <div className={st.text}>
-          <AnimateText>{text}</AnimateText>
+        <div className={st.grid}>
+          <div style={{ zIndex: 1 }}></div>
+          <div className={st.text}>
+            <AnimateText>{text}</AnimateText>
+          </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </section>
   );
 };
 
