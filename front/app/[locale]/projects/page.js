@@ -91,7 +91,7 @@ const Page = () => {
           animateTransition("/");
           setTimeout(() => {
             document.body.classList.remove("bodyHidden");
-          }, 500);
+          }, 3000);
         }}
       >
         Label
