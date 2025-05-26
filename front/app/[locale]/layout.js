@@ -4,6 +4,7 @@ import { ViewTransitions } from "next-view-transitions";
 import localFont from "next/font/local";
 import "./globals.css";
 import ScrollWrapper from "@/components/ScrollerWrapper/ScrollerWrapper";
+import { MobileProvider } from "@/context/MobileContext";
 
 const MariupolBold = localFont({
   src: "../../public/fonts/Mariupol-Bold.ttf",
@@ -52,7 +53,9 @@ export default async function RootLayout({ children, params }) {
         <body
           className={`${bebasRegular.className} ${bahnschrift.className} ${bahnschriftRegular.className} ${bebas.className}`}
         >
-          <ScrollWrapper>{children}</ScrollWrapper>
+          <ScrollWrapper>
+            <MobileProvider>{children}</MobileProvider>
+          </ScrollWrapper>
         </body>
       </html>
     </ViewTransitions>
