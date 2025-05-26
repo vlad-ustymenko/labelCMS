@@ -1,0 +1,69 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100svh;
+  color: white;
+  background-color: var(--background);
+}
+
+.title {
+  margin-bottom: 2vw;
+  font-family: MariupolBold, sans-serif;
+  font-size: 3.5vw;
+}
+
+.text {
+  margin-bottom: 2vw;
+  font-family: MariupolBold, sans-serif;
+  font-size: 2vw;
+}
+
+.link {
+  padding: 2vw 3vw;
+  border: none;
+  border-radius: 0.8vw;
+  font-family: MariupolMedium, sans-serif;
+  font-size: 2vw;
+  color: white;
+  background-color: var(--accent);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (width >= 768px) and (width <= 1279px) {
+  .title {
+    margin-bottom: 10vw;
+    font-size: 7vw;
+  }
+
+  .text {
+    margin-bottom: 10vw;
+    font-size: 4vw;
+  }
+
+  .link {
+    padding: 5vw 10vw;
+    border-radius: 1.5vw;
+    font-size: 5vw;
+  }
+}
+
+@media (width <= 767px) {
+  .title {
+    margin-bottom: 10vw;
+    font-size: 7vw;
+  }
+
+  .text {
+    margin-bottom: 10vw;
+    font-size: 4vw;
+  }
+
+  .link {
+    padding: 5vw 10vw;
+    border-radius: 1.5vw;
+    font-size: 5vw;
+  }
+}
