@@ -66,7 +66,6 @@ export default function ScrollWrapper({ children }) {
 
       await new Promise((resolve) => requestAnimationFrame(resolve));
       ScrollTrigger.refresh();
-
       setScrollReady(true);
     };
 

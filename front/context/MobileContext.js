@@ -1,4 +1,4 @@
-"use client"; // якщо ти використовуєш App Router
+"use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
 

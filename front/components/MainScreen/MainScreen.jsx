@@ -17,8 +17,7 @@ const MainScreen = ({ data }) => {
         scroller: "[data-scroll-container]",
         start: "top top",
         end: "bottom top",
-        markers: true,
-        scrub: true, // плавне скролювання
+        scrub: true,
       },
     });
 
