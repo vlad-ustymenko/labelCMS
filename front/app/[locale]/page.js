@@ -5,7 +5,7 @@ import Loader from "@/components/Loader/Loader";
 import qs from "qs";
 
 async function getData(path, locale) {
-  const baseUrl = "http://localhost:1337";
+  const baseUrl = process.env.STRAPI_BASE_URL;
 
   const query = qs.stringify({
     locale,
@@ -66,7 +66,7 @@ function blockRendered(block) {
 
 export default async function Home({ params }) {
   const { locale } = await params;
-  const strapiData = await getData("/api/home-page", locale);
+  const strapiData = await getData(process.env.HOME_URL, locale);
 
   const { blocks } = strapiData;
 
