@@ -7,6 +7,7 @@ import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMobile } from "@/context/MobileContext";
 import styles from "./Sofa.module.css";
 
 function Model({ isMobile }) {
@@ -64,18 +65,8 @@ function CameraAnimation({ isMobile }) {
 }
 
 export default function Sofa() {
-  const [isMobile, setIsMobile] = useState(false);
+  const { isMobile } = useMobile();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
     <div
       style={{
