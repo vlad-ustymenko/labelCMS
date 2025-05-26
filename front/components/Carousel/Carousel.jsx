@@ -4,9 +4,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import styles from "./Carousel.module.css";
 
-const images = ["/background.png", "/br_1.jpg", "/br_3.jpg"];
+// const images = ["/background.png", "/br_1.jpg", "/br_3.jpg"];
 
-const Carousel = () => {
+const Carousel = ({ images }) => {
   const [index, setIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const containerRef = useRef(null);
@@ -19,6 +19,7 @@ const Carousel = () => {
     }
   }, []);
 
+  console.log(images);
   const handleNext = () => {
     if (isAnimating) return;
 
@@ -45,13 +46,17 @@ const Carousel = () => {
 
   // 🔁 Автоперегортання
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isAnimating) {
-        handleNext();
-      }
-    }, 3000); // 1000 мс = 1 секунда
+    if (images.length === 1) {
+      return;
+    } else {
+      const interval = setInterval(() => {
+        if (!isAnimating) {
+          handleNext();
+        }
+      }, 3000); // 1000 мс = 1 секунда
 
-    return () => clearInterval(interval); // 🧹 Очищення
+      return () => clearInterval(interval); // 🧹 Очищення
+    }
   }, [isAnimating, index]);
 
   return (
@@ -62,7 +67,7 @@ const Carousel = () => {
     >
       <div className={styles.inner} ref={containerRef}>
         <Image
-          src={images[index]}
+          src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${images[index].url}`}
           alt="current"
           fill
           className={styles.current}
@@ -70,7 +75,9 @@ const Carousel = () => {
         />
         <Image
           ref={nextImageRef}
-          src={images[(index + 1) % images.length]}
+          src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${
+            images[(index + 1) % images.length].url
+          }`}
           alt="next"
           fill
           className={styles.next}
