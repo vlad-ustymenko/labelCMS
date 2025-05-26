@@ -39,6 +39,16 @@ export interface UiButton extends Struct.ComponentSchema {
   };
 }
 
+export interface UiParagraphs extends Struct.ComponentSchema {
+  collectionName: 'components_ui_paragraphs';
+  info: {
+    displayName: 'Paragraphs';
+  };
+  attributes: {
+    paragraphs: Schema.Attribute.RichText;
+  };
+}
+
 export interface UiSpinningText extends Struct.ComponentSchema {
   collectionName: 'components_ui_spinning_texts';
   info: {
@@ -55,6 +65,7 @@ declare module '@strapi/strapi' {
       'blocks.about': BlocksAbout;
       'blocks.main-screen': BlocksMainScreen;
       'ui.button': UiButton;
+      'ui.paragraphs': UiParagraphs;
       'ui.spinning-text': UiSpinningText;
     }
   }

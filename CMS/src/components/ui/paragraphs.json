@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_ui_paragraphs",
+  "info": {
+    "displayName": "Paragraphs"
+  },
+  "options": {},
+  "attributes": {
+    "paragraphs": {
+      "type": "richtext"
+    }
+  }
+}
