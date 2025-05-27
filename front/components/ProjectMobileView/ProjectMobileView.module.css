@@ -1,0 +1,85 @@
+.container {
+  font-family: "bahnschriftThin", sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  line-height: 1;
+}
+
+.buttonMain {
+  font-family: "bahnschrift", sans-serif;
+  font-size: 2rem;
+}
+
+.buttonBack {
+  font-family: "bahnschriftRegular", sans-serif;
+  font-size: 1.1rem;
+}
+
+.buttonBack:before {
+  content: "\276E";
+  color: var(--accent);
+  margin-right: 0.5rem;
+}
+
+.year {
+  color: #adadad;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+}
+
+.title {
+  font-family: "bahnschriftRegular", sans-serif;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+
+.customer {
+  color: #adadad;
+  margin-top: 2rem;
+}
+
+.carousel {
+  height: 200px;
+  margin-top: 1.8rem;
+}
+
+.list {
+  list-style: none;
+}
+
+.listItem {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  position: relative;
+  color: #adadad;
+}
+
+.listItem::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: #5297f8;
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+
+.paragraph {
+  margin-top: 1.8rem;
+  line-height: 1.2;
+  font-size: 1.1rem;
+  word-wrap: break-word;
+  color: #adadad;
+}
+
+.footer {
+  margin: 1.8rem 0;
+  font-style: italic;
+}
