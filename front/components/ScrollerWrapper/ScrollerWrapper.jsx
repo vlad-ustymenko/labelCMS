@@ -9,25 +9,6 @@ export default function ScrollWrapper({ children }) {
   const locoScrollRef = useRef(null);
   const pathname = usePathname();
 
-  // 1️⃣ Вимикаємо відновлення scroll браузером
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-  }, []);
-
-  // 2️⃣ Примусово scroll to top одразу після reload
-  useEffect(() => {
-    const navEntries = performance.getEntriesByType("navigation");
-    const navType = navEntries.length > 0 ? navEntries[0].type : null;
-
-    if (navType === "reload") {
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }
-  }, []);
-
   useEffect(() => {
     const initScroll = async () => {
       gsap.registerPlugin(ScrollTrigger);
@@ -44,29 +25,37 @@ export default function ScrollWrapper({ children }) {
 
       locoScrollRef.current = locoScroll;
 
-      ScrollTrigger.scrollerProxy(scrollContainer, {
-        scrollTop(value) {
-          return arguments.length
-            ? locoScroll.scrollTo(value, 0, 0)
-            : locoScroll.scroll.instance.scroll.y;
-        },
-        getBoundingClientRect() {
-          return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-          };
-        },
-        pinType: scrollContainer.style.transform ? "transform" : "fixed",
-      });
-
+      // ❗️Дочекайся першого "scroll" і тільки тоді активуй ScrollTrigger
       locoScroll.on("scroll", ScrollTrigger.update);
-      ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 
-      await new Promise((resolve) => requestAnimationFrame(resolve));
-      ScrollTrigger.refresh();
-      setScrollReady(true);
+      // Дочекайся поки все промалюється
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          ScrollTrigger.scrollerProxy(scrollContainer, {
+            scrollTop(value) {
+              if (arguments.length) {
+                locoScroll.scrollTo(value, { duration: 0, disableLerp: true });
+              } else {
+                return locoScroll.scroll.instance.scroll.y;
+              }
+            },
+            getBoundingClientRect() {
+              return {
+                top: 0,
+                left: 0,
+                width: window.innerWidth,
+                height: window.innerHeight,
+              };
+            },
+            pinType: scrollContainer.style.transform ? "transform" : "fixed",
+          });
+
+          ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+          ScrollTrigger.refresh();
+
+          setScrollReady(true);
+        });
+      });
     };
 
     initScroll();
@@ -87,7 +76,7 @@ export default function ScrollWrapper({ children }) {
     const timeout = setTimeout(() => {
       locoScrollRef.current?.update();
       ScrollTrigger.refresh();
-    }, 500);
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, [pathname]);
