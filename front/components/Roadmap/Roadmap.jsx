@@ -63,7 +63,7 @@ const Roadmap = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".roadmap-trigger",
-        scroller: "[data-scroll-container]",
+        scroller: isVertical ? "body" : "[data-scroll-container]",
         start: "top center",
         end: "bottom bottom",
         scrub: true,
@@ -77,17 +77,17 @@ const Roadmap = () => {
 
     ScrollTrigger.create({
       trigger: ".roadmap-trigger", // батьківський контейнер
-      scroller: "[data-scroll-container]",
+      scroller: isVertical ? "body" : "[data-scroll-container]",
       start: "top top",
       end: "bottom bottom", // або конкретне значення як "bottom top"
       pin: `.${st.roadmapHorizontal}`,
       scrub: true,
-      anticipatePin: 1,
+      // anticipatePin: 1,
     });
 
     ScrollTrigger.create({
       trigger: ".roadmap-trigger",
-      scroller: "[data-scroll-container]",
+      scroller: isVertical ? "body" : "[data-scroll-container]",
       start: "top center",
       end: "bottom bottom",
       scrub: true,
@@ -125,7 +125,7 @@ const Roadmap = () => {
       ease: "none",
       scrollTrigger: {
         trigger: ".first-image-trigger", // або окремий контейнер
-        scroller: "[data-scroll-container]",
+        scroller: isVertical ? "body" : "[data-scroll-container]",
         start: "top 80%",
         end: "bottom center",
         scrub: true,
@@ -137,7 +137,7 @@ const Roadmap = () => {
       ease: "none",
       scrollTrigger: {
         trigger: ".second-image-trigger", // або окремий контейнер
-        scroller: "[data-scroll-container]",
+        scroller: isVertical ? "body" : "[data-scroll-container]",
         start: "top 80%",
         end: "bottom center",
         scrub: true,

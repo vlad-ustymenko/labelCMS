@@ -69,16 +69,6 @@
 }
 
 @media (width < 768px) {
-  .roadmapHorizontal {
-    position: sticky;
-    top: 10%;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .labelHorizontal {
     position: relative;
     font-size: 1rem;

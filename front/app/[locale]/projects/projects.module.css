@@ -6,6 +6,7 @@
   padding: 2rem;
   font-size: 2rem;
   font-family: "bahnschrift", sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 767px) {

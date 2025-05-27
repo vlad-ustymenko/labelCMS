@@ -7,7 +7,6 @@ import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useMobile } from "@/context/MobileContext";
 import styles from "./Sofa.module.css";
 
 function Model({ isMobile }) {
@@ -23,7 +22,7 @@ function Model({ isMobile }) {
     <primitive
       ref={ref}
       object={gltf.scene}
-      position={[isMobile ? -1 : 0, isMobile ? -1 : 0, isMobile ? -3 : 0]}
+      position={[isMobile ? 0 : 0, isMobile ? -0.5 : 0, isMobile ? -1 : 0]}
     />
   );
 }
@@ -50,10 +49,11 @@ function CameraAnimation({ isMobile }) {
     });
 
     gsap.to(camera.position, {
-      z: isMobile ? 4 : 4,
+      z: isMobile ? 10 : 4,
       ease: "none",
       scrollTrigger: {
         trigger: "body",
+        scroller: isMobile ? "body" : "[data-scroll-container]",
         start: "top top",
         end: "bottom bottom",
         scrub: true,
@@ -65,8 +65,7 @@ function CameraAnimation({ isMobile }) {
 }
 
 export default function Sofa() {
-  const { isMobile } = useMobile();
-
+  const isMobile = window.innerWidth < 768;
   return (
     <div
       style={{

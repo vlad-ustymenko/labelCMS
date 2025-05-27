@@ -13,13 +13,9 @@
 
 html,
 body {
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   /* scrollbar-width: none;
   -ms-overflow-style: none; */
-}
-
-html {
-  overflow: hidden;
 }
 
 .bodyHidden {

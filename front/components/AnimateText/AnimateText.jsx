@@ -9,18 +9,23 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AnimateText = ({ children }) => {
   const [isMobile, setIsMobile] = useState(false);
-  const containerRef = useRef(null);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    setIsMobile(window.innerWidth < 768);
   }, []);
+
+  const containerRef = useRef(null);
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(window.innerWidth < 768);
+  //   };
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
