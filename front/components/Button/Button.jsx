@@ -5,28 +5,17 @@ import { usePageTransition } from "../../hooks/usePageTransition";
 import { useParams } from "next/navigation";
 import styles from "./Button.module.css";
 
-const Button = ({ title, href = "", isBack = false, className }) => {
+const Button = ({ title, href = "", className, primary }) => {
   const { locale } = useParams();
   const animateTransition = usePageTransition();
 
   return (
     <Link
       href={`/${locale}${href}`}
-      className={className}
+      className={primary ? `${styles.primary} ${className}` : className}
       onClick={(e) => {
         e.preventDefault();
-        // document.body.classList.add("bodyHidden");
-        // window.history.replaceState({ customState: true }, "", "/projects");
-        // animateTransition(`/${locale}${href}`);
-        if (isBack) {
-          animateTransition(`/${locale}${href}`);
-          setTimeout(() => {
-            document.body.classList.remove("bodyHidden");
-          }, 3000);
-        } else {
-          document.body.classList.add("bodyHidden");
-          animateTransition(`/${locale}${href}`);
-        }
+        animateTransition(`/${locale}${href}`);
       }}
     >
       {title}
