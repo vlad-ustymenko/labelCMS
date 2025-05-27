@@ -10,12 +10,11 @@ import gsap from "gsap";
 const ProjectsPage = ({ projects, locale }) => {
   const animateTransition = usePageTransition();
 
-
   const sortedProjects = [...projects].sort((a, b) => {
     return new Date(a.createdAt) - new Date(b.createdAt); // від нових до старих
   });
 
-	  console.log(sortedProjects);
+  console.log(sortedProjects);
 
   const cardsRef = useRef([]);
   useEffect(() => {
