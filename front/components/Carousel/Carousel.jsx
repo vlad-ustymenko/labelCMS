@@ -6,7 +6,7 @@ import styles from "./Carousel.module.css";
 
 // const images = ["/background.png", "/br_1.jpg", "/br_3.jpg"];
 
-const Carousel = ({ images }) => {
+const Carousel = ({ images, className }) => {
   const [index, setIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const containerRef = useRef(null);
@@ -19,7 +19,6 @@ const Carousel = ({ images }) => {
     }
   }, []);
 
-  console.log(images);
   const handleNext = () => {
     if (isAnimating) return;
 
@@ -61,7 +60,7 @@ const Carousel = ({ images }) => {
 
   return (
     <div
-      className={styles.wrapper}
+      className={`${styles.wrapper} ${className}`}
       onClick={handleNext}
       style={{ pointerEvents: isAnimating ? "none" : "auto" }}
     >
