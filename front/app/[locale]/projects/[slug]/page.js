@@ -10,6 +10,7 @@ import qs from "qs";
 import Image from "next/image";
 import st from "./page.module.css";
 import Carousel from "@/components/Carousel/Carousel";
+import ProjectPage from "@/components/ProjectPage/ProjectPage";
 
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -65,39 +66,7 @@ const Page = async ({ params }) => {
 
   return (
     <main className={st.main}>
-      <Carousel images={project.images} />
-      {/* <Image src={project.url} alt={project.title} fill sizes="100%"></Image> */}
-      <div className={st.container}>
-        <div className={st.contentWrapper}>
-          <header className={st.header}>
-            <Button className={st.button} title="Label" isBack />
-            <Button
-              className={st.button}
-              title="Назад"
-              href="/projects"
-              isBack
-            />
-          </header>
-          <h1 className={st.title}>{project.title}</h1>
-          <p>{project.content}</p>
-          {project.paragraphs.map((paragraph) => (
-            <Markdown
-              key={paragraph.paragraphs}
-              components={{
-                ul: ({ children }) => <ul className={st.list}>{children}</ul>,
-                li: ({ children }) => (
-                  <li className={st.listItem}>{children}</li>
-                ),
-                p: ({ children }) => <p className={st.paragraph}>{children}</p>,
-              }}
-            >
-              {paragraph.paragraphs}
-            </Markdown>
-          ))}
-          <p>{project.year}</p>
-          <p>{project.customer}</p>
-        </div>
-      </div>
+      <ProjectPage project={project} />
     </main>
   );
 };
