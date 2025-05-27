@@ -1,41 +1,65 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import st from "./MainScreen.module.css";
 import Sofa from "@/components/Sofa/Sofa";
 import Button from "@/components/Button/Button";
 import SpinningText from "../SpinningText/SpinningText";
-
 import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const MainScreen = ({ data }) => {
+  const [isMobile, setIsMobile] = useState(false);
   const { slogan, companyName, companySubname, button, spinningText } = data;
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: `.${st.mainScreen}`,
-        scroller: "[data-scroll-container]",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
-    tl.to(`.${st.title}`, {
-      scale: 1.1,
-      y: 100,
-      transformOrigin: "left",
-    })
-      .to(
-        `.${st.strokeTitle}`,
-        { scale: 1.1, y: 100, transformOrigin: "left" },
-        "<"
-      )
-      .to(`.${st.subtitle}`, { scale: 1.05, transformOrigin: "left" }, "<");
+  useEffect(() => {
+    console.log(isMobile);
+    const scrollContainer = isMobile ? "body" : "[data-scroll-container]";
+    console.log(scrollContainer);
+    gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: `.${st.mainScreen}`,
+          scroller: scrollContainer,
+          start: "top top",
+          end: "bottom top",
+          markers: true,
+          scrub: true,
+        },
+      });
+
+      tl.to(`.${st.title}`, {
+        scale: scrollContainer === "body" ? 1.5 : 1.1,
+        y: scrollContainer === "body" ? 10 : 100,
+        transformOrigin: scrollContainer === "body" ? "bottom" : "left",
+      })
+        .to(
+          `.${st.strokeTitle}`,
+          {
+            scale: scrollContainer === "body" ? 1.5 : 1.1,
+            y: scrollContainer === "body" ? 10 : 100,
+            transformOrigin: scrollContainer === "body" ? "bottom" : "left",
+          },
+          "<"
+        )
+        .to(
+          `.${st.subtitle}`,
+          {
+            scale: scrollContainer === "body" ? 1.2 : 1.01,
+            transformOrigin: scrollContainer === "body" ? "bottom" : "left",
+          },
+          "<"
+        );
+    });
   }, []);
 
   return (
-    <section className={`${st.mainScreen} main`}>
+    <section className={st.mainScreen}>
       <div
         style={{
           width: "100%",
@@ -46,8 +70,12 @@ const MainScreen = ({ data }) => {
           zIndex: "2",
         }}
       ></div>
-      <Button title={button.title} className={st.button} href={button.href} />
-
+      <Button
+        title={button.title}
+        className={st.button}
+        href={button.href}
+        primary
+      />
       <h1 className={st.title} data-scroll data-scroll-speed="-2">
         {companyName}
       </h1>
@@ -55,9 +83,7 @@ const MainScreen = ({ data }) => {
         {companyName}
         <h2 className={st.subtitle}>{companySubname}</h2>
       </div>
-
       <div className={st.slogan}>{slogan}</div>
-
       <SpinningText textArray={spinningText} className={st.spinningText} />
       <Sofa />
     </section>
