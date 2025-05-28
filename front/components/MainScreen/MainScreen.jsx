@@ -10,52 +10,48 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const MainScreen = ({ data }) => {
-  const [isMobile, setIsMobile] = useState(false);
   const { slogan, companyName, companySubname, button, spinningText } = data;
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, []);
+    setTimeout(() => {
+      const scrollContainer =
+        window.innerWidth < 768 ? "body" : "[data-scroll-container]";
+      gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: `.${st.mainScreen}`,
+            scroller: scrollContainer,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
 
-  useEffect(() => {
-    console.log(isMobile);
-    const scrollContainer = isMobile ? "body" : "[data-scroll-container]";
-    console.log(scrollContainer);
-    gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: `.${st.mainScreen}`,
-          scroller: scrollContainer,
-          start: "top top",
-          end: "bottom top",
-          markers: true,
-          scrub: true,
-        },
+        tl.to(`.${st.title}`, {
+          scale: scrollContainer === "body" ? 1.5 : 1.1,
+          y: scrollContainer === "body" ? 10 : 100,
+          transformOrigin: scrollContainer === "body" ? "bottom" : "left",
+        })
+          .to(
+            `.${st.strokeTitle}`,
+            {
+              scale: scrollContainer === "body" ? 1.5 : 1.1,
+              y: scrollContainer === "body" ? 10 : 100,
+              transformOrigin: scrollContainer === "body" ? "bottom" : "left",
+            },
+            "<"
+          )
+          .to(
+            `.${st.subtitle}`,
+            {
+              scale: scrollContainer === "body" ? 1.2 : 1.01,
+              transformOrigin: scrollContainer === "body" ? "bottom" : "left",
+            },
+            "<"
+          );
       });
-
-      tl.to(`.${st.title}`, {
-        scale: scrollContainer === "body" ? 1.5 : 1.1,
-        y: scrollContainer === "body" ? 10 : 100,
-        transformOrigin: scrollContainer === "body" ? "bottom" : "left",
-      })
-        .to(
-          `.${st.strokeTitle}`,
-          {
-            scale: scrollContainer === "body" ? 1.5 : 1.1,
-            y: scrollContainer === "body" ? 10 : 100,
-            transformOrigin: scrollContainer === "body" ? "bottom" : "left",
-          },
-          "<"
-        )
-        .to(
-          `.${st.subtitle}`,
-          {
-            scale: scrollContainer === "body" ? 1.2 : 1.01,
-            transformOrigin: scrollContainer === "body" ? "bottom" : "left",
-          },
-          "<"
-        );
-    });
+      ScrollTrigger.refresh();
+    }, 30);
   }, []);
 
   return (
