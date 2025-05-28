@@ -7,7 +7,7 @@ import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AnimateText = ({ children }) => {
+const AnimateText = ({ children, className }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const AnimateText = ({ children }) => {
         scrollTrigger: {
           trigger: containerRef.current,
           scroller: isMobile ? "body" : "[data-scroll-container]",
-          start: "top 80%",
+          start: "top 90%",
           toggleActions: "restart none none reverse",
         },
       });
@@ -65,7 +65,7 @@ const AnimateText = ({ children }) => {
   if (children === null) return null;
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className={className}>
       {children.split("\n").map((line, index) => (
         <div
           key={index}
