@@ -3,6 +3,7 @@ import About from "@/components/About/About";
 import Roadmap from "@/components/Roadmap/Roadmap";
 import Loader from "@/components/Loader/Loader";
 import qs from "qs";
+import Services from "@/components/Services/Services";
 
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -26,6 +27,9 @@ async function getData(path, locale) {
             },
           },
           "blocks.about": {
+            populate: "*",
+          },
+          "blocks.services": {
             populate: "*",
           },
         },
@@ -59,6 +63,8 @@ function blockRendered(block) {
       return <MainScreen key={block.id} data={block} />;
     case "blocks.about":
       return <About key={block.id} data={block} />;
+    case "blocks.services":
+      return <Services key={block.id} data={block} />;
     default:
       return <Loader />;
   }
@@ -68,18 +74,19 @@ export default async function Home({ params }) {
   const { locale } = await params;
   const strapiData = await getData(process.env.HOME_URL, locale);
 
-  const { blocks } = strapiData;
-
   if (!strapiData) {
     return (
       <div style={{ padding: "2rem", textAlign: "center", color: "crimson" }}>
         <h2>Не вдалося отримати дані 😢</h2>
         <p>
-          Перевір, чи запущено Strapi на <code>localhost:1337</code>.
+          Перевір, чи запущено Strapi, і чи доступний шлях{" "}
+          <code>{process.env.HOME_URL}</code>.
         </p>
       </div>
     );
   }
+
+  const { blocks } = strapiData;
 
   return (
     <main>

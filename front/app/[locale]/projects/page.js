@@ -40,6 +40,18 @@ const Page = async ({ params }) => {
   const { locale } = await params;
   const strapiData = await getData(process.env.PROJECTS_URL, locale);
 
+  if (!strapiData) {
+    return (
+      <div style={{ padding: "2rem", textAlign: "center", color: "crimson" }}>
+        <h2>Не вдалося отримати дані 😢</h2>
+        <p>
+          Перевір, чи запущено Strapi, і чи доступний шлях{" "}
+          <code>{process.env.HOME_URL}</code>.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <Button title="Label" className={st.button}></Button>
