@@ -10,6 +10,17 @@ export default function ScrollWrapper({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    const navEntries = performance.getEntriesByType("navigation");
+    const navType = navEntries.length > 0 ? navEntries[0].type : null;
+
+    if (navType === "reload") {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+  }, []);
+
+  useEffect(() => {
     const initScroll = async () => {
       gsap.registerPlugin(ScrollTrigger);
 
