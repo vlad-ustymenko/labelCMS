@@ -28,6 +28,19 @@ export interface BlocksMainScreen extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksServices extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_services';
+  info: {
+    description: '';
+    displayName: 'Services';
+  };
+  attributes: {
+    description: Schema.Attribute.RichText;
+    list: Schema.Attribute.Component<'ui.paragraphs', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface UiButton extends Struct.ComponentSchema {
   collectionName: 'components_ui_buttons';
   info: {
@@ -64,6 +77,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'blocks.about': BlocksAbout;
       'blocks.main-screen': BlocksMainScreen;
+      'blocks.services': BlocksServices;
       'ui.button': UiButton;
       'ui.paragraphs': UiParagraphs;
       'ui.spinning-text': UiSpinningText;
