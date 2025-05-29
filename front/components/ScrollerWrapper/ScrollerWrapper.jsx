@@ -10,13 +10,13 @@ export default function ScrollWrapper({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    const navEntries = performance.getEntriesByType("navigation");
-    const navType = navEntries.length > 0 ? navEntries[0].type : null;
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
 
+    const navType = performance.getEntriesByType("navigation")[0]?.type;
     if (navType === "reload") {
       window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
     }
   }, []);
 
