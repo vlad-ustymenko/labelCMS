@@ -4,6 +4,7 @@ import Roadmap from "@/components/Roadmap/Roadmap";
 import Loader from "@/components/Loader/Loader";
 import qs from "qs";
 import Services from "@/components/Services/Services";
+import Footer from "@/components/Footer/Footer";
 
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -92,7 +93,7 @@ export default async function Home({ params }) {
     <main>
       {blocks.map((block) => blockRendered(block))}
       <Roadmap />
-      <div style={{ height: "300vh" }} />
+      <Footer />
     </main>
   );
 }
