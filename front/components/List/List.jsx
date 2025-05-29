@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AnimateText from "../AnimateText/AnimateText";
 import st from "./List.module.css";
 import gsap from "gsap";
@@ -9,6 +9,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const List = ({ className, list }) => {
   const itemsRef = useRef([]);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   useEffect(() => {
     itemsRef.current.forEach((el) => {
@@ -20,18 +26,18 @@ const List = ({ className, list }) => {
         { scaleX: 0 },
         {
           scaleX: 1,
-          duration: 1,
-          ease: "power2.out",
+          duration: 2,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: el,
-            scroller: "[data-scroll-container]", // якщо ти використовуєш Locomotive Scroll
+            scroller: isMobile ? "body" : "[data-scroll-container]", // якщо ти використовуєш Locomotive Scroll
             start: "top 90%",
             toggleActions: "restart none none reverse",
           },
         }
       );
     });
-  }, []);
+  }, [isMobile]);
 
   return (
     <ul className={`${st.list} ${className}`}>
@@ -41,7 +47,9 @@ const List = ({ className, list }) => {
           className={st.listItem}
           ref={(el) => (itemsRef.current[i] = el)}
         >
-          <AnimateText>{item.paragraphs}</AnimateText>
+          <AnimateText stagger={0.2} duration={0.5}>
+            {item.paragraphs}
+          </AnimateText>
           <div className={st.borderLine}></div>
         </li>
       ))}
