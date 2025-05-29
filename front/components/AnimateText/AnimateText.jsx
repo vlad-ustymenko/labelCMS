@@ -7,7 +7,7 @@ import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AnimateText = ({ children, className }) => {
+const AnimateText = ({ children, className, duration, stagger }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -52,8 +52,8 @@ const AnimateText = ({ children, className }) => {
         rotateZ: -5,
         scaleY: 0,
         transformOrigin: "top left",
-        duration: 0.4,
-        stagger: 0.1,
+        duration: duration,
+        stagger: stagger,
       });
     }
 

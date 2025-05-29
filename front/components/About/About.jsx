@@ -145,13 +145,17 @@ const About = ({ data }) => {
           ref={imageRef}
         />
         <h2 className={`${st.title}`}>
-          <AnimateText>{title}</AnimateText>
+          <AnimateText stagger={0.1} duration={0.4}>
+            {title}
+          </AnimateText>
         </h2>
 
         <div className={st.grid}>
           <div style={{ zIndex: 1 }}></div>
           <div className={st.text}>
-            <AnimateText>{text}</AnimateText>
+            <AnimateText stagger={0.1} duration={0.4}>
+              {text}
+            </AnimateText>
           </div>
         </div>
       </Container>

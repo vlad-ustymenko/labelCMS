@@ -138,13 +138,17 @@ const Services = ({ data }) => {
     >
       <Container>
         <h2 className={`${st.title}`}>
-          <AnimateText>{title}</AnimateText>
+          <AnimateText stagger={0.1} duration={0.4}>
+            {title}
+          </AnimateText>
         </h2>
 
         <div className={st.grid}>
           <div style={{ zIndex: 1 }}></div>
-          <div className={st.text}>
-            <AnimateText className={st.ok}>{description}</AnimateText>
+          <div className={st.content}>
+            <AnimateText stagger={0.1} duration={0.4} className={st.text}>
+              {description}
+            </AnimateText>
             <List className={st.list} list={list}></List>
           </div>
         </div>
