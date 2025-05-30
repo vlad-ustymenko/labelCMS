@@ -5,6 +5,7 @@ import Loader from "@/components/Loader/Loader";
 import qs from "qs";
 import Services from "@/components/Services/Services";
 import Footer from "@/components/Footer/Footer";
+import BgPhone from "@/components/BgPhone/BgPhone";
 
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -92,6 +93,7 @@ export default async function Home({ params }) {
   return (
     <main>
       {blocks.map((block) => blockRendered(block))}
+      <BgPhone></BgPhone>
       <Roadmap />
       <Footer />
     </main>
