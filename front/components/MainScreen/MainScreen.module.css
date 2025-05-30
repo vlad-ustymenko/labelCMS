@@ -13,10 +13,10 @@
 .title,
 .strokeTitle {
   position: absolute;
-  top: 10%;
-  left: 3%;
+  top: 6%;
+  left: 20%;
   font-family: "bebas", sans-serif;
-  font-size: clamp(8rem, 20vw, 20rem);
+  font-size: clamp(8rem, 30vw, 30rem);
 }
 
 .title {
@@ -33,7 +33,7 @@
   position: absolute;
   bottom: -12%;
   right: 0;
-  font-size: 8rem;
+  font-size: 12rem;
   z-index: 2;
   color: var(--accent);
   -webkit-text-stroke: 3px var(--accent);
