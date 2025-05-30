@@ -1,0 +1,21 @@
+.video {
+  margin-top: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  object-fit: contain;
+  z-index: -1;
+  filter: brightness(0.7);
+}
+
+.video2 {
+  margin-top: 220vh;
+  position: absolute;
+  top: 0;
+  left: -5%;
+  width: 80%;
+  object-fit: contain;
+  z-index: 1;
+  filter: brightness(0.7);
+}
