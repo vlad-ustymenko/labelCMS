@@ -1,98 +1,139 @@
 "use client";
 
-import { useEffect } from "react";
-import gsap from "gsap";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
-import { useThree, useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import styles from "./Sofa.module.css";
+import React, { useRef, useEffect, useState } from "react";
 
-// function Model({ isMobile }) {
-//   const gltf = useGLTF("/models/new.glb");
-//   const ref = useRef();
-//   gltf.scene.traverse((child) => {
-//     if (child.isMesh) {
-//       child.material.color.set("#333333");
-//       // child.material.roughness = 0.9;
-//     }
-//   });
-//   return (
-//     <primitive
-//       ref={ref}
-//       object={gltf.scene}
-//       position={[isMobile ? 0 : 0, isMobile ? -0.5 : 0, isMobile ? -1 : 0]}
-//     />
-//   );
-// }
+export default function SofaCanvas() {
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
-// gsap.registerPlugin(ScrollTrigger);
+  const totalFrames = 66;
+  const frameRate = 30;
+  const frameBaseName = "Render Comp_";
 
-// function CameraAnimation({ isMobile }) {
-//   const { camera } = useThree();
+  const framePath = (index) =>
+    `/frames/mainImage/desktop/${frameBaseName}${String(index).padStart(
+      5,
+      "0"
+    )}.webp`;
 
-//   const startPos = { x: 0, y: 1, z: 1.3 };
-//   const endPos = { x: 0.5, y: 1, z: 1.3 };
+  const images = useRef([]);
+  const [loaded, setLoaded] = useState(false);
+  const frameIndex = useRef(0);
 
-//   useEffect(() => {
-//     // Встановити початкову позицію
-//     camera.position.set(startPos.x, startPos.y, startPos.z);
+  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
-//     // Початкова анімація
-//     gsap.to(camera.position, {
-//       x: endPos.x,
-//       y: endPos.y,
-//       z: endPos.z,
-//       duration: 2,
-//       ease: "power2.out",
-//     });
+  // Завантажуємо кадри
+  useEffect(() => {
+    let loadedCount = 0;
+    for (let i = 1; i <= totalFrames; i++) {
+      const img = new Image();
+      img.src = framePath(i);
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === totalFrames) {
+          setLoaded(true);
+        }
+      };
+      images.current.push(img);
+    }
+  }, []);
 
-//     gsap.to(camera.position, {
-//       z: isMobile ? 10 : 4,
-//       ease: "none",
-//       scrollTrigger: {
-//         trigger: "body",
-//         scroller: isMobile ? "body" : "[data-scroll-container]",
-//         start: "top top",
-//         end: "bottom bottom",
-//         scrub: true,
-//       },
-//     });
-//   }, [camera]);
+  // Встановлюємо розміри канваса при монтуванні та ресайзі
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        setCanvasSize({
+          width: containerRef.current.clientWidth,
+          height: containerRef.current.clientHeight,
+        });
+      }
+    };
 
-//   return null;
-// }
+    updateSize();
+    window.addEventListener("resize", updateSize);
 
-export default function Sofa() {
-  const isMobile = window.innerWidth < 768;
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  // Програємо анімацію після завантаження
+  useEffect(() => {
+    if (!loaded) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    canvas.width = canvasSize.width;
+    canvas.height = canvasSize.height;
+
+    const ctx = canvas.getContext("2d");
+
+    let animationFrameId;
+    let lastTimestamp = 0;
+    const frameDuration = 1000 / frameRate;
+
+    const render = (timestamp) => {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const delta = timestamp - lastTimestamp;
+
+      if (delta > frameDuration) {
+        const img = images.current[frameIndex.current];
+        if (img) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const scale = Math.min(
+            canvas.width / img.width,
+            canvas.height / img.height
+          );
+          const w = img.width * scale;
+          const h = img.height * scale;
+          ctx.drawImage(
+            img,
+            (canvas.width - w) / 2,
+            (canvas.height - h) / 2,
+            w,
+            h
+          );
+        }
+
+        frameIndex.current++;
+
+        if (frameIndex.current >= totalFrames) {
+          cancelAnimationFrame(animationFrameId);
+          return;
+        }
+
+        lastTimestamp = timestamp;
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    animationFrameId = requestAnimationFrame(render);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [loaded, canvasSize]);
+
   return (
     <div
+      ref={containerRef}
       style={{
         width: "100%",
         height: "100%",
         position: "absolute",
-        top: "0",
-        left: "0",
-        zIndex: "1",
+        top: 0,
+        left: 0,
+        zIndex: 1,
       }}
-      className="ok"
     >
-      <video
-        autoPlay
-        muted
-        playsInline
-        className={styles.video}
-        src="/video/Main.webm"
-      ></video>
-      {/* <Canvas camera={{ position: [0.5, 1, 1.3], fov: 50 }}>
-        <CameraAnimation isMobile={isMobile} />
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[1, 2, 3]} intensity={0.2} />
-        <OrbitControls enableZoom={false} enableRotate={false} />
-        <Environment preset="city" />
-        <Model isMobile={isMobile} />
-      </Canvas> */}
+      <canvas
+        ref={canvasRef}
+        width={canvasSize.width}
+        height={canvasSize.height}
+        style={{
+          display: loaded ? "block" : "none",
+          width: "100%",
+          height: "100%",
+        }}
+      />
     </div>
   );
 }
