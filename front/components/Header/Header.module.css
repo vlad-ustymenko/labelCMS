@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  padding: 2% 5%;
+  top: 0;
+  left: 0;
+  font-family: "bahnschriftRegular", sans-serif;
+  font-size: 1.5rem;
+  z-index: 2;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 767px) {
+  .header {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media (min-width: 1025px) and (max-width: 1919px) {
+}
+
+@media (min-width: 1920px) {
+}
