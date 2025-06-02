@@ -65,7 +65,13 @@
     display: grid;
     grid-template-columns: 1fr;
   }
-  .comtent {
+  .title {
+    width: 100%;
+  }
+  .content {
+    width: 100%;
+  }
+  .text {
     width: 100%;
   }
   .list {
@@ -74,6 +80,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+  .title {
+    width: 100%;
+  }
   .grid {
     display: grid;
     grid-template-columns: 1fr;

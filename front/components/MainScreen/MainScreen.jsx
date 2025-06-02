@@ -2,14 +2,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import st from "./MainScreen.module.css";
 import Sofa from "@/components/Sofa/Sofa";
+import SofaVideo from "../SofaVideo/SofaVideo";
+import Header from "../Header/Header";
 import Button from "@/components/Button/Button";
 import SpinningText from "../SpinningText/SpinningText";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useWebmSupport } from "../../hooks/useWebmSupport";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const MainScreen = ({ data }) => {
+  const isWebmSupported = useWebmSupport();
   const { slogan, companyName, companySubname, button, spinningText } = data;
 
   useEffect(() => {
@@ -54,6 +58,8 @@ const MainScreen = ({ data }) => {
     }, 30);
   }, []);
 
+  console.log(isWebmSupported);
+
   return (
     <section className={st.mainScreen}>
       <div
@@ -66,12 +72,13 @@ const MainScreen = ({ data }) => {
           zIndex: "2",
         }}
       ></div>
-      <Button
+      {/* <Button
         title={button.title}
         className={st.button}
         href={button.href}
         primary
-      />
+      /> */}
+      <Header></Header>
       <h1 className={st.title} data-scroll data-scroll-speed="-2">
         {companyName}
       </h1>
@@ -81,7 +88,7 @@ const MainScreen = ({ data }) => {
       </div>
       <div className={st.slogan}>{slogan}</div>
       <SpinningText textArray={spinningText} className={st.spinningText} />
-      <Sofa />
+      {isWebmSupported ? <SofaVideo /> : <Sofa />}
     </section>
   );
 };

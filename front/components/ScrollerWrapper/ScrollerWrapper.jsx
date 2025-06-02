@@ -36,7 +36,6 @@ export default function ScrollWrapper({ children }) {
 
       locoScrollRef.current = locoScroll;
 
-      // ❗️Дочекайся першого "scroll" і тільки тоді активуй ScrollTrigger
       locoScroll.on("scroll", ScrollTrigger.update);
 
       // Дочекайся поки все промалюється

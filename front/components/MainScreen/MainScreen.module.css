@@ -17,6 +17,7 @@
   left: 20%;
   font-family: "bebas", sans-serif;
   font-size: clamp(8rem, 30vw, 30rem);
+  color: white;
 }
 
 .title {
