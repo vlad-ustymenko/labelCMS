@@ -3,6 +3,7 @@ import About from "@/components/About/About";
 import Roadmap from "@/components/Roadmap/Roadmap";
 import Loader from "@/components/Loader/Loader";
 import qs from "qs";
+import { notFound } from "next/navigation";
 import Services from "@/components/Services/Services";
 import Footer from "@/components/Footer/Footer";
 import BgPhone from "@/components/BgPhone/BgPhone";
@@ -77,15 +78,7 @@ export default async function Home({ params }) {
   const strapiData = await getData(process.env.HOME_URL, locale);
 
   if (!strapiData) {
-    return (
-      <div style={{ padding: "2rem", textAlign: "center", color: "crimson" }}>
-        <h2>Не вдалося отримати дані 😢</h2>
-        <p>
-          Перевір, чи запущено Strapi, і чи доступний шлях{" "}
-          <code>{process.env.HOME_URL}</code>.
-        </p>
-      </div>
-    );
+    notFound();
   }
 
   const { blocks } = strapiData;
