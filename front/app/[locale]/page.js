@@ -48,7 +48,6 @@ async function getData(path, locale) {
       cache: "no-store",
     });
 
-    // Якщо сервер повернув помилку — не парсимо JSON
     if (!res.ok) {
       console.error(`Strapi error: ${res.status} ${res.statusText}`);
     }
