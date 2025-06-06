@@ -9,6 +9,7 @@ import SpinningText from "../SpinningText/SpinningText";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useWebmSupport } from "../../hooks/useWebmSupport";
+import Menu from "../Menu/Menu";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,8 +59,6 @@ const MainScreen = ({ data }) => {
     }, 30);
   }, []);
 
-  console.log(isWebmSupported);
-
   return (
     <section className={st.mainScreen}>
       <div
@@ -89,6 +88,7 @@ const MainScreen = ({ data }) => {
       <div className={st.slogan}>{slogan}</div>
       <SpinningText textArray={spinningText} className={st.spinningText} />
       {isWebmSupported ? <SofaVideo /> : <Sofa />}
+      <Menu></Menu>
     </section>
   );
 };
