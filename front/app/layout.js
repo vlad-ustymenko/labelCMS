@@ -6,6 +6,7 @@ import ScrollWrapper from "@/components/ScrollerWrapper/ScrollerWrapper";
 
 import "./globals.css";
 import { Scroll } from "@react-three/drei";
+import { MenuProvider } from "@/context/MenuContext";
 
 const MariupolBold = localFont({
   src: "../public/fonts/Mariupol-Bold.ttf",
@@ -61,7 +62,9 @@ export default async function LocaleLoyout({ children, params }) {
         <body
           className={`${bebasRegular.className} ${bahnschrift.className} ${bahnschriftRegular.className} ${bahnschriftThin.className} ${bebas.className}`}
         >
-          <ScrollWrapper>{children}</ScrollWrapper>
+          <ScrollWrapper>
+            <MenuProvider>{children} </MenuProvider>
+          </ScrollWrapper>
         </body>
       </html>
     </ViewTransitions>
