@@ -3,7 +3,6 @@ import "locomotive-scroll/dist/locomotive-scroll.css";
 import { ViewTransitions } from "next-view-transitions";
 import localFont from "next/font/local";
 import ScrollWrapper from "@/components/ScrollerWrapper/ScrollerWrapper";
-
 import "./globals.css";
 import { Scroll } from "@react-three/drei";
 import { MenuProvider } from "@/context/MenuContext";
