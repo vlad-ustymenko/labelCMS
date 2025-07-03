@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
 const PUBLIC_FILE = /\.(.*)$/;
-const DEFAULT_LOCALE = "en";
+const DEFAULT_LOCALE = "uk";
+const SUPPORTED_LOCALES = ["uk", "en"];
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
@@ -12,31 +13,25 @@ export function middleware(request) {
     pathname.startsWith("/api") ||
     PUBLIC_FILE.test(pathname)
   ) {
-    return;
+    return NextResponse.next();
   }
 
-  // Отримуємо cookie локалі
   const localeCookie = request.cookies.get("NEXT_LOCALE")?.value;
 
-  // Якщо шлях вже містить локаль (наприклад /uk або /en)
-  const pathnameIsLocale =
-    pathname.startsWith("/en") || pathname.startsWith("/uk");
+  const segments = pathname.split("/").filter(Boolean);
+  const firstSegment = segments[0];
+  const pathnameIsLocale = SUPPORTED_LOCALES.includes(firstSegment);
 
   if (pathnameIsLocale) {
-    // Якщо є локаль в URL — оновлюємо cookie
     const response = NextResponse.next();
-    const localeFromUrl = pathname.split("/")[1];
-
-    // Встановлюємо cookie локалі на 1 рік
-    response.cookies.set("NEXT_LOCALE", localeFromUrl, {
-      maxAge: 60 * 60 * 24 * 365,
+    response.cookies.set("NEXT_LOCALE", firstSegment, {
+      maxAge: 60 * 60 * 24 * 365, // 1 рік
     });
-
     return response;
   }
 
-  // Якщо корінь '/' і немає локалі в URL
-  if (pathname === "/") {
+  // Якщо корінь '/' — редірект на локаль з cookie або за замовчуванням
+  if (pathname === "/" || !pathnameIsLocale) {
     const locale = localeCookie || DEFAULT_LOCALE;
     return NextResponse.redirect(new URL(`/${locale}`, request.url));
   }
