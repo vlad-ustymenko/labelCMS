@@ -7,33 +7,31 @@ import Link from "next/link";
 import { usePageTransition } from "../../hooks/usePageTransition";
 import { useMenuContext } from "@/context/MenuContext";
 import { useParams } from "next/navigation";
+import Button from "../Button/Button";
 
 const Header = () => {
   const { activeMenu, setActiveMenu } = useMenuContext();
   const { locale } = useParams();
   const pathname = usePathname();
+  const [business, setBusiness] = React.useState(false);
   const animateTransition = usePageTransition();
+
+  useEffect(() => {
+    if (pathname.includes("business")) {
+      setBusiness(true);
+    } else {
+      setBusiness(false);
+    }
+  }, [pathname]);
+
   return (
     <div className={st.header}>
       <div className={`${st.wrapper} ${st.left}`}>
-        <Link
-          href="/en/projects"
-          onClick={(e) => {
-            e.preventDefault();
-            animateTransition(`/${locale}/projects`);
-          }}
-        >
-          Проекти
-        </Link>
-        <Link
-          href="/business"
-          onClick={(e) => {
-            e.preventDefault();
-            animateTransition(`/${locale}/bisiness`);
-          }}
-        >
-          Для бізнесу
-        </Link>
+        {business && <Button title="Головна" className={st.button} />}
+        <Button title="Проекти" href="/projects" className={st.button} />
+        {!business && (
+          <Button title="Для бізнесу" href="/business" className={st.button} />
+        )}
       </div>
       <div className={st.wrapper}>
         <Link
