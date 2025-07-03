@@ -10,6 +10,7 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useWebmSupport } from "../../hooks/useWebmSupport";
 import Menu from "../Menu/Menu";
+import Main3D from "../Main3D/Main3D";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,7 +88,7 @@ const MainScreen = ({ data }) => {
       </div>
       <div className={st.slogan}>{slogan}</div>
       <SpinningText textArray={spinningText} className={st.spinningText} />
-      {isWebmSupported ? <SofaVideo /> : <Sofa />}
+      <Main3D></Main3D>
       <Menu></Menu>
     </section>
   );
