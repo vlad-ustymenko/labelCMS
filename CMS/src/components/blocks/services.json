@@ -16,6 +16,9 @@
       "type": "component",
       "repeatable": true,
       "component": "ui.paragraphs"
+    },
+    "highlightTitle": {
+      "type": "text"
     }
   }
 }

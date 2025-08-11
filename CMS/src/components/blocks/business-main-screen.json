@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_business_main_screens",
+  "info": {
+    "displayName": "Business Main Screen",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "slogan": {
+      "type": "text",
+      "required": false
+    },
+    "spinningText": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ui.spinning-text"
+    },
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ui.main-header"
+    }
+  }
+}
