@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_ui_counter_lists",
+  "info": {
+    "displayName": "CounterList"
+  },
+  "options": {},
+  "attributes": {
+    "count": {
+      "type": "string",
+      "required": true
+    },
+    "symbol": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

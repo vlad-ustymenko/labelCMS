@@ -9,13 +9,13 @@
     "title": {
       "type": "text"
     },
-    "text": {
+    "description": {
       "type": "richtext"
     },
     "highlightTitle": {
       "type": "text"
     },
-    "highlightText": {
+    "highlightDescription": {
       "type": "text"
     }
   }

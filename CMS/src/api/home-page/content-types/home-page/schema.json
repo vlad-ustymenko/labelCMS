@@ -21,7 +21,8 @@
       "components": [
         "blocks.main-screen",
         "blocks.about",
-        "blocks.services"
+        "blocks.services",
+        "blocks.achievements"
       ],
       "pluginOptions": {
         "i18n": {

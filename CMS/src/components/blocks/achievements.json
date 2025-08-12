@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_blocks_achievements",
+  "info": {
+    "displayName": "Achievements",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "list": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ui.counter-list"
+    },
+    "highlightTitle": {
+      "type": "text"
+    }
+  }
+}
