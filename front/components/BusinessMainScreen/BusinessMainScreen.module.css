@@ -1,0 +1,108 @@
+.mainScreen {
+  position: relative;
+  height: 100vh;
+}
+
+.button {
+  position: absolute;
+  right: 2%;
+  top: 4%;
+  transform: translate(-50, -50%);
+}
+
+.title,
+.strokeTitle {
+  position: absolute;
+  top: 6%;
+  left: 20%;
+  font-family: "bebas", sans-serif;
+  font-size: clamp(8rem, 30vw, 30rem);
+  color: white;
+}
+
+.title {
+  z-index: -1;
+}
+
+.strokeTitle {
+  -webkit-text-stroke: 3px white;
+  color: transparent;
+  z-index: 2;
+}
+
+.subtitle {
+  position: absolute;
+  bottom: -12%;
+  right: 0;
+  font-size: 12rem;
+  z-index: 2;
+  color: var(--accent);
+  -webkit-text-stroke: 3px var(--accent);
+}
+
+.slogan {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 2;
+  white-space: pre-line;
+}
+
+.spinningText {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 2;
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  .title,
+  .strokeTitle {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10rem;
+  }
+
+  .subtitle {
+    bottom: -12%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 5rem;
+  }
+
+  .slogan {
+    width: 100%;
+    bottom: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+  }
+
+  .spinningText {
+    width: 100%;
+    bottom: 20%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 0.5rem;
+  }
+  .button {
+    right: 5%;
+    top: 3%;
+    transform: translate(-50, -50%);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media (min-width: 1025px) and (max-width: 1919px) {
+}
+
+@media (min-width: 1920px) {
+}
