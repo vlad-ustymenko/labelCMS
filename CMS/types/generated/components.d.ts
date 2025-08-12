@@ -7,10 +7,24 @@ export interface BlocksAbout extends Struct.ComponentSchema {
     displayName: 'About';
   };
   attributes: {
-    highlightText: Schema.Attribute.Text;
+    description: Schema.Attribute.RichText;
+    highlightDescription: Schema.Attribute.Text;
     highlightTitle: Schema.Attribute.Text;
-    text: Schema.Attribute.RichText;
     title: Schema.Attribute.Text;
+  };
+}
+
+export interface BlocksAchievements extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_achievements';
+  info: {
+    description: '';
+    displayName: 'Achievements';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    highlightTitle: Schema.Attribute.Text;
+    list: Schema.Attribute.Component<'ui.counter-list', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -69,6 +83,18 @@ export interface UiButton extends Struct.ComponentSchema {
   };
 }
 
+export interface UiCounterList extends Struct.ComponentSchema {
+  collectionName: 'components_ui_counter_lists';
+  info: {
+    displayName: 'CounterList';
+  };
+  attributes: {
+    count: Schema.Attribute.String & Schema.Attribute.Required;
+    symbol: Schema.Attribute.String & Schema.Attribute.Required;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 export interface UiMainHeader extends Struct.ComponentSchema {
   collectionName: 'components_ui_main_headers';
   info: {
@@ -110,10 +136,12 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.about': BlocksAbout;
+      'blocks.achievements': BlocksAchievements;
       'blocks.business-main-screen': BlocksBusinessMainScreen;
       'blocks.main-screen': BlocksMainScreen;
       'blocks.services': BlocksServices;
       'ui.button': UiButton;
+      'ui.counter-list': UiCounterList;
       'ui.main-header': UiMainHeader;
       'ui.paragraphs': UiParagraphs;
       'ui.spinning-text': UiSpinningText;
