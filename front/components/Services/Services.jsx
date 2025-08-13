@@ -18,9 +18,7 @@ const Services = ({ data }) => {
   const containerRef = useRef(null);
   const imageRef = useRef(null);
 
-  const { title, description, list } = data;
-
-  // console.log(text);
+  const { title, description, list, highlightTitle } = data;
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -138,7 +136,7 @@ const Services = ({ data }) => {
     >
       <Container>
         <h2 className={`${st.title}`}>
-          <AnimateText stagger={0.1} duration={0.4}>
+          <AnimateText stagger={0.1} duration={0.4} highlight={highlightTitle}>
             {title}
           </AnimateText>
         </h2>
