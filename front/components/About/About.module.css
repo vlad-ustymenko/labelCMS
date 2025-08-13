@@ -1,9 +1,10 @@
 .container {
-  height: 100vh;
+  height: 80vh;
   position: relative;
 }
 
 .title {
+  font-family: "bahnschriftRegular", sans-serif;
   width: 80%;
   font-size: clamp(3rem, 4vw, 6rem);
   line-height: clamp(3rem, 4vw, 6rem);
@@ -15,6 +16,11 @@
   grid-template-columns: 33vw 1fr;
   margin-top: clamp(2rem, 4vw, 6rem);
 }
+
+.list {
+  width: 80%;
+}
+
 .text {
   font-family: "bahnschriftRegular", sans-serif;
   font-size: 1.2rem;
@@ -26,7 +32,7 @@
 
 .background {
   position: absolute;
-  top: 0;
+  top: 100px;
   left: 0;
   width: 50%;
   height: auto;

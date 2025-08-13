@@ -25,6 +25,28 @@
   overflow: auto;
 }
 
+.list {
+  list-style: none;
+}
+
+.listItem {
+  /* margin-top: 1rem; */
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.listItem::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: #5297f8;
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+
 .contentWrapper::-webkit-scrollbar {
   width: 6px; /* залишаємо лише вузьку смужку для thumb */
   background: transparent;
