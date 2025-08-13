@@ -7,7 +7,14 @@ import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AnimateText = ({ children, className, duration, stagger }) => {
+const AnimateText = ({
+  children,
+  className,
+  duration = 0.6,
+  stagger = 0.1,
+  highlight,
+  firstWord,
+}) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -16,29 +23,18 @@ const AnimateText = ({ children, className, duration, stagger }) => {
 
   const containerRef = useRef(null);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsMobile(window.innerWidth < 768);
-  //   };
-  //   window.addEventListener("resize", handleResize);
-  //   handleResize();
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
-
   useEffect(() => {
     if (!containerRef.current) return;
 
     const spans = containerRef.current.querySelectorAll(`.${st.splitText}`);
-    const allH2Lines = [];
+    const allLines = [];
 
     spans.forEach((span) => {
       const split = new SplitType(span, { types: "lines" });
-      allH2Lines.push(...split.lines);
+      allLines.push(...split.lines);
     });
 
-    if (allH2Lines.length > 0) {
+    if (allLines.length > 0) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -48,21 +44,54 @@ const AnimateText = ({ children, className, duration, stagger }) => {
         },
       });
 
-      tl.from(allH2Lines, {
+      tl.from(allLines, {
         rotateZ: -5,
         scaleY: 0,
         transformOrigin: "top left",
-        duration: duration,
-        stagger: stagger,
+        duration,
+        stagger,
       });
     }
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [isMobile]);
+  }, [isMobile, duration, stagger]);
 
-  if (children === null) return null;
+  if (!children) return null;
+
+  const getHighlightedText = (text) => {
+    if (firstWord) {
+      const [first, ...rest] = text.split(" ");
+      return (
+        <>
+          <span className={st.highlight}>{first}</span>
+          {rest.length > 0 ? " " + rest.join(" ") : ""}
+        </>
+      );
+    }
+    if (!highlight) return text;
+
+    const words = highlight
+      // .split(/[^\p{L}\p{N}]+/u) // Розділяє по всьому, що НЕ літера і НЕ цифра\
+      .split(/([ -]+)/)
+      .map((w) => w.trim())
+      .filter(Boolean);
+
+    if (words.length === 0) return text;
+
+    const parts = text.match(/[\p{L}\p{N}]+|[^\p{L}\p{N}]/gu) || [];
+
+    return parts.map((part, index) =>
+      words.some((word) => part === word) ? (
+        <span key={index} className={st.highlight}>
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
 
   return (
     <div ref={containerRef} className={className}>
@@ -72,7 +101,7 @@ const AnimateText = ({ children, className, duration, stagger }) => {
           className={st.splitText}
           style={{ overflow: "hidden" }}
         >
-          {line}
+          {getHighlightedText(line)}
         </div>
       ))}
     </div>

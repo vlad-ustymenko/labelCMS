@@ -2,3 +2,8 @@
   position: relative;
   will-change: transform;
 }
+
+.highlight {
+  color: var(--accent); /* або будь-який колір, який тобі потрібен */
+  font-weight: bold;
+}
