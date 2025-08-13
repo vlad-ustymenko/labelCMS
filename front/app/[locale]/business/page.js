@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import Services from "@/components/Services/Services";
 import Footer from "@/components/Footer/Footer";
 import BgPhone from "@/components/BgPhone/BgPhone";
+import { headers } from "next/headers";
 
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -18,23 +19,20 @@ async function getData(path, locale) {
         on: {
           "blocks.main-screen": {
             populate: {
-              image: {
-                fields: ["url"],
-              },
-              button: {
-                fields: ["title", "href"],
-              },
               spinningText: {
                 fields: ["text"],
               },
+              header: {
+                populate: "*",
+              },
             },
           },
-          "blocks.about": {
-            populate: "*",
-          },
-          "blocks.services": {
-            populate: "*",
-          },
+          // "blocks.about": {
+          //   populate: "*",
+          // },
+          // "blocks.services": {
+          //   populate: "*",
+          // },
         },
       },
     },
@@ -63,10 +61,10 @@ function blockRendered(block) {
   switch (block.__component) {
     case "blocks.main-screen":
       return <MainScreen key={block.id} data={block} />;
-    case "blocks.about":
-      return <About key={block.id} data={block} />;
-    case "blocks.services":
-      return <Services key={block.id} data={block} />;
+    // case "blocks.about":
+    //   return <About key={block.id} data={block} />;
+    // case "blocks.services":
+    //   return <Services key={block.id} data={block} />;
     default:
       return <Loader />;
   }
@@ -85,8 +83,8 @@ export default async function Business({ params }) {
   return (
     <main>
       {blocks.map((block) => blockRendered(block))}
-      <BgPhone></BgPhone>
-      <Roadmap />
+      {/* <BgPhone></BgPhone> */}
+      {/* <Roadmap /> */}
       <Footer />
     </main>
   );
