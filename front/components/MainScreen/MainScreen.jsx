@@ -8,6 +8,7 @@ import Button from "@/components/Button/Button";
 import SpinningText from "../SpinningText/SpinningText";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { usePathname } from "next/navigation";
 import { useWebmSupport } from "../../hooks/useWebmSupport";
 import Menu from "../Menu/Menu";
 import Main3D from "../Main3D/Main3D";
@@ -16,7 +17,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const MainScreen = ({ data }) => {
   const isWebmSupported = useWebmSupport();
-  const { slogan, companyName, companySubname, button, spinningText } = data;
+  const { slogan, companyName, companySubname, header, spinningText } = data;
+  const pathname = usePathname();
+
+  const [business, setBusiness] = React.useState(false);
+
+  useEffect(() => {
+    if (pathname.includes("business")) {
+      setBusiness(true);
+    } else {
+      setBusiness(false);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -78,7 +90,7 @@ const MainScreen = ({ data }) => {
         href={button.href}
         primary
       /> */}
-      <Header></Header>
+      <Header data={header}></Header>
       <h1 className={st.title} data-scroll data-scroll-speed="-2">
         {companyName}
       </h1>
@@ -88,8 +100,16 @@ const MainScreen = ({ data }) => {
       </div>
       <div className={st.slogan}>{slogan}</div>
       <SpinningText textArray={spinningText} className={st.spinningText} />
-      <Main3D></Main3D>
-      <Menu></Menu>
+      {/* <Sofa></Sofa> */}
+      {/* <Main3D></Main3D> */}
+      {!business ? (
+        <Main3D></Main3D>
+      ) : isWebmSupported ? (
+        <SofaVideo></SofaVideo>
+      ) : (
+        <Sofa></Sofa>
+      )}
+      <Menu data={header}></Menu>
     </section>
   );
 };
