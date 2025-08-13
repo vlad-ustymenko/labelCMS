@@ -30,7 +30,7 @@ const List = ({ className, list }) => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: el,
-            scroller: isMobile ? "body" : "[data-scroll-container]", // якщо ти використовуєш Locomotive Scroll
+            scroller: isMobile ? "body" : "[data-scroll-container]",
             start: "top 90%",
             toggleActions: "restart none none reverse",
           },
@@ -47,7 +47,7 @@ const List = ({ className, list }) => {
           className={st.listItem}
           ref={(el) => (itemsRef.current[i] = el)}
         >
-          <AnimateText stagger={0.2} duration={0.5}>
+          <AnimateText stagger={0.2} duration={0.5} firstWord>
             {item.paragraphs}
           </AnimateText>
           <div className={st.borderLine}></div>

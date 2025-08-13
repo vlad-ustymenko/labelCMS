@@ -120,7 +120,7 @@ export default function SofaCanvas() {
         height: "100%",
         position: "absolute",
         top: 0,
-        left: 0,
+        left: 300,
         zIndex: 1,
       }}
     >

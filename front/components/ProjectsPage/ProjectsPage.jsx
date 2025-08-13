@@ -14,8 +14,6 @@ const ProjectsPage = ({ projects, locale }) => {
     return new Date(a.createdAt) - new Date(b.createdAt); // від нових до старих
   });
 
-  console.log(sortedProjects);
-
   const cardsRef = useRef([]);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
