@@ -1,3 +1,7 @@
+.section {
+  position: relative;
+}
+
 .container {
   position: relative;
 }
@@ -19,9 +23,9 @@
 }
 .content {
   font-family: "bahnschriftRegular", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1vw;
   font-weight: 400;
-  line-height: 1.7rem;
+  line-height: 1.4vw;
   font-weight: 200;
   position: relative;
 }
@@ -52,6 +56,16 @@
   object-fit: cover;
   filter: brightness(30%);
   transform-origin: left center;
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  object-fit: contain;
+  z-index: -1;
+  filter: brightness(0.7);
 }
 
 @media (max-width: 767px) {

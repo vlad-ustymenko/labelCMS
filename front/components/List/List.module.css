@@ -8,9 +8,9 @@
 
 .listItem {
   position: relative;
-  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-size: 1.8vw;
   padding-bottom: clamp(0.5rem, 1vw, 1rem);
-  line-height: clamp(1.5rem, 2vw, 2rem);
+  line-height: 1.8vw;
   /* border-bottom: 3px solid var(--accent); */
 }
 

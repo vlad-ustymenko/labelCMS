@@ -155,7 +155,7 @@ const Roadmap = () => {
 
   return (
     <div className={`${st.roadmapWrapper} roadmap-trigger`}>
-      <div
+      {/* <div
         className={`${st.firstImageWrapper}  first-image-trigger`}
         data-scroll
         data-scroll-speed="-2"
@@ -168,7 +168,7 @@ const Roadmap = () => {
           className={`${st.firstImage}`}
           ref={firstImageRef}
         />
-      </div>
+      </div> */}
 
       <div className={`${st.secondImageWrapper}  second-image-trigger`}>
         <Image
