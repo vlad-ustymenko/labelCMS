@@ -38,7 +38,6 @@ const CountList = ({ list, className }) => {
             scroller: isMobile ? "body" : "[data-scroll-container]",
             start: "top 90%",
             toggleActions: "restart none none reverse",
-            markers: true,
           },
         }
       );
@@ -69,7 +68,7 @@ const CountList = ({ list, className }) => {
             trigger: numberEl,
             scroller: isMobile ? "body" : "[data-scroll-container]",
             start: "top 90%",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "restart none none reverse",
             once: false,
           },
         }
@@ -94,7 +93,7 @@ const CountList = ({ list, className }) => {
             trigger: symbolEl,
             scroller: isMobile ? "body" : "[data-scroll-container]",
             start: "top 90%",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "restart none none reverse",
             once: false,
           },
         }
