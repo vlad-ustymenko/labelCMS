@@ -8,6 +8,8 @@ import Sections from "@/components/Sections/Sections";
 import Footer from "@/components/Footer/Footer";
 import BgPhone from "@/components/BgPhone/BgPhone";
 import Achievements from "@/components/Achievements/Achievements";
+import Reviews from "@/components/Reviews/Reviews";
+import TextScramble from "@/components/TextScrambler/TextScrambler";
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
@@ -33,6 +35,9 @@ async function getData(path, locale) {
             populate: "*",
           },
           "blocks.achievements": {
+            populate: "*",
+          },
+          "blocks.reviews": {
             populate: "*",
           },
         },
@@ -83,6 +88,8 @@ function blockRendered(block) {
       return <Sections key={block.id} data={block} services={true} />;
     case "blocks.achievements":
       return <Sections key={block.id} data={block} achievements={true} />;
+    case "blocks.reviews":
+      return <Reviews key={block.id} data={block} achievements={true} />;
     default:
       return <Loader />;
   }
@@ -102,7 +109,7 @@ export default async function Home({ params }) {
     <main>
       {blocks.map((block) => blockRendered(block))}
       {/* <Achievements></Achievements> */}
-      <BgPhone></BgPhone>
+      {/* <BgPhone></BgPhone> */}
       <Roadmap />
       <Footer />
     </main>
