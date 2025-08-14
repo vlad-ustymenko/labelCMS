@@ -76,71 +76,92 @@ const Sections = ({
 
   return (
     <section
-      className={`${st.container} about`}
-      data-scroll
-      data-scroll-speed="1"
-      ref={containerRef}
+      className={`${st.section}`}
       style={{ height: about ? "80vh" : "" }}
     >
-      <Container>
-        {about && (
-          <Image
-            src="/2.png"
-            alt="background"
-            width={1000}
-            height={1000}
-            className={st.background}
-            ref={imageRef}
-          />
-        )}
-        {achievements && (
-          <Image
-            src="/house.png"
-            alt="background"
-            width={1000}
-            height={1000}
-            className={st.background2}
-            ref={imageRef}
-          />
-        )}
-        <h2
-          className={`${st.title}`}
-          style={{
-            fontSize: about
-              ? "clamp(3rem, 4vw, 6rem)"
-              : services
-              ? "clamp(3rem, 10vw, 10rem)"
-              : "clamp(3rem, 7vw, 7rem)",
-            lineHeight: about
-              ? "clamp(3rem, 4vw, 6rem)"
-              : services
-              ? "clamp(3rem, 10vw, 10rem)"
-              : "clamp(3rem, 7vw, 7rem)",
-          }}
-        >
-          <AnimateText stagger={0.1} duration={0.4} highlight={highlightTitle}>
-            {title}
-          </AnimateText>
-        </h2>
-
-        <div className={st.grid}>
-          <div style={{ zIndex: 1 }}></div>
-          <div className={st.content}>
+      <div
+        className={`${st.container}`}
+        data-scroll
+        data-scroll-speed="1"
+        ref={containerRef}
+        style={{ height: about ? "80vh" : "" }}
+      >
+        <Container>
+          {about && (
+            <Image
+              src="/2.png"
+              alt="background"
+              width={1000}
+              height={1000}
+              className={st.background}
+              ref={imageRef}
+            />
+          )}
+          {achievements && (
+            <Image
+              src="/house.png"
+              alt="background"
+              width={1000}
+              height={1000}
+              className={st.background2}
+              ref={imageRef}
+            />
+          )}
+          <h2
+            className={`${st.title}`}
+            style={{
+              fontSize: about ? "4vw" : services ? "9vw" : "7vw",
+              lineHeight: about ? "4vw" : services ? "9vw" : "7vw",
+            }}
+          >
             <AnimateText
               stagger={0.1}
               duration={0.4}
-              highlight={highlightDescription}
-              className={st.text}
+              highlight={highlightTitle}
             >
-              {description}
+              {title}
             </AnimateText>
-            {services && <List className={st.list} list={data.list}></List>}
-            {achievements && (
-              <CountList className={st.list} list={data.list}></CountList>
-            )}
+          </h2>
+
+          <div className={st.grid}>
+            <div style={{ zIndex: 1 }}></div>
+            <div className={st.content}>
+              <AnimateText
+                stagger={0.1}
+                duration={0.4}
+                highlight={highlightDescription}
+                className={st.text}
+              >
+                {description}
+              </AnimateText>
+              {services && <List className={st.list} list={data.list}></List>}
+              {achievements && (
+                <CountList className={st.list} list={data.list}></CountList>
+              )}
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
+
+      {services && (
+        <video
+          autoPlay
+          muted
+          playsInline
+          src="/video/phones.webm"
+          className={st.video}
+          style={{ left: "-5%", top: "18%", zIndex: 2 }}
+        />
+      )}
+      {about && (
+        <video
+          autoPlay
+          muted
+          playsInline
+          src="/video/phone.webm"
+          className={st.video}
+        />
+      )}
     </section>
   );
 };
