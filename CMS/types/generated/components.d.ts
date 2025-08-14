@@ -58,6 +58,26 @@ export interface BlocksMainScreen extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksReviews extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_reviews';
+  info: {
+    description: '';
+    displayName: 'Reviews';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    highlightTitle: Schema.Attribute.Text;
+    list: Schema.Attribute.Component<'ui.reviews-list', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksServices extends Struct.ComponentSchema {
   collectionName: 'components_blocks_services';
   info: {
@@ -122,6 +142,18 @@ export interface UiParagraphs extends Struct.ComponentSchema {
   };
 }
 
+export interface UiReviewsList extends Struct.ComponentSchema {
+  collectionName: 'components_ui_reviews_lists';
+  info: {
+    displayName: 'ReviewsList';
+  };
+  attributes: {
+    company: Schema.Attribute.String & Schema.Attribute.Required;
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 export interface UiSpinningText extends Struct.ComponentSchema {
   collectionName: 'components_ui_spinning_texts';
   info: {
@@ -139,11 +171,13 @@ declare module '@strapi/strapi' {
       'blocks.achievements': BlocksAchievements;
       'blocks.business-main-screen': BlocksBusinessMainScreen;
       'blocks.main-screen': BlocksMainScreen;
+      'blocks.reviews': BlocksReviews;
       'blocks.services': BlocksServices;
       'ui.button': UiButton;
       'ui.counter-list': UiCounterList;
       'ui.main-header': UiMainHeader;
       'ui.paragraphs': UiParagraphs;
+      'ui.reviews-list': UiReviewsList;
       'ui.spinning-text': UiSpinningText;
     }
   }

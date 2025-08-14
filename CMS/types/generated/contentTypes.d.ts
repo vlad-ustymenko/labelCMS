@@ -390,7 +390,9 @@ export interface ApiBusinessBusiness extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
-    blocks: Schema.Attribute.DynamicZone<['blocks.business-main-screen']>;
+    blocks: Schema.Attribute.DynamicZone<
+      ['blocks.business-main-screen', 'blocks.services']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -429,6 +431,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.about',
         'blocks.services',
         'blocks.achievements',
+        'blocks.reviews',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
