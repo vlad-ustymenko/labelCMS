@@ -8,6 +8,7 @@ import Services from "@/components/Services/Services";
 import Footer from "@/components/Footer/Footer";
 import BgPhone from "@/components/BgPhone/BgPhone";
 import { headers } from "next/headers";
+import Sections from "@/components/Sections/Sections";
 
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -17,7 +18,7 @@ async function getData(path, locale) {
     populate: {
       blocks: {
         on: {
-          "blocks.main-screen": {
+          "blocks.business-main-screen": {
             populate: {
               spinningText: {
                 fields: ["text"],
@@ -30,9 +31,9 @@ async function getData(path, locale) {
           // "blocks.about": {
           //   populate: "*",
           // },
-          // "blocks.services": {
-          //   populate: "*",
-          // },
+          "blocks.services": {
+            populate: "*",
+          },
         },
       },
     },
@@ -59,12 +60,12 @@ async function getData(path, locale) {
 
 function blockRendered(block) {
   switch (block.__component) {
-    case "blocks.main-screen":
+    case "blocks.business-main-screen":
       return <MainScreen key={block.id} data={block} />;
     // case "blocks.about":
     //   return <About key={block.id} data={block} />;
-    // case "blocks.services":
-    //   return <Services key={block.id} data={block} />;
+    case "blocks.services":
+      return <Sections key={block.id} data={block} services={true} />;
     default:
       return <Loader />;
   }
@@ -72,7 +73,7 @@ function blockRendered(block) {
 
 export default async function Business({ params }) {
   const { locale } = await params;
-  const strapiData = await getData(process.env.HOME_URL, locale);
+  const strapiData = await getData(process.env.BUSINESS_URL, locale);
 
   if (!strapiData) {
     notFound();
@@ -83,7 +84,6 @@ export default async function Business({ params }) {
   return (
     <main>
       {blocks.map((block) => blockRendered(block))}
-      {/* <BgPhone></BgPhone> */}
       {/* <Roadmap /> */}
       <Footer />
     </main>
