@@ -22,7 +22,8 @@
         "blocks.main-screen",
         "blocks.about",
         "blocks.services",
-        "blocks.achievements"
+        "blocks.achievements",
+        "blocks.reviews"
       ],
       "pluginOptions": {
         "i18n": {

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_ui_reviews_lists",
+  "info": {
+    "displayName": "ReviewsList"
+  },
+  "options": {},
+  "attributes": {
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "title": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_reviews",
+  "info": {
+    "displayName": "Reviews",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "highlightTitle": {
+      "type": "text"
+    },
+    "list": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ui.reviews-list",
+      "max": 5
+    }
+  }
+}

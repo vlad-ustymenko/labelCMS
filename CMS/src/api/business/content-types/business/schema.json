@@ -19,7 +19,8 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "blocks.business-main-screen"
+        "blocks.business-main-screen",
+        "blocks.services"
       ]
     }
   }
