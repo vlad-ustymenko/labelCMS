@@ -78,6 +78,24 @@ export interface BlocksReviews extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksRoadmap extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_roadmaps';
+  info: {
+    displayName: 'Roadmap';
+  };
+  attributes: {
+    highlightTitle: Schema.Attribute.String;
+    list: Schema.Attribute.Component<'ui.roadmap-list', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 6;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksServices extends Struct.ComponentSchema {
   collectionName: 'components_blocks_services';
   info: {
@@ -154,6 +172,16 @@ export interface UiReviewsList extends Struct.ComponentSchema {
   };
 }
 
+export interface UiRoadmapList extends Struct.ComponentSchema {
+  collectionName: 'components_ui_roadmap_lists';
+  info: {
+    displayName: 'RoadmapList';
+  };
+  attributes: {
+    text: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface UiSpinningText extends Struct.ComponentSchema {
   collectionName: 'components_ui_spinning_texts';
   info: {
@@ -172,12 +200,14 @@ declare module '@strapi/strapi' {
       'blocks.business-main-screen': BlocksBusinessMainScreen;
       'blocks.main-screen': BlocksMainScreen;
       'blocks.reviews': BlocksReviews;
+      'blocks.roadmap': BlocksRoadmap;
       'blocks.services': BlocksServices;
       'ui.button': UiButton;
       'ui.counter-list': UiCounterList;
       'ui.main-header': UiMainHeader;
       'ui.paragraphs': UiParagraphs;
       'ui.reviews-list': UiReviewsList;
+      'ui.roadmap-list': UiRoadmapList;
       'ui.spinning-text': UiSpinningText;
     }
   }

@@ -432,6 +432,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.services',
         'blocks.achievements',
         'blocks.reviews',
+        'blocks.roadmap',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
