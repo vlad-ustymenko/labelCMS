@@ -27,7 +27,7 @@
   display: flex; /* Додаємо Flexbox */
   align-items: center; /* Вирівнює по вертикалі */
   justify-content: center; /* Вирівнює по горизонталі */
-
+  cursor: pointer;
   background-color: var(--accent);
   border-radius: 50%;
   font-size: clamp(1rem, 1vw, 1rem);
@@ -35,6 +35,8 @@
   text-align: center;
   width: clamp(7rem, 10vw, 10rem);
   height: clamp(7rem, 10vw, 10rem);
+  position: relative;
+  z-index: 100;
 }
 
 .copyright {
