@@ -8,13 +8,19 @@ import st from "./Roadmap.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Roadmap = () => {
+const Roadmap = ({ data }) => {
   const pathRef = useRef(null);
   const svgRef = useRef(null);
   const textRefs = useRef([]);
   const circleRefs = useRef([]);
   const firstImageRef = useRef(null);
   const secondImageRef = useRef(null);
+  const sofaRef = useRef(null);
+  const tableRef = useRef(null);
+  const chair1Ref = useRef(null);
+  const chair2Ref = useRef(null);
+
+  const { title, highlightTitle, list } = data;
 
   const [isVertical, setIsVertical] = useState(false);
 
@@ -119,33 +125,102 @@ const Roadmap = () => {
       });
     };
 
-    gsap.to(firstImageRef.current, {
-      x: "30vw",
-      rotate: 20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".first-image-trigger", // або окремий контейнер
-        scroller: isVertical ? "body" : "[data-scroll-container]",
-        start: "top 80%",
-        end: "bottom center",
-        scrub: true,
-      },
-    });
-    gsap.to(secondImageRef.current, {
-      x: "-30vw",
-      rotate: -20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".second-image-trigger", // або окремий контейнер
-        scroller: isVertical ? "body" : "[data-scroll-container]",
-        start: "top 80%",
-        end: "bottom center",
-        scrub: true,
-      },
-    });
+    // gsap.to(firstImageRef.current, {
+    //   x: "30vw",
+    //   rotate: 20,
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     trigger: ".first-image-trigger", // або окремий контейнер
+    //     scroller: isVertical ? "body" : "[data-scroll-container]",
+    //     start: "top 80%",
+    //     end: "bottom center",
+    //     scrub: true,
+    //   },
+    // });
+    // gsap.to(secondImageRef.current, {
+    //   x: "-30vw",
+    //   rotate: -20,
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     trigger: ".second-image-trigger", // або окремий контейнер
+    //     scroller: isVertical ? "body" : "[data-scroll-container]",
+    //     start: "top 80%",
+    //     end: "bottom center",
+    //     scrub: true,
+    //   },
+    // });
 
     updatePositions();
     ScrollTrigger.refresh();
+
+    const scroller = isVertical ? "body" : "[data-scroll-container]";
+
+    gsap.fromTo(
+      sofaRef.current,
+      { y: "-10vh", opacity: 0 },
+      {
+        y: "0vh",
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".roadmap-trigger",
+          scroller,
+          start: "top center",
+          end: "80% center",
+          scrub: true,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      tableRef.current,
+      { y: "10vh", opacity: 0 },
+      {
+        y: "0vh",
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".roadmap-trigger",
+          scroller,
+          start: "top center",
+          end: "80% center",
+          scrub: true,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      chair1Ref.current,
+      { x: "15vw", opacity: 0 },
+      {
+        x: "0vw",
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".roadmap-trigger",
+          scroller,
+          end: "80% center",
+          scrub: true,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      chair2Ref.current,
+      { x: "-15vw", opacity: 0 },
+      {
+        x: "0vw",
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".roadmap-trigger",
+          scroller,
+          start: "top center",
+          end: "80% center",
+          scrub: true,
+        },
+      }
+    );
 
     window.addEventListener("resize", updatePositions);
     return () => {
@@ -170,7 +245,7 @@ const Roadmap = () => {
         />
       </div> */}
 
-      <div className={`${st.secondImageWrapper}  second-image-trigger`}>
+      {/* <div className={`${st.secondImageWrapper}  second-image-trigger`}>
         <Image
           src="/3.png"
           alt="roadmap"
@@ -179,10 +254,43 @@ const Roadmap = () => {
           className={`${st.secondImage}`}
           ref={secondImageRef}
         />
-      </div>
+      </div> */}
 
       <div className={st.roadmapHorizontal}>
-        <h2 className={st.roadmapTitle}>Етапи взаємодії</h2>
+        <Image
+          src="/sofa.png"
+          alt="roadmap"
+          width={1000}
+          height={1000}
+          className={`${st.image}`}
+          ref={sofaRef}
+        />
+        <Image
+          src="/chair1.png"
+          alt="roadmap"
+          width={1000}
+          height={1000}
+          className={`${st.image}`}
+          ref={chair1Ref}
+        />
+        <Image
+          src="/chair2.png"
+          alt="roadmap"
+          width={1000}
+          height={1000}
+          className={`${st.image}`}
+          ref={chair2Ref}
+        />
+
+        <Image
+          src="/table.png"
+          alt="roadmap"
+          width={1000}
+          height={1000}
+          className={`${st.image}`}
+          ref={tableRef}
+        />
+        <h2 className={st.roadmapTitle}>{title}</h2>
 
         <svg
           ref={svgRef}
@@ -213,7 +321,7 @@ const Roadmap = () => {
         </svg>
 
         <div className={st.labelsHorizontal}>
-          {labels.map((title, i) => (
+          {list.map((item, i) => (
             <div
               key={i}
               ref={(el) => (textRefs.current[i] = el)}
@@ -234,7 +342,7 @@ const Roadmap = () => {
                 transform: "translate(-50%, 0)",
               }}
             >
-              {title}
+              {item.text}
             </div>
           ))}
         </div>
