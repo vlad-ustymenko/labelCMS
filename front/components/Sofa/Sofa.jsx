@@ -18,6 +18,7 @@ export default function SofaCanvas() {
 
   const images = useRef([]);
   const [loaded, setLoaded] = useState(false);
+  const [isAnimationDone, setIsAnimationDone] = useState(false);
   const frameIndex = useRef(0);
 
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
@@ -38,7 +39,7 @@ export default function SofaCanvas() {
     }
   }, []);
 
-  // Встановлюємо розміри канваса при монтуванні та ресайзі
+  // Оновлення розміру канваса
   useEffect(() => {
     const updateSize = () => {
       if (containerRef.current) {
@@ -55,13 +56,24 @@ export default function SofaCanvas() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  // Програємо анімацію після завантаження
+  // Малює конкретний кадр
+  const drawFrame = (ctx, img, canvas) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const scale = Math.min(
+      canvas.width / img.width,
+      canvas.height / img.height
+    );
+    const w = img.width * scale;
+    const h = img.height * scale;
+    ctx.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+  };
+
+  // Програвання анімації лише один раз
   useEffect(() => {
-    if (!loaded) return;
+    if (!loaded || isAnimationDone) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     canvas.width = canvasSize.width;
     canvas.height = canvasSize.height;
 
@@ -77,46 +89,45 @@ export default function SofaCanvas() {
 
       if (delta > frameDuration) {
         const img = images.current[frameIndex.current];
-        if (img) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          const scale = Math.min(
-            canvas.width / img.width,
-            canvas.height / img.height
-          );
-          const w = img.width * scale;
-          const h = img.height * scale;
-          ctx.drawImage(
-            img,
-            (canvas.width - w) / 2,
-            (canvas.height - h) / 2,
-            w,
-            h
-          );
-        }
+        if (img) drawFrame(ctx, img, canvas);
 
         frameIndex.current++;
 
         if (frameIndex.current >= totalFrames) {
+          frameIndex.current = totalFrames - 1; // зафіксувати на останньому кадрі
+          setIsAnimationDone(true);
           cancelAnimationFrame(animationFrameId);
           return;
         }
-
         lastTimestamp = timestamp;
       }
-
       animationFrameId = requestAnimationFrame(render);
     };
 
     animationFrameId = requestAnimationFrame(render);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [loaded, canvasSize]);
+  }, [loaded, canvasSize, isAnimationDone]);
+
+  // Якщо анімація завершена — малюємо останній кадр при зміні розміру
+  useEffect(() => {
+    if (!loaded || !isAnimationDone) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.width = canvasSize.width;
+    canvas.height = canvasSize.height;
+
+    const ctx = canvas.getContext("2d");
+    const img = images.current[totalFrames - 1];
+    if (img) drawFrame(ctx, img, canvas);
+  }, [canvasSize, loaded, isAnimationDone]);
 
   return (
     <div
       ref={containerRef}
       style={{
-        width: "100%",
+        width: "100vw",
         height: "100%",
         position: "absolute",
         top: 0,
