@@ -40,6 +40,9 @@ async function getData(path, locale) {
           "blocks.reviews": {
             populate: "*",
           },
+          "blocks.roadmap": {
+            populate: "*",
+          },
         },
       },
     },
@@ -89,7 +92,9 @@ function blockRendered(block) {
     case "blocks.achievements":
       return <Sections key={block.id} data={block} achievements={true} />;
     case "blocks.reviews":
-      return <Reviews key={block.id} data={block} achievements={true} />;
+      return <Sections key={block.id} data={block} reviews={true} />;
+    case "blocks.roadmap":
+      return <Roadmap key={block.id} data={block} />;
     default:
       return <Loader />;
   }
@@ -110,7 +115,7 @@ export default async function Home({ params }) {
       {blocks.map((block) => blockRendered(block))}
       {/* <Achievements></Achievements> */}
       {/* <BgPhone></BgPhone> */}
-      <Roadmap />
+      {/* <Roadmap /> */}
       <Footer />
     </main>
   );
