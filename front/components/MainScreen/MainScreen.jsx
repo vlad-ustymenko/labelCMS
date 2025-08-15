@@ -17,7 +17,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const MainScreen = ({ data }) => {
   const isWebmSupported = useWebmSupport();
-  const { slogan, companyName, companySubname, header, spinningText } = data;
+  const { slogan, companyName, companySubname, header, spinningText, title } =
+    data;
   const pathname = usePathname();
 
   const [business, setBusiness] = React.useState(false);
@@ -98,17 +99,17 @@ const MainScreen = ({ data }) => {
         {companyName}
         <h2 className={st.subtitle}>{companySubname}</h2>
       </div>
+      {business && (
+        <>
+          <h1 className={st.titleBusiness}>{title}</h1>
+          <h2 className={st.strokeTitleBusiness}>{title}</h2>
+        </>
+      )}
       <div className={st.slogan}>{slogan}</div>
       <SpinningText textArray={spinningText} className={st.spinningText} />
       {/* <Sofa></Sofa> */}
       {/* <Main3D></Main3D> */}
-      {!business ? (
-        <Main3D></Main3D>
-      ) : isWebmSupported ? (
-        <SofaVideo></SofaVideo>
-      ) : (
-        <Sofa></Sofa>
-      )}
+      {!business ? <Main3D></Main3D> : <Sofa></Sofa>}
       <Menu data={header}></Menu>
     </section>
   );

@@ -24,7 +24,29 @@
   z-index: -1;
 }
 
+.titleBusiness {
+  z-index: -1;
+}
+
+.titleBusiness,
+.strokeTitleBusiness {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%) !important;
+  font-family: "bebas", sans-serif;
+  font-size: clamp(8rem, 10vw, 10rem);
+  color: white;
+  white-space: pre-wrap;
+}
+
 .strokeTitle {
+  -webkit-text-stroke: 3px white;
+  color: transparent;
+  z-index: 2;
+}
+
+.strokeTitleBusiness {
   -webkit-text-stroke: 3px white;
   color: transparent;
   z-index: 2;
