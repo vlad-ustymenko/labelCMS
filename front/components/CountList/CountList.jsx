@@ -36,7 +36,7 @@ const CountList = ({ list, className }) => {
           scrollTrigger: {
             trigger: itemsEl,
             scroller: isMobile ? "body" : "[data-scroll-container]",
-            start: "top 90%",
+            start: "top bottom",
             toggleActions: "restart none none reverse",
           },
         }
@@ -67,7 +67,7 @@ const CountList = ({ list, className }) => {
           scrollTrigger: {
             trigger: numberEl,
             scroller: isMobile ? "body" : "[data-scroll-container]",
-            start: "top 90%",
+            start: "top bottom",
             toggleActions: "restart none none reverse",
             once: false,
           },
@@ -92,7 +92,7 @@ const CountList = ({ list, className }) => {
           scrollTrigger: {
             trigger: symbolEl,
             scroller: isMobile ? "body" : "[data-scroll-container]",
-            start: "top 90%",
+            start: "top bottom",
             toggleActions: "restart none none reverse",
             once: false,
           },
