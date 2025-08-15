@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_roadmaps",
+  "info": {
+    "displayName": "Roadmap"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "highlightTitle": {
+      "type": "string"
+    },
+    "list": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ui.roadmap-list",
+      "max": 6
+    }
+  }
+}
