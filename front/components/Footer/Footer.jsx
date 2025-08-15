@@ -1,9 +1,19 @@
+"use client";
 import React from "react";
 import st from "./Footer.module.css";
 import { FaFacebookF, FaInstagram, FaTelegramPlane } from "react-icons/fa";
+import { useModalContext } from "@/context/ModalContext";
 import Container from "../Container/Container";
 
 const Footer = () => {
+  const { activeModal, setActiveModal, setLoading } = useModalContext();
+
+  const handleClick = () => {
+    console.log("click");
+    setActiveModal(true);
+  };
+
+  console.log(activeModal);
   return (
     <Container className={st.grid}>
       <div className={st.wrapper}>
@@ -19,7 +29,9 @@ const Footer = () => {
           <a href="tel:+380953195758">+38 (095) 319-57-58</a>
           <a href="mailto:label.studio@gmail.com">label.studio@gmail.com</a>
         </div>
-        <div className={st.order}>Замовити проект</div>
+        <div className={st.order} onClick={handleClick}>
+          Замовити проект
+        </div>
         <div></div>
         <div className={st.copyright}>© 2022 Label studio</div>
         <a className={st.phone} href="tel:+380953195758">
