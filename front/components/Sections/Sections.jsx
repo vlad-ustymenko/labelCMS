@@ -12,6 +12,7 @@ import List from "../List/List";
 import SplitType from "split-type";
 import Container from "../Container/Container";
 import CountList from "../CountList/CountList";
+import ReviewsCarousel from "../ReviewsCarousel/ReviewsCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +21,7 @@ const Sections = ({
   about = false,
   services = false,
   achievements = false,
+  reviews = false,
 }) => {
   const containerRef = useRef(null);
   const imageRef = useRef(null);
@@ -138,6 +140,7 @@ const Sections = ({
               {achievements && (
                 <CountList className={st.list} list={data.list}></CountList>
               )}
+              {reviews && <ReviewsCarousel list={data.list} />}
             </div>
           </div>
         </Container>
