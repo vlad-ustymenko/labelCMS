@@ -4,7 +4,12 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: var(--background);
+  width: 100vw;
+  background-color: rgb(0 0 0 / 70%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
 .circle {
