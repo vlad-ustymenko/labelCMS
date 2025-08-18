@@ -13,26 +13,15 @@ const Roadmap = ({ data }) => {
   const svgRef = useRef(null);
   const textRefs = useRef([]);
   const circleRefs = useRef([]);
-  const firstImageRef = useRef(null);
-  const secondImageRef = useRef(null);
+
   const sofaRef = useRef(null);
   const tableRef = useRef(null);
   const chair1Ref = useRef(null);
   const chair2Ref = useRef(null);
 
-  const { title, highlightTitle, list } = data;
+  const { title, list } = data;
 
   const [isVertical, setIsVertical] = useState(false);
-
-  const labels = [
-    "Дзвінок",
-    "Зустріч i консультація",
-    "Заключення договору",
-    "Виїзд дизайнера на об'єкт",
-    "Розробка дизайн-проєкту",
-    "Реалізація та здача",
-    "Фініш",
-  ];
 
   const progressPoints = [0.085, 0.25, 0.42, 0.58, 0.75, 0.92];
 
@@ -51,6 +40,7 @@ const Roadmap = ({ data }) => {
     const svg = svgRef.current;
     const labelsEl = textRefs.current;
     const circlesEl = circleRefs.current;
+    const scroller = isVertical ? "body" : "[data-scroll-container]";
 
     const totalLength = path.getTotalLength();
 
@@ -62,14 +52,14 @@ const Roadmap = ({ data }) => {
     circlesEl.forEach((circle) => {
       gsap.set(circle, {
         opacity: 0,
-        scale: 0,
+        // scale: 0,
       });
     });
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".roadmap-trigger",
-        scroller: isVertical ? "body" : "[data-scroll-container]",
+        scroller: scroller,
         start: "top center",
         end: "bottom bottom",
         scrub: true,
@@ -83,7 +73,7 @@ const Roadmap = ({ data }) => {
 
     ScrollTrigger.create({
       trigger: ".roadmap-trigger", // батьківський контейнер
-      scroller: isVertical ? "body" : "[data-scroll-container]",
+      scroller: scroller,
       start: "top top",
       end: "bottom bottom", // або конкретне значення як "bottom top"
       pin: `.${st.roadmapHorizontal}`,
@@ -93,7 +83,7 @@ const Roadmap = ({ data }) => {
 
     ScrollTrigger.create({
       trigger: ".roadmap-trigger",
-      scroller: isVertical ? "body" : "[data-scroll-container]",
+      scroller: scroller,
       start: "top center",
       end: "bottom bottom",
       scrub: true,
@@ -104,10 +94,20 @@ const Roadmap = ({ data }) => {
           const threshold = progressPoints[i];
 
           if (progress >= threshold) {
-            gsap.to(circle, { opacity: 1, duration: 0.4, scale: 1 });
+            gsap.to(circle, {
+              opacity: 1,
+              duration: 0.4,
+              scale: 1,
+              transformOrigin: "center center",
+            });
             gsap.to(labelsEl[i], { opacity: 1, y: 0, duration: 0.4 });
           } else {
-            gsap.to(circle, { opacity: 0, duration: 0.3, scale: 0 });
+            gsap.to(circle, {
+              opacity: 0,
+              duration: 0.3,
+              scale: 0,
+              transformOrigin: "center center",
+            });
             gsap.to(labelsEl[i], { opacity: 0, y: 20, duration: 0.3 });
           }
         });
@@ -118,6 +118,7 @@ const Roadmap = ({ data }) => {
       progressPoints.forEach((pointValue, i) => {
         const pos = path.getPointAtLength(pointValue * totalLength);
         const circle = circlesEl[i];
+
         if (circle) {
           circle.setAttribute("cx", Math.ceil(pos.x));
           circle.setAttribute("cy", Math.ceil(pos.y));
@@ -125,171 +126,100 @@ const Roadmap = ({ data }) => {
       });
     };
 
-    // gsap.to(firstImageRef.current, {
-    //   x: "30vw",
-    //   rotate: 20,
-    //   ease: "none",
-    //   scrollTrigger: {
-    //     trigger: ".first-image-trigger", // або окремий контейнер
-    //     scroller: isVertical ? "body" : "[data-scroll-container]",
-    //     start: "top 80%",
-    //     end: "bottom center",
-    //     scrub: true,
-    //   },
-    // });
-    // gsap.to(secondImageRef.current, {
-    //   x: "-30vw",
-    //   rotate: -20,
-    //   ease: "none",
-    //   scrollTrigger: {
-    //     trigger: ".second-image-trigger", // або окремий контейнер
-    //     scroller: isVertical ? "body" : "[data-scroll-container]",
-    //     start: "top 80%",
-    //     end: "bottom center",
-    //     scrub: true,
-    //   },
-    // });
-
     updatePositions();
     ScrollTrigger.refresh();
 
-    const scroller = isVertical ? "body" : "[data-scroll-container]";
+    if (
+      !sofaRef.current ||
+      !tableRef.current ||
+      !chair1Ref.current ||
+      !chair2Ref.current
+    )
+      return;
 
-    gsap.fromTo(
-      sofaRef.current,
-      { y: "-10vh", opacity: 0 },
-      {
-        y: "0vh",
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".roadmap-trigger",
-          scroller,
-          start: "top center",
-          end: "80% center",
-          scrub: true,
-        },
-      }
-    );
+    const imagesTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".roadmap-trigger",
+        scroller, // твій кастомний скрол, якщо Locomotive
+        start: "top center",
+        end: "80% center",
+        scrub: true,
+      },
+    });
 
-    gsap.fromTo(
-      tableRef.current,
-      { y: "10vh", opacity: 0 },
-      {
-        y: "0vh",
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".roadmap-trigger",
-          scroller,
-          start: "top center",
-          end: "80% center",
-          scrub: true,
-        },
-      }
-    );
-
-    gsap.fromTo(
-      chair1Ref.current,
-      { x: "15vw", opacity: 0 },
-      {
-        x: "0vw",
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".roadmap-trigger",
-          scroller,
-          end: "80% center",
-          scrub: true,
-        },
-      }
-    );
-
-    gsap.fromTo(
-      chair2Ref.current,
-      { x: "-15vw", opacity: 0 },
-      {
-        x: "0vw",
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".roadmap-trigger",
-          scroller,
-          start: "top center",
-          end: "80% center",
-          scrub: true,
-        },
-      }
-    );
+    imagesTl
+      .fromTo(
+        sofaRef.current,
+        { y: "-10vh", opacity: 0 },
+        { y: "0vh", opacity: 1, ease: "none" },
+        0 // позиція на таймлайні
+      )
+      .fromTo(
+        tableRef.current,
+        { y: "10vh", opacity: 0 },
+        { y: "0vh", opacity: 1, ease: "none" },
+        0
+      )
+      .fromTo(
+        chair1Ref.current,
+        { x: "15vw", opacity: 0 },
+        { x: "0vw", opacity: 1, ease: "none" },
+        0
+      )
+      .fromTo(
+        chair2Ref.current,
+        { x: "-15vw", opacity: 0 },
+        { x: "0vw", opacity: 1, ease: "none" },
+        0
+      );
 
     window.addEventListener("resize", updatePositions);
     return () => {
       window.removeEventListener("resize", updatePositions);
+      tl.kill();
     };
   }, [isVertical]);
 
   return (
     <div className={`${st.roadmapWrapper} roadmap-trigger`}>
-      {/* <div
-        className={`${st.firstImageWrapper}  first-image-trigger`}
-        data-scroll
-        data-scroll-speed="-2"
-      >
-        <Image
-          src="/1.png"
-          alt="roadmap"
-          width={1000}
-          height={1000}
-          className={`${st.firstImage}`}
-          ref={firstImageRef}
-        />
-      </div> */}
-
-      {/* <div className={`${st.secondImageWrapper}  second-image-trigger`}>
-        <Image
-          src="/3.png"
-          alt="roadmap"
-          width={1000}
-          height={1000}
-          className={`${st.secondImage}`}
-          ref={secondImageRef}
-        />
-      </div> */}
-
       <div className={st.roadmapHorizontal}>
-        <Image
-          src="/sofa.png"
-          alt="roadmap"
-          width={1000}
-          height={1000}
-          className={`${st.image}`}
-          ref={sofaRef}
-        />
-        <Image
-          src="/chair1.png"
-          alt="roadmap"
-          width={1000}
-          height={1000}
-          className={`${st.image}`}
-          ref={chair1Ref}
-        />
-        <Image
-          src="/chair2.png"
-          alt="roadmap"
-          width={1000}
-          height={1000}
-          className={`${st.image}`}
-          ref={chair2Ref}
-        />
+        <div ref={sofaRef} className={st.imageWrapper}>
+          <Image
+            src="/sofa.png"
+            alt="roadmap"
+            sizes={isVertical ? "100vh" : "200vw"}
+            fill
+            className={st.image}
+          />
+        </div>
+        <div ref={chair1Ref} className={st.imageWrapper}>
+          <Image
+            src="/chair1.png"
+            alt="roadmap"
+            sizes={isVertical ? "100vh" : "200vw"}
+            fill
+            className={st.image}
+          />
+        </div>
+        <div ref={chair2Ref} className={st.imageWrapper}>
+          <Image
+            src="/chair2.png"
+            alt="roadmap"
+            sizes={isVertical ? "100vh" : "200vw"}
+            fill
+            className={st.image}
+          />
+        </div>
 
-        <Image
-          src="/table.png"
-          alt="roadmap"
-          width={1000}
-          height={1000}
-          className={`${st.image}`}
-          ref={tableRef}
-        />
+        <div ref={tableRef} className={st.imageWrapper}>
+          <Image
+            src="/table.png"
+            alt="roadmap"
+            sizes={isVertical ? "100vh" : "200vw"}
+            fill
+            className={st.image}
+          />
+        </div>
         <h2 className={st.roadmapTitle}>{title}</h2>
 
         <svg
@@ -329,17 +259,16 @@ const Roadmap = ({ data }) => {
               style={{
                 position: "absolute",
                 top: isVertical
-                  ? `${11 + i * 14.5}%`
+                  ? `${12.5 + i * 14.5}%`
                   : i % 2 === 0
                   ? "30%"
                   : "68%",
                 left: isVertical
                   ? i % 2 === 0
-                    ? "20%"
-                    : "65%"
+                    ? "40%"
+                    : "20%"
                   : `${13 + i * 15}%`,
                 opacity: 0,
-                transform: "translate(-50%, 0)",
               }}
             >
               {item.text}
