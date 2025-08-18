@@ -37,7 +37,13 @@ const Header = ({ data }) => {
   return (
     <div className={st.header}>
       <div className={`${st.wrapper} ${st.left}`}>
-        {business && (
+        {!business ? (
+          <Button
+            title={businessButton}
+            href={businessHref}
+            className={st.button}
+          />
+        ) : (
           <Button title={mainButton} href={mainHref} className={st.button} />
         )}
         <Button
@@ -45,13 +51,6 @@ const Header = ({ data }) => {
           href={projectsHref}
           className={st.button}
         />
-        {!business && (
-          <Button
-            title={businessButton}
-            href={businessHref}
-            className={st.button}
-          />
-        )}
       </div>
       <div className={st.wrapper}>
         <Link
