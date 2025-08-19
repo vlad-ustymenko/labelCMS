@@ -9,6 +9,7 @@ import Footer from "@/components/Footer/Footer";
 import BgPhone from "@/components/BgPhone/BgPhone";
 import { headers } from "next/headers";
 import Sections from "@/components/Sections/Sections";
+import Menu from "@/components/Menu/Menu";
 
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
@@ -32,6 +33,9 @@ async function getData(path, locale) {
           //   populate: "*",
           // },
           "blocks.services": {
+            populate: "*",
+          },
+          "blocks.menu": {
             populate: "*",
           },
         },
@@ -81,11 +85,19 @@ export default async function Business({ params }) {
 
   const { blocks } = strapiData;
 
+  const menuData = blocks.find((block) => block.__component === "blocks.menu");
+
   return (
-    <main>
-      {blocks.map((block) => blockRendered(block))}
-      {/* <Roadmap /> */}
-      <Footer />
-    </main>
+    <>
+      {" "}
+      <main>
+        {blocks
+          .filter((block) => block.__component !== "blocks.menu")
+          .map((block) => blockRendered(block))}
+        {/* <Roadmap /> */}
+        <Footer />
+      </main>
+      <Menu data={menuData}></Menu>
+    </>
   );
 }
