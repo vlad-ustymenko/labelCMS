@@ -110,7 +110,7 @@ const MainScreen = ({ data }) => {
       {/* <Sofa></Sofa> */}
       {/* <Main3D></Main3D> */}
       {!business ? <Main3D></Main3D> : <Sofa></Sofa>}
-      <Menu data={header}></Menu>
+      {/* <Menu data={header}></Menu> */}
     </section>
   );
 };
