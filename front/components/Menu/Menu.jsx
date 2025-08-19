@@ -4,6 +4,7 @@ import { useMenuContext } from "@/context/MenuContext";
 import Link from "next/link";
 import { usePageTransition } from "../../hooks/usePageTransition";
 import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 import st from "./Menu.module.css";
@@ -12,9 +13,18 @@ const Menu = ({ data }) => {
   const { locale } = useParams();
   const animateTransition = usePageTransition();
   const { activeMenu, setActiveMenu } = useMenuContext();
+  const [business, setBusiness] = React.useState(false);
+  const pathname = usePathname();
 
-  const { projectsButton, projectsHref, businessButton, businessHref, phone } =
-    data;
+  const {
+    projectsButton,
+    projectsHref,
+    businessButton,
+    businessHref,
+    mainButton,
+    mainHref,
+    phone,
+  } = data;
 
   useEffect(() => {
     if (activeMenu) {
@@ -24,28 +34,58 @@ const Menu = ({ data }) => {
     }
   }, [activeMenu]);
 
+  useEffect(() => {
+    if (pathname.includes("business")) {
+      setBusiness(true);
+    } else {
+      setBusiness(false);
+    }
+  }, [pathname]);
+
+  console.log(business);
+
   return (
     <div className={`${st.menu} ${activeMenu ? st.active : ""}`}>
+      {business ? (
+        <Link
+          href={mainHref}
+          onClick={(e) => {
+            e.preventDefault();
+            animateTransition(`/${locale}`);
+            setTimeout(() => {
+              setActiveMenu(false);
+            }, 900);
+          }}
+        >
+          {mainButton}
+        </Link>
+      ) : (
+        <Link
+          href={businessHref}
+          onClick={(e) => {
+            e.preventDefault();
+            animateTransition(`/${locale}${businessHref}`);
+            setTimeout(() => {
+              setActiveMenu(false);
+            }, 900);
+          }}
+        >
+          {businessButton}
+        </Link>
+      )}
       <Link
-        href="/projects"
+        href={projectsHref}
         onClick={(e) => {
           e.preventDefault();
           animateTransition(`/${locale}${projectsHref}`);
-          setActiveMenu(false);
+          setTimeout(() => {
+            setActiveMenu(false);
+          }, 900);
         }}
       >
         {projectsButton}
       </Link>
-      <Link
-        href="/business"
-        onClick={(e) => {
-          e.preventDefault();
-          animateTransition(`/${locale}${businessHref}`);
-          setActiveMenu(false);
-        }}
-      >
-        {businessButton}
-      </Link>
+
       <Link className={st.phone} href={`tel:${phone}`}>
         {phone}
       </Link>
