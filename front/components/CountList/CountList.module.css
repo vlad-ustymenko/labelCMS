@@ -1,8 +1,8 @@
 .list {
-  margin-top: 3rem;
+  margin-top: 1.5vw;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.8vw;
   list-style: none;
 }
 
@@ -21,8 +21,8 @@
 }
 
 .counter {
-  font-size: clamp(1.5rem, 4vw, 4rem);
-  line-height: clamp(1.5rem, 4vw, 4rem);
+  font-size: 4vw;
+  line-height: 1;
 }
 
 .number {
@@ -49,4 +49,35 @@
   background-color: white;
   transform: scaleX(0);
   transform-origin: left;
+}
+
+@media (max-width: 767px) {
+  .list {
+    margin-top: 10vw;
+    gap: 2vw;
+  }
+  .listItem {
+    font-size: 9vw;
+
+    /* border-bottom: 3px solid var(--accent); */
+  }
+  .counter {
+    font-size: 10vw;
+    line-height: 1;
+  }
+  .text {
+    width: 150px;
+    text-align: left;
+    font-size: 4vw;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media (min-width: 1025px) and (max-width: 1919px) {
+}
+
+@media (min-width: 1920px) {
 }
