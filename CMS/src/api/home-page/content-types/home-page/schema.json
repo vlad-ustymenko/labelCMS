@@ -24,7 +24,8 @@
         "blocks.services",
         "blocks.achievements",
         "blocks.reviews",
-        "blocks.roadmap"
+        "blocks.roadmap",
+        "blocks.menu"
       ],
       "pluginOptions": {
         "i18n": {

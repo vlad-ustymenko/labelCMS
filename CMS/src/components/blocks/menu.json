@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_blocks_menus",
+  "info": {
+    "displayName": "Menu"
+  },
+  "options": {},
+  "attributes": {
+    "projectsButton": {
+      "type": "string",
+      "required": true
+    },
+    "projectsHref": {
+      "type": "string",
+      "required": true
+    },
+    "businessButton": {
+      "type": "string",
+      "required": true
+    },
+    "businessHref": {
+      "type": "string",
+      "required": true
+    },
+    "mainButton": {
+      "type": "string",
+      "required": true
+    },
+    "mainHref": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
