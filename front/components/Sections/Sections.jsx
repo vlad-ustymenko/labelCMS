@@ -1,18 +1,17 @@
 "use client";
 
-import ReactMarkdown from "react-markdown";
-
 import React, { useEffect, useRef, useState } from "react";
-import AnimateText from "../AnimateText/AnimateText";
-import st from "./Sections.module.css";
 import gsap from "gsap";
-import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+
+import AnimateText from "../AnimateText/AnimateText";
 import List from "../List/List";
-import SplitType from "split-type";
 import Container from "../Container/Container";
 import CountList from "../CountList/CountList";
 import ReviewsCarousel from "../ReviewsCarousel/ReviewsCarousel";
+
+import st from "./Sections.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,69 +23,89 @@ const Sections = ({
   reviews = false,
 }) => {
   const containerRef = useRef(null);
-  const imageRef = useRef(null);
-
-  const { title, description, highlightTitle, highlightDescription } = data;
+  const aboutImageRef = useRef(null);
+  const achievementsImageRef = useRef(null);
 
   const [isMobile, setIsMobile] = useState(false);
 
+  const { title, description, highlightTitle, highlightDescription, list } =
+    data;
+
+  // мобайл
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    window.addEventListener("resize", handleResize);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // анімації
   useEffect(() => {
-    if (services) return;
+    const animations = [];
 
-    const container = containerRef.current;
-    const image = imageRef.current;
-    if (!container || !image) return;
+    const animateImage = (el, triggerEl, fromX, toX, fromY, toY) => {
+      if (!el || !triggerEl) return;
 
-    // Початкові стилі для картинки
-    gsap.set(image, {
-      x: about ? "-20%" : "10%",
-      y: about ? "-20%" : "40%",
-      rotate: -10,
-    });
+      gsap.set(el, { x: fromX, y: fromY });
 
-    // Анімація картинки на скролл
-    gsap.to(image, {
-      x: "10%",
-      y: "40%",
-      rotate: 0,
-      ease: "none",
-      scrollTrigger: {
-        trigger: container,
-        scroller: "[data-scroll-container]",
-        start: "top 80%",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+      const tween = gsap.to(el, {
+        x: toX,
+        y: toY,
+        ease: "none",
+        scrollTrigger: {
+          trigger: triggerEl,
+          scroller: "[data-scroll-container]",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
 
-    // Очищення ScrollTrigger при анмаунті
-    // return () => {
-    //   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    // };
-  }, [isMobile]);
+      animations.push(tween);
+    };
+
+    if (about)
+      animateImage(
+        aboutImageRef.current,
+        containerRef.current,
+        "-20%",
+        "10%",
+        "0%",
+        "-10%"
+      );
+    if (achievements)
+      animateImage(
+        achievementsImageRef.current,
+        containerRef.current,
+        "0%",
+        "-10%",
+        "0%",
+        "30%"
+      );
+
+    return () => {
+      animations.forEach((tween) => tween.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [about, achievements, isMobile]);
+
+  const getTitleFontSize = () => {
+    if (about) return isMobile ? "7vw" : "4vw";
+    if (services) return isMobile ? "13vw" : "9vw";
+    return isMobile ? "10vw" : "7vw";
+  };
 
   return (
     <section
-      className={`${st.section}`}
-      style={{ height: about ? "80vh" : "" }}
+      className={st.section}
+      style={{ height: about ? "80vh" : undefined }}
     >
       <div
-        className={`${st.container}`}
+        className={st.container}
         data-scroll
         data-scroll-speed="1"
         ref={containerRef}
-        style={{ height: about ? "80vh" : "" }}
+        style={{ height: about ? "80vh" : undefined }}
       >
         <Container>
           {about && (
@@ -96,9 +115,10 @@ const Sections = ({
               width={1000}
               height={1000}
               className={st.background}
-              ref={imageRef}
+              ref={aboutImageRef}
             />
           )}
+
           {achievements && (
             <Image
               src="/house.png"
@@ -106,16 +126,11 @@ const Sections = ({
               width={1000}
               height={1000}
               className={st.background2}
-              ref={imageRef}
+              ref={achievementsImageRef}
             />
           )}
-          <h2
-            className={`${st.title}`}
-            style={{
-              fontSize: about ? "4vw" : services ? "9vw" : "7vw",
-              lineHeight: about ? "4vw" : services ? "9vw" : "7vw",
-            }}
-          >
+
+          <h2 className={st.title} style={{ fontSize: getTitleFontSize() }}>
             <AnimateText
               stagger={0.1}
               duration={0.4}
@@ -126,7 +141,7 @@ const Sections = ({
           </h2>
 
           <div className={st.grid}>
-            <div style={{ zIndex: 1 }}></div>
+            <div style={{ zIndex: 1 }} />
             <div className={st.content}>
               <AnimateText
                 stagger={0.1}
@@ -136,16 +151,16 @@ const Sections = ({
               >
                 {description}
               </AnimateText>
-              {services && <List className={st.list} list={data.list}></List>}
-              {achievements && (
-                <CountList className={st.list} list={data.list}></CountList>
-              )}
-              {reviews && <ReviewsCarousel list={data.list} />}
+
+              {services && <List className={st.list} list={list} />}
+              {achievements && <CountList className={st.list} list={list} />}
+              {reviews && <ReviewsCarousel list={list} />}
             </div>
           </div>
         </Container>
       </div>
 
+      {/* Фонові відео */}
       {services && (
         <video
           autoPlay
@@ -153,7 +168,11 @@ const Sections = ({
           playsInline
           src="/video/phones.webm"
           className={st.video}
-          style={{ left: "-5%", top: "18%", zIndex: 2 }}
+          style={{
+            left: isMobile ? "-10%" : "-5%",
+            top: isMobile ? "100%" : "18%",
+            zIndex: 2,
+          }}
         />
       )}
       {about && (
