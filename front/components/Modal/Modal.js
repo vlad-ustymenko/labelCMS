@@ -1,7 +1,7 @@
 "use client";
 import { useModalContext } from "@/context/ModalContext";
 import { useEffect, useState, useRef } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, set } from "react-hook-form";
 // import { X } from "lucide-react";
 import useClickOutside from "@/hooks/useClickOutside";
 import IMask from "imask";
@@ -11,9 +11,14 @@ import styles from "./Modal.module.css";
 import Loader from "../Loader/Loader";
 
 const Modal = () => {
-  const { activeModal, setActiveModal, loading, setLoading } =
-    useModalContext();
-  const [sending, setSending] = useState(false);
+  const {
+    activeModal,
+    setActiveModal,
+    loading,
+    setLoading,
+    isSend,
+    setIsSend,
+  } = useModalContext();
   const phoneInputRef = useRef(null);
 
   useEffect(() => {
@@ -21,7 +26,13 @@ const Modal = () => {
     document.documentElement.style.overflow = isModalOpen ? "hidden" : "";
   }, [activeModal]);
 
-  const modalRef = useClickOutside(() => setActiveModal(false));
+  const modalRef = useClickOutside(() => {
+    setActiveModal(false);
+    setTimeout(() => {
+      setIsSend(false);
+    }, 1000);
+    reset();
+  });
 
   const {
     control,
@@ -33,7 +44,6 @@ const Modal = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    setSending(true);
 
     try {
       const response = await fetch("/api/sendMail", {
@@ -43,8 +53,8 @@ const Modal = () => {
       });
 
       if (response.ok) {
-        setActiveModal(false);
         reset();
+        setIsSend(true);
         setLoading(false);
         alert("ok");
       } else {
@@ -54,8 +64,8 @@ const Modal = () => {
     } catch (error) {
       alert("Щось пішло не так. Спробуйте пізніше.");
     } finally {
-      setSending(false);
       setLoading(false);
+      setIsSend(true);
     }
   };
 
@@ -95,68 +105,102 @@ const Modal = () => {
                 className={styles.image}
               ></Image>
             </div>
-            <div>
-              <h2 className={styles.title}>
-                Дізнайтеся умови реалізації Вашого проєкту вже зараз!
-              </h2>
-              <p className={styles.content}>
-                Вкажіть номер телефону і ми Вам зателефонуємо.
-              </p>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="name">Ваше ім'я</label>
-                <Controller
-                  name="name"
-                  control={control}
-                  defaultValue=""
-                  rules={{ required: "Це поле є обов'язковим" }}
-                  render={({ field }) => (
-                    <>
-                      <input
-                        placeholder="Ваше ім'я"
-                        id="name"
-                        className={`${styles.input} `}
-                        onChange={field.onChange}
-                      />
-                      {/* {errors[name] && (
-                      <span className={styles.requiredSpan}>
-                        {errors[name].message}
-                      </span>
-                    )} */}
-                    </>
-                  )}
-                />
-                <label htmlFor="phone">Номер телефону*</label>
+            {isSend ? (
+              <div className={styles.content}>
+                <div className={styles.title}>
+                  Заявку надіслано. Дякуємо Вам!
+                </div>
+                <p className={styles.text}>
+                  Найближчим часом наш менеджер зв'яжеться з Вами.
+                </p>
+              </div>
+            ) : (
+              <div className={styles.content}>
+                <h2 className={styles.title}>
+                  Дізнайтеся умови реалізації Вашого проєкту вже зараз!
+                </h2>
+                <p className={styles.text}>
+                  Вкажіть номер телефону і ми Вам зателефонуємо.
+                </p>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+                  <label htmlFor="name" className={styles.label}>
+                    Ваше ім'я
+                  </label>
+                  <Controller
+                    name="name"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Це поле є обов'язковим",
+                      pattern: {
+                        value: /^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ\s'-]+$/,
+                        message: "Допускаються лише літери",
+                      },
+                    }}
+                    render={({ field }) => (
+                      <>
+                        <input
+                          {...field}
+                          id="name"
+                          className={`${styles.input} `}
+                          onChange={(e) => {
+                            const onlyLetters = e.target.value.replace(
+                              /[^a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ\s'-]/g,
+                              ""
+                            );
+                            field.onChange(onlyLetters);
+                          }}
+                        />
+                        {errors.name && (
+                          <span className={styles.requiredSpan}>
+                            {errors.name.message}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  />
+                  <label htmlFor="phone" className={styles.label}>
+                    Номер телефону
+                  </label>
 
-                <Controller
-                  name="phone"
-                  control={control}
-                  defaultValue=""
-                  rules={{ required: "Це поле є обов'язковим" }}
-                  render={({ field }) => (
-                    <>
-                      <input
-                        placeholder="+38 (___) ___-__-__"
-                        id="phone"
-                        type="tel"
-                        ref={phoneInputRef}
-                        className={`${styles.input} `}
-                        onChange={(e) => {
-                          field.onChange(e);
-                        }}
-                      />
-                      {/* {errors[name] && (
-                      <span className={styles.requiredSpan}>
-                        {errors[name].message}
-                      </span>
-                    )} */}
-                    </>
-                  )}
-                />
-                <button type="submit" disabled={sending}>
-                  Замовити консультацію
-                </button>
-              </form>
-            </div>
+                  <Controller
+                    name="phone"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Це поле є обов'язковим",
+                      pattern: {
+                        value: /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
+                        message: "Некоректний номер",
+                      },
+                    }}
+                    render={({ field }) => (
+                      <>
+                        <input
+                          {...field}
+                          placeholder="+38 (___) ___-__-__"
+                          id="phone"
+                          type="tel"
+                          ref={(el) => {
+                            field.ref(el);
+                            phoneInputRef.current = el; // зберігаємо у свій ref для IMask
+                          }}
+                          className={`${styles.input} `}
+                        />
+                        {errors.phone && (
+                          <span className={styles.requiredSpan}>
+                            {errors.phone.message}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  />
+                  <button type="submit" className={styles.button}>
+                    Замовити консультацію
+                  </button>
+                </form>
+              </div>
+            )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -167,8 +211,14 @@ const Modal = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className={`${styles.closeIcon} ${styles.closeIconActive}`}
-              onClick={() => setActiveModal(false)}
+              className={styles.closeIcon}
+              onClick={() => {
+                setActiveModal(false);
+                setTimeout(() => {
+                  setIsSend(false);
+                }, 1000);
+                reset();
+              }}
             >
               <path d="M18 6 6 18" />
               <path d="m6 6 12 12" />
