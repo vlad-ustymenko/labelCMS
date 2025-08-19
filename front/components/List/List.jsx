@@ -31,7 +31,7 @@ const List = ({ className, list }) => {
           scrollTrigger: {
             trigger: el,
             scroller: isMobile ? "body" : "[data-scroll-container]",
-            start: "top 90%",
+            start: "top bottom",
             toggleActions: "restart none none reverse",
           },
         }
