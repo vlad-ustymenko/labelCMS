@@ -4,7 +4,6 @@
   justify-content: center;
   width: 100%;
   height: 100dvh;
-  padding: 8vw;
   position: fixed;
   top: 0;
   left: 0;
@@ -34,19 +33,27 @@
 }
 
 .title {
-  font-family: MariupolBold, sans-serif;
+  font-family: "bahnschrift", sans-serif;
   font-size: 2vw;
+  line-height: 2vw;
+  margin-bottom: 1vw;
 }
 
 .content {
-  font-size: 1.2vw;
+  flex: 1;
+  width: 50%;
+}
+
+.text {
+  font-size: 1vw;
   line-height: 1.2;
 }
 
 .imageWrapper {
   position: relative;
-  width: 70vw;
-  height: 50vh;
+  flex: 1;
+  width: 50%;
+  height: 30vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,8 +66,8 @@
 }
 
 .closeIcon {
-  width: 5vw;
-  height: 5vw;
+  width: 3vw;
+  height: 3vw;
   padding: 0.5vw;
   position: absolute;
   top: 0.5vw;
@@ -69,176 +76,93 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.loader {
-  width: 10vw;
-  height: 10vw;
-  border-radius: 50%;
-  position: relative;
-}
-
-.loaderOuter,
-.loaderInner {
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.loaderOuter {
-  width: 100%;
-  height: 100%;
-  border: 0.5vw solid #6379d8;
-  border-bottom: none;
-  animation: rotate 1s cubic-bezier(0.15, 0.61, 0.58, 0.4) infinite;
-  border-left-color: transparent;
-}
-
-.loaderInner {
-  width: 7vw;
-  height: 7vw;
-  border: 0.5vw solid var(--secondAccent);
-  border-right: none;
-  animation: rotate-reverse 1s cubic-bezier(0.15, 0.61, 0.58, 0.4) infinite;
-  border-top-color: transparent;
-}
-
-.socialWrapper {
+.form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2vw;
+  margin-top: 2vw;
 }
 
-.socialTitle {
-  font-family: MariupolMedium, sans-serif;
-  font-size: 2vw;
+.label {
+  font-size: 1vw;
+  margin: 0.5vw 0;
 }
 
-.socialIcons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2vw;
-}
-
-.socialLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 5vw;
-  height: 5vw;
+.input {
   padding: 0.5vw;
-  border-radius: 50%;
-  background-color: var(--background);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+  border: 0.15vw solid var(--background);
+  border-radius: 0.5vw;
+  font-size: 1vw;
+  background-color: white;
+  /* color: white; */
+  color: var(--background);
 }
 
-.socialImage {
-  width: 3vw;
-  height: 3vw;
-  stroke: white;
+.inputError {
+  border-color: red !important;
 }
 
-.socialIcons li:last-child .socialImage {
-  fill: white;
+.input:focus {
+  outline: none;
+  border: 0.15vw solid var(--accent);
 }
 
-@keyframes rotate {
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+.input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
 }
 
-@keyframes rotate-reverse {
-  100% {
-    transform: translate(-50%, -50%) rotate(-360deg);
-  }
+.requiredSpan {
+  font-size: 0.8vw;
+  color: red;
+  margin-top: 0.2vw;
+}
+
+.button {
+  border: none;
+  padding: 0.8vw 1vw;
+  font-size: 0.9vw;
+  border-radius: 0.5vw;
+  background-color: var(--accent);
+  margin-top: 2vw;
 }
 
 @media (width >= 768px) and (width <= 1024px) {
-  .contentWrapper {
-    gap: 8vw;
-    padding: 8vw;
-  }
-
-  .title {
-    font-size: 8vw;
-  }
-
-  .content {
-    font-size: 4vw;
-    line-height: 1.2;
-  }
-
-  .closeIcon {
-    width: 8vw;
-    height: 8vw;
-    padding: 0.1vw;
-    top: 2vw;
-    right: 2vw;
-  }
-
-  .loader {
-    width: 30vw;
-    height: 30vw;
-    border-radius: 50%;
-    position: relative;
-  }
-
-  .loaderOuter {
-    border: 1.5vw solid #6379d8;
-    border-bottom: none;
-    animation: rotate 1s cubic-bezier(0.15, 0.61, 0.58, 0.4) infinite;
-    border-left-color: transparent;
-  }
-
-  .loaderInner {
-    width: 23vw;
-    height: 23vw;
-    border: 1.5vw solid var(--secondAccent);
-    border-right: none;
-    animation: rotate-reverse 1s cubic-bezier(0.15, 0.61, 0.58, 0.4) infinite;
-    border-top-color: transparent;
-  }
-
-  .socialWrapper {
-    gap: 5vw;
-  }
-
-  .socialTitle {
-    font-size: 4.5vw;
-  }
-
-  .socialIcons {
-    gap: 4vw;
-  }
-
-  .socialLink {
-    width: 10vw;
-    height: 10vw;
-  }
-
-  .socialImage {
-    width: 5vw;
-    height: 5vw;
-  }
 }
 
 @media (width <= 767px) {
   .contentWrapper {
+    flex-direction: column;
     gap: 8vw;
     padding: 8vw;
+    width: 90%;
   }
 
   .title {
-    font-size: 8vw;
+    font-size: 6vw;
+    line-height: 1;
+    margin-bottom: 5vw;
   }
 
   .content {
+    width: 100%;
+    height: 60%;
+  }
+
+  .text {
     font-size: 4vw;
     line-height: 1.2;
+  }
+
+  .imageWrapper {
+    flex: 1 0 auto;
+    width: 100%;
+    height: 30vh;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .closeIcon {
@@ -249,48 +173,27 @@
     right: 2vw;
   }
 
-  .loader {
-    width: 30vw;
-    height: 30vw;
-    border-radius: 50%;
-    position: relative;
+  .label {
+    font-size: 4vw;
+    margin: 0.5vw 0;
   }
 
-  .loaderOuter {
-    border: 1.5vw solid #6379d8;
-    border-bottom: none;
-    animation: rotate 1s cubic-bezier(0.15, 0.61, 0.58, 0.4) infinite;
-    border-left-color: transparent;
+  .input {
+    padding: 2vw;
+    border: 0.25vw solid var(--background);
+    border-radius: 2vw;
+    font-size: 4vw;
   }
 
-  .loaderInner {
-    width: 23vw;
-    height: 23vw;
-    border: 1.5vw solid var(--secondAccent);
-    border-right: none;
-    animation: rotate-reverse 1s cubic-bezier(0.15, 0.61, 0.58, 0.4) infinite;
-    border-top-color: transparent;
+  .requiredSpan {
+    font-size: 3vw;
   }
 
-  .socialWrapper {
-    gap: 5vw;
-  }
-
-  .socialTitle {
-    font-size: 4.5vw;
-  }
-
-  .socialIcons {
-    gap: 4vw;
-  }
-
-  .socialLink {
-    width: 15vw;
-    height: 15vw;
-  }
-
-  .socialImage {
-    width: 7vw;
-    height: 7vw;
+  .button {
+    border: none;
+    padding: 3vw 1vw;
+    font-size: 4vw;
+    border-radius: 2vw;
+    margin-top: 8vw;
   }
 }
