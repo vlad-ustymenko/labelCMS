@@ -38,19 +38,35 @@ const Header = ({ data }) => {
     <div className={st.header}>
       <div className={`${st.wrapper} ${st.left}`}>
         {!business ? (
-          <Button
-            title={businessButton}
+          <Link
             href={businessHref}
-            className={st.button}
-          />
+            onClick={(e) => {
+              e.preventDefault();
+              animateTransition(`/${locale}${businessHref}`);
+            }}
+          >
+            {businessButton}
+          </Link>
         ) : (
-          <Button title={mainButton} href={mainHref} className={st.button} />
+          <Link
+            href={mainHref}
+            onClick={(e) => {
+              e.preventDefault();
+              animateTransition(`/${locale}`);
+            }}
+          >
+            {mainButton}
+          </Link>
         )}
-        <Button
-          title={projectsButton}
+        <Link
           href={projectsHref}
-          className={st.button}
-        />
+          onClick={(e) => {
+            e.preventDefault();
+            animateTransition(`/${locale}${projectsHref}`);
+          }}
+        >
+          {projectsButton}
+        </Link>
       </div>
       <div className={st.wrapper}>
         <Link
