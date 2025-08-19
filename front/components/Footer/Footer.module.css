@@ -36,7 +36,7 @@
   width: clamp(7rem, 10vw, 10rem);
   height: clamp(7rem, 10vw, 10rem);
   position: relative;
-  z-index: 100;
+  z-index: 2;
 }
 
 .copyright {
