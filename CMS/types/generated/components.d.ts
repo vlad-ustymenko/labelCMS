@@ -58,6 +58,22 @@ export interface BlocksMainScreen extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksMenu extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_menus';
+  info: {
+    displayName: 'Menu';
+  };
+  attributes: {
+    businessButton: Schema.Attribute.String & Schema.Attribute.Required;
+    businessHref: Schema.Attribute.String & Schema.Attribute.Required;
+    mainButton: Schema.Attribute.String & Schema.Attribute.Required;
+    mainHref: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    projectsButton: Schema.Attribute.String & Schema.Attribute.Required;
+    projectsHref: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksReviews extends Struct.ComponentSchema {
   collectionName: 'components_blocks_reviews';
   info: {
@@ -199,6 +215,7 @@ declare module '@strapi/strapi' {
       'blocks.achievements': BlocksAchievements;
       'blocks.business-main-screen': BlocksBusinessMainScreen;
       'blocks.main-screen': BlocksMainScreen;
+      'blocks.menu': BlocksMenu;
       'blocks.reviews': BlocksReviews;
       'blocks.roadmap': BlocksRoadmap;
       'blocks.services': BlocksServices;
