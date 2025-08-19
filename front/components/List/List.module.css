@@ -24,3 +24,25 @@
   transform: scaleX(0);
   transform-origin: left;
 }
+
+@media (max-width: 767px) {
+  .list {
+    margin-top: 3rem;
+
+    gap: 3vw;
+  }
+  .listItem {
+    font-size: 7vw;
+    line-height: 1;
+    gap: 2vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media (min-width: 1025px) and (max-width: 1919px) {
+}
+
+@media (min-width: 1920px) {
+}
