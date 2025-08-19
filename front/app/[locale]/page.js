@@ -10,6 +10,8 @@ import BgPhone from "@/components/BgPhone/BgPhone";
 import Achievements from "@/components/Achievements/Achievements";
 import Reviews from "@/components/Reviews/Reviews";
 import TextScramble from "@/components/TextScrambler/TextScrambler";
+import Modal from "@/components/Modal/Modal";
+import Menu from "@/components/Menu/Menu";
 async function getData(path, locale) {
   const baseUrl = process.env.STRAPI_BASE_URL;
 
@@ -41,6 +43,9 @@ async function getData(path, locale) {
             populate: "*",
           },
           "blocks.roadmap": {
+            populate: "*",
+          },
+          "blocks.menu": {
             populate: "*",
           },
         },
@@ -109,14 +114,19 @@ export default async function Home({ params }) {
   }
 
   const { blocks } = strapiData;
+  const menuData = blocks.find((block) => block.__component === "blocks.menu");
+  console.log(blocks);
 
   return (
-    <main>
-      {blocks.map((block) => blockRendered(block))}
-      {/* <Achievements></Achievements> */}
-      {/* <BgPhone></BgPhone> */}
-      {/* <Roadmap /> */}
-      <Footer />
-    </main>
+    <>
+      <main>
+        {blocks
+          .filter((block) => block.__component !== "blocks.menu")
+          .map((block) => blockRendered(block))}
+        <Footer />
+      </main>
+      {/* <Modal></Modal> */}
+      <Menu data={menuData}></Menu>
+    </>
   );
 }
