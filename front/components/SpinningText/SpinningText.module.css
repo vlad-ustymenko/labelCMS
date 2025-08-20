@@ -1,10 +1,25 @@
 .text {
   font-family: "bahnschrift", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5vw;
   margin: 0;
   line-height: 0;
 }
 
 .text:nth-child(even) {
   color: var(--accent);
+}
+
+@media (max-width: 767px) {
+  .text {
+    font-size: 7vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media (min-width: 1025px) and (max-width: 1919px) {
+}
+
+@media (min-width: 1920px) {
 }
