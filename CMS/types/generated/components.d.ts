@@ -74,6 +74,25 @@ export interface BlocksMenu extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksModal extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_modals';
+  info: {
+    description: '';
+    displayName: 'Modal';
+  };
+  attributes: {
+    highlightTitle: Schema.Attribute.String;
+    mainError: Schema.Attribute.String & Schema.Attribute.Required;
+    nameLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    phoneError: Schema.Attribute.String & Schema.Attribute.Required;
+    phoneLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    sendingText: Schema.Attribute.Text & Schema.Attribute.Required;
+    sendingTitle: Schema.Attribute.Text & Schema.Attribute.Required;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksReviews extends Struct.ComponentSchema {
   collectionName: 'components_blocks_reviews';
   info: {
@@ -216,6 +235,7 @@ declare module '@strapi/strapi' {
       'blocks.business-main-screen': BlocksBusinessMainScreen;
       'blocks.main-screen': BlocksMainScreen;
       'blocks.menu': BlocksMenu;
+      'blocks.modal': BlocksModal;
       'blocks.reviews': BlocksReviews;
       'blocks.roadmap': BlocksRoadmap;
       'blocks.services': BlocksServices;
