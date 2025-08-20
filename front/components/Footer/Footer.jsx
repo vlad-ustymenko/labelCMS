@@ -19,15 +19,25 @@ const Footer = () => {
       <div className={st.wrapper}>
         <div>
           <address>
-            <h2>Товариство з обмеженою відповідальністю «Label studio»</h2>
-            <a href="https://maps.app.goo.gl/MSd2sphvoWWAEeDd7" target="_blank">
+            <h2 className={st.title}>
+              Товариство з обмеженою відповідальністю «Label studio»
+            </h2>
+            <a
+              href="https://maps.app.goo.gl/MSd2sphvoWWAEeDd7"
+              target="_blank"
+              className={st.adress}
+            >
               Юридична/фактична адреса: 117418, м.Київ , пр-т Лобановського, 4Ж,
               офіс 198
             </a>
           </address>
           ІПН 7727507928 КПП 772701001 ОГРН 1047796217941
-          <a href="tel:+380953195758">+38 (095) 319-57-58</a>
-          <a href="mailto:label.studio@gmail.com">label.studio@gmail.com</a>
+          <a href="tel:+380953195758" className={st.contentPhone}>
+            +38 (095) 319-57-58
+          </a>
+          <a href="mailto:label.studio@gmail.com" className={st.contentEmail}>
+            label.studio@gmail.com
+          </a>
         </div>
         <div className={st.order} onClick={handleClick}>
           Замовити проект
@@ -38,9 +48,27 @@ const Footer = () => {
           +38 (095) 319-57-58
         </a>
         <div className={st.social}>
-          <FaFacebookF />
-          <FaInstagram />
-          <FaTelegramPlane />
+          <a
+            href="https://www.facebook.com/label.studio"
+            target="_blank"
+            className={st.iconWrapper}
+          >
+            <FaFacebookF className={st.icon} />
+          </a>
+          <a
+            href="https://www.instagram.com/label.studio/"
+            target="_blank"
+            className={st.iconWrapper}
+          >
+            <FaInstagram className={st.icon} />
+          </a>
+          <a
+            href="https://t.me/label_studio"
+            target="_blank"
+            className={st.iconWrapper}
+          >
+            <FaTelegramPlane className={st.icon} />
+          </a>
         </div>
       </div>
     </Container>
