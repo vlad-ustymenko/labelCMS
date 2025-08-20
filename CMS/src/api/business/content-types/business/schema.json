@@ -21,7 +21,8 @@
       "components": [
         "blocks.business-main-screen",
         "blocks.services",
-        "blocks.menu"
+        "blocks.menu",
+        "blocks.modal"
       ]
     }
   }

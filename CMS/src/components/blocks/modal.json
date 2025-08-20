@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_blocks_modals",
+  "info": {
+    "displayName": "Modal",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "nameLabel": {
+      "type": "string",
+      "required": true
+    },
+    "phoneLabel": {
+      "type": "string",
+      "required": true
+    },
+    "mainError": {
+      "type": "string",
+      "required": true
+    },
+    "phoneError": {
+      "type": "string",
+      "required": true
+    },
+    "sendingTitle": {
+      "type": "text",
+      "required": true
+    },
+    "sendingText": {
+      "type": "text",
+      "required": true
+    },
+    "highlightTitle": {
+      "type": "string"
+    }
+  }
+}
