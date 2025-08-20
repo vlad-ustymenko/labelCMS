@@ -48,6 +48,9 @@ async function getData(path, locale) {
           "blocks.menu": {
             populate: "*",
           },
+          "blocks.modal": {
+            populate: "*",
+          },
         },
       },
     },
@@ -100,8 +103,6 @@ function blockRendered(block) {
       return <Sections key={block.id} data={block} reviews={true} />;
     case "blocks.roadmap":
       return <Roadmap key={block.id} data={block} />;
-    default:
-      return <Loader />;
   }
 }
 
@@ -115,17 +116,18 @@ export default async function Home({ params }) {
 
   const { blocks } = strapiData;
   const menuData = blocks.find((block) => block.__component === "blocks.menu");
-  console.log(blocks);
+  const modalData = blocks.find(
+    (block) => block.__component === "blocks.modal"
+  );
+  console.log(modalData);
 
   return (
     <>
       <main>
-        {blocks
-          .filter((block) => block.__component !== "blocks.menu")
-          .map((block) => blockRendered(block))}
+        {blocks.map((block) => blockRendered(block))}
         <Footer />
       </main>
-      {/* <Modal></Modal> */}
+      <Modal data={modalData}></Modal>
       <Menu data={menuData}></Menu>
     </>
   );
