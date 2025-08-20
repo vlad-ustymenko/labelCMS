@@ -126,6 +126,10 @@
   margin-top: 2vw;
 }
 
+.highlight {
+  color: var(--accent);
+}
+
 @media (width >= 768px) and (width <= 1024px) {
 }
 
