@@ -10,7 +10,7 @@
   top: 10%;
   left: 3%;
   font-family: "bahnschrift", sans-serif;
-  font-size: 4vw;
+  font-size: 5vw;
   text-transform: uppercase;
 }
 
@@ -53,6 +53,9 @@
 }
 
 @media (width < 768px) {
+  .roadmapWrapper {
+    padding-top: 5vh;
+  }
   .labelHorizontal {
     position: relative;
     font-size: 1rem;
