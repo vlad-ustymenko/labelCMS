@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import st from "./Roadmap.module.css";
+import AnimateText from "../AnimateText/AnimateText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,7 +20,7 @@ const Roadmap = ({ data }) => {
   const chair1Ref = useRef(null);
   const chair2Ref = useRef(null);
 
-  const { title, list } = data;
+  const { title, list, highlightTitle } = data;
 
   const [isVertical, setIsVertical] = useState(false);
 
@@ -220,7 +221,14 @@ const Roadmap = ({ data }) => {
             className={st.image}
           />
         </div>
-        <h2 className={st.roadmapTitle}>{title}</h2>
+        <AnimateText
+          stagger={0.1}
+          duration={0.4}
+          highlight={highlightTitle}
+          className={st.roadmapTitle}
+        >
+          {title}
+        </AnimateText>
 
         <svg
           ref={svgRef}
