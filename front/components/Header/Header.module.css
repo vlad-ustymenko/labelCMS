@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   font-family: "bahnschriftRegular", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3vw;
   z-index: 3;
 }
 
@@ -58,9 +58,14 @@
   stroke-dashoffset: -32.42;
 }
 
+.lang {
+  -webkit-tap-highlight-color: transparent;
+}
+
 @media (max-width: 767px) {
   .header {
     flex-direction: column;
+    font-size: 6vw;
   }
   .wrapper {
     width: 100%;
