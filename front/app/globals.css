@@ -2,6 +2,10 @@
   --background: #171818;
   --foreground: #ededed;
   --accent: #5297f8;
+  --border: 0.2vw solid #5297f8;
+  --borderMobile: 0.5vw solid #5297f8;
+  --borderRadius: 1vw;
+  --borderRadiusMobile: 3vw;
 }
 
 html,
