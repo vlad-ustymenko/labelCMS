@@ -95,10 +95,21 @@ const Sections = ({
     return isMobile ? "10vw" : "7vw";
   };
 
+  const getMarginSize = () => {
+    // if (about) return isMobile ? "3vw" : "1.5vw";
+    if (services) return isMobile ? "3vw" : "1.5vw";
+    if (achievements) return isMobile ? "3vw" : "5vw";
+    // if (reviews) return isMobile ? "3vw" : "1.5vw";
+    return isMobile ? "3vw" : "1.5vw";
+  };
+
   return (
     <section
       className={st.section}
-      style={{ height: about ? "80vh" : undefined }}
+      style={{
+        height: about ? "80vh" : undefined,
+        marginBottom: getMarginSize(),
+      }}
     >
       <div
         className={st.container}
