@@ -8,6 +8,8 @@ export default function ReviewsCarousel({ list }) {
   const [index, setIndex] = useState(0);
   const [viewWidth, setViewWidth] = useState(0);
   const cardsRef = useRef([]);
+  const startX = useRef(null);
+  const endX = useRef(null);
 
   // відслідковуємо ширину
   useEffect(() => {
@@ -21,11 +23,11 @@ export default function ReviewsCarousel({ list }) {
   const positions = useMemo(() => {
     const configs = {
       mobile: [
-        { scale: 0.6, x: -80, opacity: 0, zIndex: 3 },
-        { scale: 0.8, x: -40, opacity: 0.6, zIndex: 4 },
+        { scale: 0.6, x: -100, opacity: 0, zIndex: 3 },
+        { scale: 0.8, x: -60, opacity: 0.6, zIndex: 4 },
         { scale: 1, x: 0, opacity: 1, zIndex: 5 },
-        { scale: 0.8, x: 40, opacity: 0.6, zIndex: 4 },
-        { scale: 0.6, x: 80, opacity: 0, zIndex: 3 },
+        { scale: 0.8, x: 60, opacity: 0.6, zIndex: 4 },
+        { scale: 0.6, x: 100, opacity: 0, zIndex: 3 },
       ],
       desktop: [
         { scale: 0.6, x: -500, opacity: 0, zIndex: 3 },
@@ -81,8 +83,30 @@ export default function ReviewsCarousel({ list }) {
     setIndex((prev) => (prev - 1 + list.length) % list.length);
   };
 
+  // свайп
+  const handleTouchStart = (e) => {
+    startX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    endX.current = e.changedTouches[0].clientX;
+    if (startX.current !== null && endX.current !== null) {
+      const diff = startX.current - endX.current;
+      if (diff > 70) {
+        handleNext(); // свайп вліво
+      } else if (diff < -70) {
+        handlePrev(); // свайп вправо
+      }
+    }
+    startX.current = null;
+    endX.current = null;
+  };
+
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className={styles.carousel}>
         {list.map((card, i) => (
           <div
