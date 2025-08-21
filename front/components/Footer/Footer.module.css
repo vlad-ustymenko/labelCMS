@@ -27,9 +27,6 @@
 .order {
   -webkit-tap-highlight-color: transparent;
   place-self: center;
-  display: flex; /* Додаємо Flexbox */
-  align-items: center; /* Вирівнює по вертикалі */
-  justify-content: center; /* Вирівнює по горизонталі */
   cursor: pointer;
   font-family: "bahnschriftRegular", sans-serif;
   background-color: var(--accent);
@@ -37,8 +34,6 @@
   font-size: 1.5vw;
   padding: 1vw 2vw;
   text-align: center;
-  position: relative;
-  z-index: 2;
 }
 
 .copyright {

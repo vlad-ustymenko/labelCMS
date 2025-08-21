@@ -6,14 +6,12 @@ import { useModalContext } from "@/context/ModalContext";
 import Container from "../Container/Container";
 
 const Footer = () => {
-  const { activeModal, setActiveModal, setLoading } = useModalContext();
+  const {  setActiveModal} = useModalContext();
 
   const handleClick = () => {
-    console.log("click");
     setActiveModal(true);
   };
 
-  console.log(activeModal);
   return (
     <Container className={st.grid}>
       <div className={st.wrapper}>
