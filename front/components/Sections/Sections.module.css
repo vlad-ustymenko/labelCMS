@@ -37,7 +37,7 @@
 
 .background {
   position: absolute;
-  top: 100px;
+  top: 15vw;
   left: 0;
   width: 50%;
   height: auto;
@@ -68,6 +68,13 @@
   object-fit: contain;
   z-index: -1;
   filter: brightness(0.7);
+}
+
+.button {
+  position: absolute;
+  right: 15vw;
+  top: 5vw;
+  transform: translate(-50, -50%);
 }
 
 @media (max-width: 767px) {

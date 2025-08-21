@@ -10,6 +10,7 @@ import List from "../List/List";
 import Container from "../Container/Container";
 import CountList from "../CountList/CountList";
 import ReviewsCarousel from "../ReviewsCarousel/ReviewsCarousel";
+import Button from "../Button/Button";
 
 import st from "./Sections.module.css";
 
@@ -71,7 +72,7 @@ const Sections = ({
         "-20%",
         "10%",
         "0%",
-        "-10%"
+        "0"
       );
     if (achievements)
       animateImage(
@@ -150,6 +151,15 @@ const Sections = ({
               {title}
             </AnimateText>
           </h2>
+          {services && (
+            <Button
+              title="Замовити консультацію"
+              primary
+              className={st.button}
+              data-scroll
+              data-scroll-speed="-1"
+            ></Button>
+          )}
 
           <div className={st.grid}>
             <div style={{ zIndex: 1 }} />
@@ -162,7 +172,6 @@ const Sections = ({
               >
                 {description}
               </AnimateText>
-
               {services && <List className={st.list} list={list} />}
               {achievements && <CountList className={st.list} list={list} />}
               {reviews && <ReviewsCarousel list={list} />}
