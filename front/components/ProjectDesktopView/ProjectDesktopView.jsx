@@ -12,8 +12,8 @@ const ProjectDesktopView = ({ project }) => {
       <div className={st.container}>
         <div className={st.contentWrapper}>
           <header className={st.header}>
-            <Button className={st.button} title="Label" isBack />
-            <Button className={st.button} title="Назад" href="/projects" />
+            <Button className={st.button} title="Label" isBack link />
+            <Button className={st.button} title="Назад" href="/projects" link />
           </header>
           <h1 className={st.title}>{project.title}</h1>
           <p>{project.content}</p>

@@ -10,8 +10,13 @@ const ProjectMobileView = ({ project }) => {
     <>
       <Container className={st.container}>
         <div className={st.header}>
-          <Button className={st.buttonMain} title="Label" isBack />
-          <Button className={st.buttonBack} title="Назад" href="/projects" />
+          <Button className={st.buttonMain} title="Label" isBack link />
+          <Button
+            className={st.buttonBack}
+            title="Назад"
+            href="/projects"
+            link
+          />
         </div>
         <p className={st.year}>{project.year}</p>
         <p className={st.title}>{project.title}</p>

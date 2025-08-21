@@ -54,7 +54,7 @@ const Page = async ({ params }) => {
 
   return (
     <>
-      <Button title="Label" className={st.button}></Button>
+      <Button title="Label" className={st.button} link></Button>
       <ProjectsPage projects={strapiData} locale={locale} />
     </>
   );
