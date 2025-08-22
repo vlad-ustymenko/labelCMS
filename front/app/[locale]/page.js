@@ -51,6 +51,9 @@ async function getData(path, locale) {
           "blocks.modal": {
             populate: "*",
           },
+          "blocks.footer": {
+            populate: "*",
+          },
         },
       },
     },
@@ -103,6 +106,8 @@ function blockRendered(block) {
       return <Sections key={block.id} data={block} reviews={true} />;
     case "blocks.roadmap":
       return <Roadmap key={block.id} data={block} />;
+    case "blocks.footer":
+      return <Footer key={block.id} data={block} />;
   }
 }
 
@@ -125,7 +130,7 @@ export default async function Home({ params }) {
     <>
       <main>
         {blocks.map((block) => blockRendered(block))}
-        <Footer />
+        {/* <Footer /> */}
       </main>
       <Modal data={modalData}></Modal>
       <Menu data={menuData}></Menu>

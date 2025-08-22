@@ -35,7 +35,21 @@ async function getData(path, locale) {
           "blocks.services": {
             populate: "*",
           },
+          "blocks.approaches": {
+            populate: {
+              section: {
+                populate: "*",
+              },
+            },
+          },
+
           "blocks.menu": {
+            populate: "*",
+          },
+          "blocks.modal": {
+            populate: "*",
+          },
+          "blocks.footer": {
             populate: "*",
           },
         },
@@ -68,10 +82,12 @@ function blockRendered(block) {
       return <MainScreen key={block.id} data={block} />;
     // case "blocks.about":
     //   return <About key={block.id} data={block} />;
+    case "blocks.approaches":
+      return <Sections key={block.id} data={block.section} approaches={true} />;
     case "blocks.services":
-      return <Sections key={block.id} data={block} services={true} />;
-    default:
-      return <Loader />;
+      return <Sections key={block.id} data={block} business={true} />;
+    case "blocks.footer":
+      return <Footer key={block.id} data={block} />;
   }
 }
 
@@ -82,7 +98,7 @@ export default async function Business({ params }) {
   if (!strapiData) {
     notFound();
   }
-
+  console.log(strapiData);
   const { blocks } = strapiData;
 
   const menuData = blocks.find((block) => block.__component === "blocks.menu");
@@ -95,7 +111,7 @@ export default async function Business({ params }) {
           .filter((block) => block.__component !== "blocks.menu")
           .map((block) => blockRendered(block))}
         {/* <Roadmap /> */}
-        <Footer />
+        {/* <Footer /> */}
       </main>
       <Menu data={menuData}></Menu>
     </>
