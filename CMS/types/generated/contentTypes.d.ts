@@ -396,6 +396,8 @@ export interface ApiBusinessBusiness extends Struct.SingleTypeSchema {
         'blocks.services',
         'blocks.menu',
         'blocks.modal',
+        'blocks.footer',
+        'blocks.approaches',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -440,6 +442,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.roadmap',
         'blocks.menu',
         'blocks.modal',
+        'blocks.footer',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

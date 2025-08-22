@@ -28,6 +28,16 @@ export interface BlocksAchievements extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksApproaches extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_approaches';
+  info: {
+    displayName: 'Approaches';
+  };
+  attributes: {
+    section: Schema.Attribute.Component<'blocks.services', false>;
+  };
+}
+
 export interface BlocksBusinessMainScreen extends Struct.ComponentSchema {
   collectionName: 'components_blocks_business_main_screens';
   info: {
@@ -38,6 +48,23 @@ export interface BlocksBusinessMainScreen extends Struct.ComponentSchema {
     header: Schema.Attribute.Component<'ui.main-header', false>;
     slogan: Schema.Attribute.Text;
     spinningText: Schema.Attribute.Component<'ui.spinning-text', true>;
+    title: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksFooter extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_footers';
+  info: {
+    description: '';
+    displayName: 'Footer';
+  };
+  attributes: {
+    address: Schema.Attribute.Text & Schema.Attribute.Required;
+    buttonTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    copyright: Schema.Attribute.String & Schema.Attribute.Required;
+    email: Schema.Attribute.String & Schema.Attribute.Required;
+    ipn: Schema.Attribute.Text & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
@@ -232,7 +259,9 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'blocks.about': BlocksAbout;
       'blocks.achievements': BlocksAchievements;
+      'blocks.approaches': BlocksApproaches;
       'blocks.business-main-screen': BlocksBusinessMainScreen;
+      'blocks.footer': BlocksFooter;
       'blocks.main-screen': BlocksMainScreen;
       'blocks.menu': BlocksMenu;
       'blocks.modal': BlocksModal;
