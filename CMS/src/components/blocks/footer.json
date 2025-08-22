@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_blocks_footers",
+  "info": {
+    "displayName": "Footer",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "ipn": {
+      "type": "text",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "copyright": {
+      "type": "string",
+      "required": true
+    },
+    "buttonTitle": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

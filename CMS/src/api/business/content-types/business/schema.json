@@ -22,7 +22,9 @@
         "blocks.business-main-screen",
         "blocks.services",
         "blocks.menu",
-        "blocks.modal"
+        "blocks.modal",
+        "blocks.footer",
+        "blocks.approaches"
       ]
     }
   }

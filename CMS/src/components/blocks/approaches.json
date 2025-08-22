@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_approaches",
+  "info": {
+    "displayName": "Approaches"
+  },
+  "options": {},
+  "attributes": {
+    "section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.services"
+    }
+  }
+}

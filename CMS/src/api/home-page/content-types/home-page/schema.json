@@ -26,7 +26,8 @@
         "blocks.reviews",
         "blocks.roadmap",
         "blocks.menu",
-        "blocks.modal"
+        "blocks.modal",
+        "blocks.footer"
       ],
       "pluginOptions": {
         "i18n": {
