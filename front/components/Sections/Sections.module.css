@@ -52,11 +52,23 @@
   position: absolute;
   top: 0;
   left: 0;
+  width: 70%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  filter: brightness(25%);
+  transform-origin: left center;
+}
+
+.background3 {
+  position: absolute;
+  top: 20%;
+  right: 0;
   width: 50%;
   height: auto;
   display: block;
   object-fit: cover;
-  filter: brightness(30%);
+  filter: brightness(40%);
   transform-origin: left center;
 }
 

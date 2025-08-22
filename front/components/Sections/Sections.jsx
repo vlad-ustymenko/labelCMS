@@ -22,6 +22,8 @@ const Sections = ({
   services = false,
   achievements = false,
   reviews = false,
+  approaches = false,
+  business = false,
 }) => {
   const containerRef = useRef(null);
   const aboutImageRef = useRef(null);
@@ -142,6 +144,17 @@ const Sections = ({
             />
           )}
 
+          {services && (
+            <Image
+              src="/apartment.png"
+              alt="background"
+              width={1000}
+              height={1000}
+              className={st.background3}
+              ref={achievementsImageRef}
+            />
+          )}
+
           <h2 className={st.title} style={{ fontSize: getTitleFontSize() }}>
             <AnimateText
               stagger={0.1}
@@ -172,7 +185,9 @@ const Sections = ({
               >
                 {description}
               </AnimateText>
-              {services && <List className={st.list} list={list} />}
+              {(services || approaches || business) && (
+                <List className={st.list} list={list} />
+              )}
               {achievements && <CountList className={st.list} list={list} />}
               {reviews && <ReviewsCarousel list={list} />}
             </div>
@@ -181,7 +196,7 @@ const Sections = ({
       </div>
 
       {/* Фонові відео */}
-      {services && (
+      {(services || business) && (
         <video
           autoPlay
           muted
@@ -190,8 +205,21 @@ const Sections = ({
           className={st.video}
           style={{
             left: isMobile ? "-10%" : "-5%",
-            top: isMobile ? "100%" : "18%",
+            top: isMobile ? "100%" : business ? "0" : "18%",
             zIndex: 2,
+          }}
+        />
+      )}
+      {(reviews || approaches) && (
+        <video
+          autoPlay
+          muted
+          playsInline
+          src="/video/tablet.webm"
+          className={st.video}
+          style={{
+            left: isMobile ? "-10%" : "-5%",
+            top: isMobile ? "100%" : "0",
           }}
         />
       )}
