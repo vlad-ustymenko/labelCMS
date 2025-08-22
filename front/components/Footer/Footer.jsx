@@ -5,8 +5,10 @@ import { FaFacebookF, FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import { useModalContext } from "@/context/ModalContext";
 import Container from "../Container/Container";
 
-const Footer = () => {
-  const {  setActiveModal} = useModalContext();
+const Footer = ({ data }) => {
+  const { setActiveModal } = useModalContext();
+
+  const { title, address, phone, email, copyright, ipn, buttonTitle } = data;
 
   const handleClick = () => {
     setActiveModal(true);
@@ -17,33 +19,30 @@ const Footer = () => {
       <div className={st.wrapper}>
         <div>
           <address>
-            <h2 className={st.title}>
-              Товариство з обмеженою відповідальністю «Label studio»
-            </h2>
+            <h2 className={st.title}>{title}</h2>
             <a
               href="https://maps.app.goo.gl/MSd2sphvoWWAEeDd7"
               target="_blank"
-              className={st.adress}
+              className={st.address}
             >
-              Юридична/фактична адреса: 117418, м.Київ , пр-т Лобановського, 4Ж,
-              офіс 198
+              {address}
             </a>
           </address>
-          ІПН 7727507928 КПП 772701001 ОГРН 1047796217941
+          {ipn}
           <a href="tel:+380953195758" className={st.contentPhone}>
-            +38 (095) 319-57-58
+            {phone}
           </a>
           <a href="mailto:label.studio@gmail.com" className={st.contentEmail}>
-            label.studio@gmail.com
+            {email}
           </a>
         </div>
         <div className={st.order} onClick={handleClick}>
-          Замовити проект
+          {buttonTitle}
         </div>
         <div></div>
         <div className={st.copyright}>© 2022 Label studio</div>
         <a className={st.phone} href="tel:+380953195758">
-          +38 (095) 319-57-58
+          {phone}
         </a>
         <div className={st.social}>
           <a
