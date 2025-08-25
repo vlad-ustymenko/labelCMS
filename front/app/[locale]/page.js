@@ -124,7 +124,6 @@ export default async function Home({ params }) {
   const modalData = blocks.find(
     (block) => block.__component === "blocks.modal"
   );
-  console.log(modalData);
 
   return (
     <>
