@@ -10,11 +10,29 @@ export default function SofaCanvas() {
   const frameRate = 30;
   const frameBaseName = "Render Comp_";
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const framePath = (index) =>
-    `/frames/mainImage/desktop/${frameBaseName}${String(index).padStart(
-      5,
-      "0"
-    )}.webp`;
+    isMobile
+      ? `/frames/mainImage/desktop/${frameBaseName}${String(index).padStart(
+          5,
+          "0"
+        )}.webp`
+      : `/frames/mainImage/desktop/${frameBaseName}${String(index).padStart(
+          5,
+          "0"
+        )}.webp`;
 
   const images = useRef([]);
   const [loaded, setLoaded] = useState(false);
@@ -131,7 +149,7 @@ export default function SofaCanvas() {
         height: "100%",
         position: "absolute",
         top: 0,
-        left: 300,
+        left: 0,
         zIndex: 1,
       }}
     >

@@ -10,7 +10,7 @@
 @media (max-width: 767px) {
   .video {
     top: -15%;
-    left: -45%;
+    left: -20%;
     width: 200%;
     object-fit: contain;
   }
