@@ -20,6 +20,39 @@ export default function SofaCanvas() {
         playsInline
         src="/video/Main.webm"
       />
+      {/* <video autoplay muted playsinline>
+        <source
+          src="video_1080p.webm"
+          type="video/webm"
+          media="(min-width: 1200px)"
+        />
+        <source
+          src="video_720p.webm"
+          type="video/webm"
+          media="(min-width: 768px)"
+        />
+        <source
+          src="video_480p.webm"
+          type="video/webm"
+          media="(max-width: 767px)"
+        />
+
+        <source
+          src="video_1080p.mp4"
+          type="video/mp4"
+          media="(min-width: 1200px)"
+        />
+        <source
+          src="video_720p.mp4"
+          type="video/mp4"
+          media="(min-width: 768px)"
+        />
+        <source
+          src="video_480p.mp4"
+          type="video/mp4"
+          media="(max-width: 767px)"
+        />
+      </video> */}
     </div>
   );
 }
