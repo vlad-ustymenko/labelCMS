@@ -275,7 +275,8 @@ const Roadmap = ({ data }) => {
                   ? i % 2 === 0
                     ? "40%"
                     : "20%"
-                  : `${10 + i * 15}%`,
+                  : `${13 + i * 14.5}%`,
+                transform: isVertical ? "translateX(0)" : "translateX(-50%)",
                 opacity: 0,
               }}
             >
