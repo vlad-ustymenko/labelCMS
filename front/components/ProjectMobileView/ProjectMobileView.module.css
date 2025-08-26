@@ -85,3 +85,15 @@
   margin: 1.8rem 0;
   font-style: italic;
 }
+
+@media (max-width: 767px) {
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
+@media (min-width: 1025px) and (max-width: 1919px) {
+}
+
+@media (min-width: 1920px) {
+}

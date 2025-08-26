@@ -5,7 +5,11 @@ import ProjectDesktopView from "../ProjectDesktopView/ProjectDesktopView";
 import Container from "../Container/Container";
 
 const ProjectPage = ({ project }) => {
-  const isMobile = window.innerWidth < 768;
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   return isMobile ? (
     <ProjectMobileView project={project} />
