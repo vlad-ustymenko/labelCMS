@@ -1,23 +1,26 @@
 "use client";
 
-import { useEffect } from "react";
-import gsap from "gsap";
+import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
-import { useThree, useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
+import { OrbitControls, Environment } from "@react-three/drei";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import styles from "./Sofa.module.css";
+import { useThree } from "@react-three/fiber";
+import { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Model({ isMobile }) {
   const gltf = useGLTF("/models/new.glb");
   const ref = useRef();
+
   gltf.scene.traverse((child) => {
     if (child.isMesh) {
       child.material.color.set("#333333");
-      // child.material.roughness = 0.9;
     }
   });
+
   return (
     <primitive
       ref={ref}
@@ -27,19 +30,14 @@ function Model({ isMobile }) {
   );
 }
 
-gsap.registerPlugin(ScrollTrigger);
-
 function CameraAnimation({ isMobile }) {
   const { camera } = useThree();
-
   const startPos = { x: 0, y: 1, z: 1.3 };
   const endPos = { x: 0.5, y: 1, z: 1.3 };
 
   useEffect(() => {
-    // Встановити початкову позицію
     camera.position.set(startPos.x, startPos.y, startPos.z);
 
-    // Початкова анімація
     gsap.to(camera.position, {
       x: endPos.x,
       y: endPos.y,
@@ -59,13 +57,19 @@ function CameraAnimation({ isMobile }) {
         scrub: true,
       },
     });
-  }, [camera]);
+  }, [camera, isMobile]);
 
   return null;
 }
 
 export default function Main3D() {
-  const isMobile = window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // доступний тільки на клієнті
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   return (
     <div
       style={{
@@ -76,7 +80,6 @@ export default function Main3D() {
         left: "0",
         zIndex: "1",
       }}
-      className="ok"
     >
       <Canvas camera={{ position: [0.5, 1, 1.3], fov: 50 }}>
         <CameraAnimation isMobile={isMobile} />
