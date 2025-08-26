@@ -1,3 +1,7 @@
+.wrapper {
+  margin-top: 5vw;
+}
+
 .carousel {
   position: relative;
   width: 60vw;
@@ -101,6 +105,13 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1919px) {
+  .prev {
+    left: -1.5vw;
+  }
+
+  .next {
+    right: -1.5vw;
+  }
 }
 
 @media (min-width: 1920px) {
