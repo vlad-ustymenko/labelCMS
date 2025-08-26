@@ -70,7 +70,6 @@ const Carousel = ({ images, className }) => {
           alt="current"
           fill
           className={styles.current}
-          draggable={false}
         />
         <Image
           ref={nextImageRef}
@@ -80,7 +79,6 @@ const Carousel = ({ images, className }) => {
           alt="next"
           fill
           className={styles.next}
-          draggable={false}
         />
       </div>
     </div>
