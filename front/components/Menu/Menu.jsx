@@ -42,8 +42,6 @@ const Menu = ({ data }) => {
     }
   }, [pathname]);
 
-  console.log(business);
-
   return (
     <div className={`${st.menu} ${activeMenu ? st.active : ""}`}>
       {business ? (
