@@ -90,7 +90,7 @@ const Sections = ({
       animations.forEach((tween) => tween.kill());
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [about, achievements, isMobile]);
+  }, [isMobile]);
 
   const getTitleFontSize = () => {
     if (about) return isMobile ? "7vw" : "4vw";
@@ -100,8 +100,11 @@ const Sections = ({
 
   const getMarginSize = () => {
     // if (about) return isMobile ? "3vw" : "1.5vw";
-    if (services) return isMobile ? "3vw" : "1.5vw";
-    if (achievements) return isMobile ? "3vw" : "5vw";
+    if (services) return isMobile ? "110vw" : "1.5vw";
+    if (achievements) return isMobile ? "30vw" : "5vw";
+    if (reviews) return isMobile ? "90vw" : "1.5vw";
+    if (approaches) return isMobile ? "80vw" : "1.5vw";
+    if (business) return isMobile ? "110vw" : "1.5vw";
     // if (reviews) return isMobile ? "3vw" : "1.5vw";
     return isMobile ? "3vw" : "1.5vw";
   };
@@ -155,7 +158,12 @@ const Sections = ({
             />
           )}
 
-          <h2 className={st.title} style={{ fontSize: getTitleFontSize() }}>
+          <h2
+            className={st.title}
+            style={{
+              fontSize: getTitleFontSize(),
+            }}
+          >
             <AnimateText
               stagger={0.1}
               duration={0.4}
@@ -171,11 +179,17 @@ const Sections = ({
               className={st.button}
               data-scroll
               data-scroll-speed="-1"
+              style={{ top: isMobile ? "17%" : "1.5vw" }}
             ></Button>
           )}
 
           <div className={st.grid}>
-            <div style={{ zIndex: 1 }} />
+            <div
+              style={{
+                zIndex: 1,
+                marginTop: services ? (isMobile ? "20vw" : "1.5vw") : undefined,
+              }}
+            />
             <div className={st.content}>
               <AnimateText
                 stagger={0.1}
@@ -219,7 +233,7 @@ const Sections = ({
           className={st.video}
           style={{
             left: isMobile ? "-10%" : "-5%",
-            top: isMobile ? "100%" : "0",
+            top: isMobile ? "85%" : "0",
           }}
         />
       )}
