@@ -85,9 +85,14 @@
     font-size: 45vw;
   }
 
+  .titleBusiness,
+  .strokeTitleBusiness {
+    font-size: 15vw;
+  }
+
   .strokeTitle,
   .strokeTitleBusiness {
-    -webkit-text-stroke: 0.5vw white;
+    -webkit-text-stroke: 0.3vw white;
   }
 
   .subtitle {
