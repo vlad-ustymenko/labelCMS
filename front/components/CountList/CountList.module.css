@@ -76,7 +76,29 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1025px) {
+  .list {
+    margin-top: 10vw;
+    gap: 2vw;
+  }
+  .listItem {
+    font-size: 9vw;
+
+    /* border-bottom: 3px solid var(--accent); */
+  }
+  .counter {
+    font-size: 10vw;
+    line-height: 1;
+  }
+  .text {
+    width: 40vw;
+    text-align: left;
+    font-size: 4vw;
+    line-height: 1.2;
+  }
+  .borderLine {
+    height: 0.3vw;
+  }
 }
 
 @media (min-width: 1025px) and (max-width: 1919px) {
