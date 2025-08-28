@@ -1,6 +1,21 @@
 .section {
   position: relative;
 }
+.about {
+  margin-bottom: 1.5vw;
+  height: 80vh;
+}
+
+.achievements {
+  margin-bottom: 5vw;
+}
+
+.services,
+.reviews,
+.approaches,
+.business {
+  margin-bottom: 1.5vw;
+}
 
 .container {
   position: relative;
@@ -11,6 +26,21 @@
   width: 90%;
   text-transform: uppercase;
   line-height: 1;
+}
+
+.approachesTitle,
+.businessTitle,
+.reviewsTitle,
+.achievementsTitle {
+  font-size: 7vw;
+}
+
+.aboutTitle {
+  font-size: 4vw;
+}
+
+.servicesTitle {
+  font-size: 9vw;
 }
 
 .grid {
@@ -26,7 +56,7 @@
   font-family: "bahnschriftRegular", sans-serif;
   font-size: 1vw;
   font-weight: 400;
-  line-height: 1.4vw;
+  line-height: 1.2vw;
   font-weight: 200;
   position: relative;
 }
@@ -93,6 +123,28 @@
   .section {
     margin: 8vw 0;
   }
+  .about {
+    margin-bottom: 3vw;
+    height: 80vh;
+  }
+
+  .achievements {
+    margin-bottom: 30vw;
+  }
+
+  .services,
+  .business {
+    margin-bottom: 110vw;
+  }
+
+  .reviews {
+    margin-bottom: 90vw;
+  }
+
+  .approaches {
+    margin-bottom: 80vw;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -104,12 +156,26 @@
     font-size: 7vw;
     width: 90%;
   }
+  .approachesTitle,
+  .businessTitle,
+  .reviewsTitle,
+  .achievementsTitle {
+    font-size: 10vw;
+  }
+
+  .aboutTitle {
+    font-size: 8vw;
+  }
+
+  .servicesTitle {
+    font-size: 13vw;
+  }
   .content {
     font-size: 5vw;
     line-height: 1;
   }
   .text {
-    width: 90%;
+    width: 100%;
     margin-top: 3vh;
   }
   .video {
@@ -142,9 +208,90 @@
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    margin: 8vw 0;
+  }
+  .about {
+    margin-bottom: 3vw;
+    height: 80vh;
+  }
+
+  .achievements {
+    margin-bottom: 30vw;
+  }
+
+  .services,
+  .business {
+    margin-bottom: 110vw;
+  }
+
+  .reviews {
+    margin-bottom: 90vw;
+  }
+
+  .approaches {
+    margin-bottom: 80vw;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  .list {
+    width: 100%;
+  }
+  .title {
+    font-size: 7vw;
+    width: 90%;
+  }
+  .approachesTitle,
+  .businessTitle,
+  .reviewsTitle,
+  .achievementsTitle {
+    font-size: 10vw;
+  }
+
+  .aboutTitle {
+    font-size: 8vw;
+  }
+
+  .servicesTitle {
+    font-size: 13vw;
+  }
+  .content {
+    font-size: 3vw;
+    line-height: 1;
+  }
+  .text {
+    width: 90%;
+    margin-top: 3vh;
+  }
+  .video {
+    position: absolute;
+    top: 30vh;
+    right: -20vw;
+    width: 200%;
+  }
+  .background {
+    top: 10vh;
+    width: 120%;
+  }
+  .background2 {
+    top: 20vh;
+    left: 0;
+    width: 180%;
+  }
+  .background3 {
+    top: 20vh;
+    left: -20%;
+    width: 180%;
+  }
+
+  .button {
+    position: absolute;
+    right: 15vw;
+    top: 5vw;
+    transform: translate(-50, -50%);
   }
 }
 
