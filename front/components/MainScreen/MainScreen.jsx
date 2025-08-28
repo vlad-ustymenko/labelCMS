@@ -34,7 +34,7 @@ const MainScreen = ({ data }) => {
   useEffect(() => {
     setTimeout(() => {
       const scrollContainer =
-        window.innerWidth < 768 ? "body" : "[data-scroll-container]";
+        window.innerWidth < 1025 ? "body" : "[data-scroll-container]";
       gsap.context(() => {
         const tl = gsap.timeline({
           scrollTrigger: {

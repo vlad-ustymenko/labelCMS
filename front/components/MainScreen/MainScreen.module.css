@@ -87,7 +87,7 @@
 
   .titleBusiness,
   .strokeTitleBusiness {
-    font-size: 15vw;
+    font-size: 10vw;
   }
 
   .strokeTitle,
@@ -124,6 +124,50 @@
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+  .title,
+  .strokeTitle {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 45vw;
+  }
+
+  .titleBusiness,
+  .strokeTitleBusiness {
+    font-size: 15vw;
+  }
+
+  .strokeTitle,
+  .strokeTitleBusiness {
+    -webkit-text-stroke: 0.3vw white;
+  }
+
+  .subtitle {
+    bottom: -12%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 20vw;
+  }
+
+  .slogan {
+    width: 100%;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4.5vw;
+  }
+
+  .spinningText {
+    width: 100%;
+    bottom: 15%;
+    right: 50%;
+    transform: translateX(50%);
+  }
+  .button {
+    right: 5%;
+    top: 3%;
+    transform: translate(-50, -50%);
+  }
 }
 
 @media (min-width: 1025px) and (max-width: 1919px) {
