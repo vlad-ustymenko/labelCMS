@@ -8,6 +8,7 @@ import Services from "@/components/Services/Services";
 import Footer from "@/components/Footer/Footer";
 import BgPhone from "@/components/BgPhone/BgPhone";
 import { headers } from "next/headers";
+import Modal from "@/components/Modal/Modal";
 import Sections from "@/components/Sections/Sections";
 import Menu from "@/components/Menu/Menu";
 
@@ -105,7 +106,6 @@ export default async function Business({ params }) {
 
   return (
     <>
-      {" "}
       <main>
         {blocks
           .filter((block) => block.__component !== "blocks.menu")
@@ -113,6 +113,7 @@ export default async function Business({ params }) {
         {/* <Roadmap /> */}
         {/* <Footer /> */}
       </main>
+      <Modal data={modalData}></Modal>
       <Menu data={menuData}></Menu>
     </>
   );
