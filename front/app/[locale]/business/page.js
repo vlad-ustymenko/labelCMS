@@ -99,9 +99,11 @@ export default async function Business({ params }) {
   if (!strapiData) {
     notFound();
   }
-  console.log(strapiData);
   const { blocks } = strapiData;
 
+  const modalData = blocks.find(
+    (block) => block.__component === "blocks.modal"
+  );
   const menuData = blocks.find((block) => block.__component === "blocks.menu");
 
   return (
