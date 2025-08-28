@@ -92,30 +92,13 @@ const Sections = ({
     };
   }, [isMobile]);
 
-  const getTitleFontSize = () => {
-    if (about) return isMobile ? "7vw" : "4vw";
-    if (services) return isMobile ? "13vw" : "9vw";
-    return isMobile ? "10vw" : "7vw";
-  };
-
-  const getMarginSize = () => {
-    // if (about) return isMobile ? "3vw" : "1.5vw";
-    if (services) return isMobile ? "110vw" : "1.5vw";
-    if (achievements) return isMobile ? "30vw" : "5vw";
-    if (reviews) return isMobile ? "90vw" : "1.5vw";
-    if (approaches) return isMobile ? "80vw" : "1.5vw";
-    if (business) return isMobile ? "110vw" : "1.5vw";
-    // if (reviews) return isMobile ? "3vw" : "1.5vw";
-    return isMobile ? "3vw" : "1.5vw";
-  };
-
   return (
     <section
-      className={st.section}
-      style={{
-        height: about ? "80vh" : undefined,
-        marginBottom: getMarginSize(),
-      }}
+      className={`${st.section} ${about && st.about} ${
+        services && st.services
+      } ${achievements && st.achievements} ${reviews && st.reviews} ${
+        approaches && st.approaches
+      } ${business && st.business}`}
     >
       <div
         className={st.container}
@@ -159,10 +142,13 @@ const Sections = ({
           )}
 
           <h2
-            className={st.title}
-            style={{
-              fontSize: getTitleFontSize(),
-            }}
+            className={`${st.title} ${about && st.aboutTitle} ${
+              services && st.servicesTitle
+            } ${achievements && st.achievementsTitle} ${
+              reviews && st.reviewsTitle
+            } ${approaches && st.approachesTitle} ${
+              business && st.businessTitle
+            } ${reviews && st.reviewsTitle} ${business && st.businessTitle}`}
           >
             <AnimateText
               stagger={0.1}
