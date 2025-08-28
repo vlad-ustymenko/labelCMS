@@ -6,21 +6,24 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function ScrollWrapper({ children }) {
   const [scrollReady, setScrollReady] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const locoScrollRef = useRef(null);
   const pathname = usePathname();
 
+  // Перевіряємо ширину екрану
   useEffect(() => {
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
+    const checkSize = () => {
+      setIsDesktop(window.innerWidth > 1024);
+    };
 
-    const navType = performance.getEntriesByType("navigation")[0]?.type;
-    if (navType === "reload") {
-      window.scrollTo(0, 0);
-    }
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
   }, []);
 
   useEffect(() => {
+    if (!isDesktop) return; // якщо < 1024px — не запускаємо
+
     const initScroll = async () => {
       gsap.registerPlugin(ScrollTrigger);
 
@@ -38,7 +41,6 @@ export default function ScrollWrapper({ children }) {
 
       locoScroll.on("scroll", ScrollTrigger.update);
 
-      // Дочекайся поки все промалюється
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           ScrollTrigger.scrollerProxy(scrollContainer, {
@@ -74,22 +76,29 @@ export default function ScrollWrapper({ children }) {
       ScrollTrigger.getAll().forEach((t) => t.kill());
       locoScrollRef.current?.destroy();
     };
-  }, []);
+  }, [isDesktop]);
 
   useEffect(() => {
-    if (scrollReady) {
+    if (isDesktop && scrollReady) {
       locoScrollRef.current?.update();
     }
-  }, [scrollReady]);
+  }, [scrollReady, isDesktop]);
 
   useEffect(() => {
+    if (!isDesktop) return;
+
     const timeout = setTimeout(() => {
       locoScrollRef.current?.update();
       ScrollTrigger.refresh();
     }, 100);
 
     return () => clearTimeout(timeout);
-  }, [pathname]);
+  }, [pathname, isDesktop]);
+
+  if (!isDesktop) {
+    // На мобільних просто віддаємо контент
+    return <div data-scroll-container>{children}</div>;
+  }
 
   return <div data-scroll-container>{scrollReady ? children : null}</div>;
 }
