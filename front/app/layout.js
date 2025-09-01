@@ -5,7 +5,9 @@ import localFont from "next/font/local";
 import ScrollWrapper from "@/components/ScrollerWrapper/ScrollerWrapper";
 import "./globals.css";
 import { MenuProvider } from "@/context/MenuContext";
+import PageTransitionHandler from "@/components/PageTransitionHandler/PageTransitionHandler";
 import { ModalProvider } from "@/context/ModalContext";
+import UTMCookieSaver from "@/components/UTMSaver/UTMSaver";
 
 const MariupolBold = localFont({
   src: "../public/fonts/Mariupol-Bold.ttf",
@@ -61,6 +63,8 @@ export default async function LocaleLoyout({ children, params }) {
         <body
           className={`${bebasRegular.className} ${bahnschrift.className} ${bahnschriftRegular.className} ${bahnschriftThin.className} ${bebas.className}`}
         >
+          <PageTransitionHandler></PageTransitionHandler>
+          <UTMCookieSaver />
           <ModalProvider>
             <ScrollWrapper>
               <MenuProvider>{children} </MenuProvider>
