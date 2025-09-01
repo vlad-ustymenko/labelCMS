@@ -25,7 +25,12 @@
         "blocks.modal",
         "blocks.footer",
         "blocks.approaches"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

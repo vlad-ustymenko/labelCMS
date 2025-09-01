@@ -399,7 +399,12 @@ export interface ApiBusinessBusiness extends Struct.SingleTypeSchema {
         'blocks.footer',
         'blocks.approaches',
       ]
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
