@@ -32,6 +32,18 @@ const MainScreen = ({ data }) => {
   }, [pathname]);
 
   useEffect(() => {
+    // const body = document.body;
+
+    // gsap.fromTo(
+    //   body,
+    //   { opacity: 0, y: 300 }, // початковий стан
+    //   {
+    //     opacity: 1,
+    //     y: 0,
+    //     duration: 1,
+    //     ease: "power2.out",
+    //   }
+    // );
     setTimeout(() => {
       const scrollContainer =
         window.innerWidth < 1025 ? "body" : "[data-scroll-container]";
