@@ -71,10 +71,18 @@ const Header = ({ data }) => {
       <div className={st.wrapper}>
         <Link
           className={st.lang}
-          href={pathname === "/en" ? "/uk" : "/en"}
+          href={
+            locale === "en"
+              ? `/uk${business ? "/business" : ""}`
+              : `/en${business ? "/business" : ""}`
+          }
           onClick={(e) => {
             e.preventDefault();
-            animateTransition(`/${locale === "en" ? "uk" : "en"}`);
+            const targetPath =
+              locale === "en"
+                ? `/uk${business ? "/business" : ""}`
+                : `/en${business ? "/business" : ""}`;
+            animateTransition(targetPath);
           }}
         >
           {locale === "en" ? "UA" : "EN"}
