@@ -61,9 +61,10 @@ const Roadmap = ({ data }) => {
       scrollTrigger: {
         trigger: ".roadmap-trigger",
         scroller: scroller,
-        start: "top center",
+        start: isVertical ? "top bottom" : "top center",
         end: "bottom bottom",
         scrub: true,
+        markers: true,
       },
     });
 
@@ -85,7 +86,7 @@ const Roadmap = ({ data }) => {
     ScrollTrigger.create({
       trigger: ".roadmap-trigger",
       scroller: scroller,
-      start: "top center",
+      start: isVertical ? "top bottom" : "top center",
       end: "bottom bottom",
       scrub: true,
       onUpdate: (self) => {
