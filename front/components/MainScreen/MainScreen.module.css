@@ -1,13 +1,13 @@
 .mainScreen {
-  position: relative;
   height: 100vh;
+  position: relative;
 }
 
 .button {
   position: absolute;
-  right: 2%;
   top: 4%;
-  transform: translate(-50, -50%);
+  right: 2%;
+  transform: translate(-50%, -50%);
 }
 
 .title,
@@ -15,7 +15,7 @@
   position: absolute;
   top: 6%;
   left: 20%;
-  font-family: "bebas", sans-serif;
+  font-family: bebas, sans-serif;
   font-size: 25vw;
   color: white;
 }
@@ -33,26 +33,26 @@
   position: absolute;
   top: 50%;
   left: 10%;
-  transform: translateY(-50%) !important;
-  font-family: "bebas", sans-serif;
+  font-family: bebas, sans-serif;
   font-size: 10vw;
-  color: white;
   white-space: pre-wrap;
+  color: white;
+  transform: translateY(-50%) !important;
 }
 
 .strokeTitle,
 .strokeTitleBusiness {
-  -webkit-text-stroke: 0.2vw white;
-  color: transparent;
   z-index: 2;
+  color: transparent;
+  -webkit-text-stroke: 0.2vw white;
 }
 
 .subtitle {
   position: absolute;
-  bottom: -12%;
   right: 0;
-  font-size: 10vw;
+  bottom: -12%;
   z-index: 2;
+  font-size: 10vw;
   color: var(--accent);
   -webkit-text-stroke: 0.2vw var(--accent);
 }
@@ -61,28 +61,28 @@
   position: absolute;
   bottom: 10%;
   left: 5%;
-  text-align: center;
-  font-size: 1vw;
   z-index: 2;
+  font-size: 1vw;
+  text-align: center;
   white-space: pre-line;
 }
 
 .spinningText {
   position: absolute;
-  bottom: 10%;
   right: 5%;
-  text-align: center;
+  bottom: 10%;
   z-index: 2;
+  text-align: center;
   opacity: 0;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .title,
   .strokeTitle {
     top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 45vw;
+    transform: translate(-50%, -50%);
   }
 
   .titleBusiness,
@@ -96,40 +96,41 @@
   }
 
   .subtitle {
-    bottom: -12%;
     right: 50%;
-    transform: translateX(50%);
+    bottom: -12%;
     font-size: 20vw;
+    transform: translateX(50%);
   }
 
   .slogan {
     width: 100%;
     bottom: 35%;
     left: 50%;
-    transform: translateX(-50%);
     font-size: 4.5vw;
+    transform: translateX(-50%);
   }
 
   .spinningText {
     width: 100%;
-    bottom: 20%;
     right: 50%;
+    bottom: 20%;
     transform: translateX(50%);
   }
+
   .button {
-    right: 5%;
     top: 3%;
-    transform: translate(-50, -50%);
+    right: 5%;
+    transform: translate(-50%, -50%);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (width >= 768px) and (width <= 1024px) {
   .title,
   .strokeTitle {
     top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 45vw;
+    transform: translate(-50%, -50%);
   }
 
   .titleBusiness,
@@ -143,35 +144,36 @@
   }
 
   .subtitle {
-    bottom: -12%;
     right: 50%;
-    transform: translateX(50%);
+    bottom: -12%;
     font-size: 20vw;
+    transform: translateX(50%);
   }
 
   .slogan {
     width: 100%;
     bottom: 25%;
     left: 50%;
-    transform: translateX(-50%);
     font-size: 4.5vw;
+    transform: translateX(-50%);
   }
 
   .spinningText {
     width: 100%;
-    bottom: 15%;
     right: 50%;
+    bottom: 15%;
     transform: translateX(50%);
   }
+
   .button {
-    right: 5%;
     top: 3%;
-    transform: translate(-50, -50%);
+    right: 5%;
+    transform: translate(-50%, -50%);
   }
 }
 
-@media (min-width: 1025px) and (max-width: 1919px) {
+/* @media (width >= 1025px) and (width <= 1919px) {
 }
 
-@media (min-width: 1920px) {
-}
+@media (width >= 1920px) {
+} */

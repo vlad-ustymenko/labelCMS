@@ -1,23 +1,24 @@
 .list {
-  margin-top: 1.5vw;
   display: flex;
   flex-direction: column;
   gap: 1.8vw;
+  margin-top: 1.5vw;
   list-style: none;
 }
 
 .listItem {
+  padding-bottom: clamp(0.5rem, 1vw, 1rem);
   position: relative;
   font-size: clamp(1.5rem, 2vw, 2rem);
-  padding-bottom: clamp(0.5rem, 1vw, 1rem);
   line-height: clamp(1.5rem, 2vw, 2rem);
+
   /* border-bottom: 3px solid var(--accent); */
 }
 
 .counterWrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .counter {
@@ -35,74 +36,82 @@
 
 .text {
   width: 10vw;
-  text-align: left;
   font-size: 0.8vw;
   line-height: 1;
+  text-align: left;
 }
 
 .borderLine {
+  width: 100%;
+  height: 0.1vw;
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 0.1vw;
-  width: 100%;
   background-color: white;
   transform: scaleX(0);
   transform-origin: left;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .list {
-    margin-top: 10vw;
     gap: 2vw;
+    margin-top: 10vw;
   }
+
   .listItem {
     font-size: 9vw;
 
     /* border-bottom: 3px solid var(--accent); */
   }
+
   .counter {
     font-size: 10vw;
     line-height: 1;
   }
+
   .text {
     width: 150px;
-    text-align: left;
     font-size: 4vw;
     line-height: 1.2;
+    text-align: left;
   }
+
   .borderLine {
     height: 0.3vw;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1025px) {
+@media (width >= 768px) and (width <= 1025px) {
   .list {
-    margin-top: 10vw;
     gap: 2vw;
+    margin-top: 10vw;
   }
+
   .listItem {
     font-size: 9vw;
 
     /* border-bottom: 3px solid var(--accent); */
   }
+
   .counter {
     font-size: 10vw;
     line-height: 1;
   }
+
   .text {
     width: 40vw;
-    text-align: left;
     font-size: 4vw;
     line-height: 1.2;
+    text-align: left;
   }
+
   .borderLine {
     height: 0.3vw;
   }
 }
 
-@media (min-width: 1025px) and (max-width: 1919px) {
+/* @media (width >= 1025px) and (width <= 1919px) {
 }
 
-@media (min-width: 1920px) {
-}
+@media (width >= 1920px) {
+} */

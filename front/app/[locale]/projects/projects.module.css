@@ -1,22 +1,22 @@
 .button {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: fit-content;
   padding: 2rem;
+  font-family: bahnschrift, sans-serif;
   font-size: 2rem;
-  font-family: "bahnschrift", sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .wrapper {
     grid-template-columns: 1fr;
   }
 }
 
 /* Планшет */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (width >= 768px) and (width <= 1024px) {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -25,11 +25,11 @@
 }
 
 /* Малий десктоп */
-@media (min-width: 1025px) and (max-width: 1919px) {
+@media (width >= 1025px) and (width <= 1919px) {
 }
 
 /* Великий десктоп */
-@media (min-width: 1920px) {
+@media (width >= 1920px) {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

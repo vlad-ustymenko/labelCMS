@@ -1,48 +1,48 @@
 .container {
-  font-family: "bahnschriftThin", sans-serif;
+  font-family: bahnschriftThin, sans-serif;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-top: 2rem;
   line-height: 1;
 }
 
 .buttonMain {
-  -webkit-tap-highlight-color: transparent;
-  font-family: "bahnschrift", sans-serif;
+  font-family: bahnschrift, sans-serif;
   font-size: 2rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .buttonBack {
-  -webkit-tap-highlight-color: transparent;
-  font-family: "bahnschriftRegular", sans-serif;
+  font-family: bahnschriftRegular, sans-serif;
   font-size: 1.1rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.buttonBack:before {
-  content: "\276E";
-  color: var(--accent);
+.buttonBack::before {
   margin-right: 0.5rem;
+  color: var(--accent);
+  content: "\276E";
 }
 
 .year {
-  color: #adadad;
   margin-top: 2rem;
   font-size: 0.8rem;
+  color: #adadad;
 }
 
 .title {
-  font-family: "bahnschriftRegular", sans-serif;
-  font-size: 1.8rem;
   margin-top: 2rem;
+  font-family: bahnschriftRegular, sans-serif;
+  font-size: 1.8rem;
 }
 
 .customer {
-  color: #adadad;
   margin-top: 2rem;
+  color: #adadad;
 }
 
 .carousel {
@@ -62,23 +62,23 @@
 }
 
 .listItem::before {
-  content: "";
   width: 5px;
   height: 5px;
-  background: #5297f8;
-  position: absolute;
-  left: -1rem;
-  top: 50%;
-  transform: translateY(-50%);
   border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: -1rem;
+  background: #5297f8;
+  content: "";
+  transform: translateY(-50%);
 }
 
 .paragraph {
   margin-top: 1.8rem;
-  line-height: 1.2;
   font-size: 1.1rem;
-  word-wrap: break-word;
+  line-height: 1.2;
   color: #adadad;
+  overflow-wrap: break-word;
 }
 
 .footer {
@@ -86,14 +86,14 @@
   font-style: italic;
 }
 
-@media (max-width: 767px) {
+/* @media (width <= 767px) {
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (width >= 768px) and (width <= 1024px) {
 }
 
-@media (min-width: 1025px) and (max-width: 1919px) {
+@media (width >= 1025px) and (width <= 1919px) {
 }
 
-@media (min-width: 1920px) {
-}
+@media (width >= 1920px) {
+} */

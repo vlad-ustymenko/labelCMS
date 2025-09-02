@@ -3,33 +3,33 @@
 }
 
 .carousel {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 60vw;
   height: 40vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   overflow: hidden;
 }
 
 .card {
-  position: absolute;
-  width: 50%;
-  height: 17vw;
-  padding: 2vw;
-  border-radius: var(--borderRadius);
-  background: var(--background);
-  border: var(--border);
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
+  width: 50%;
+  height: 17vw;
+  padding: 2vw;
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  position: absolute;
+  text-align: center;
+  background: var(--background);
 }
 
 .title {
-  font-size: 1.5vw;
   margin-bottom: 1vw;
+  font-size: 1.5vw;
 }
 
 .content {
@@ -37,22 +37,22 @@
 }
 
 .company {
+  margin-top: 1vw;
   font-size: 0.9vw;
   color: gray;
-  margin-top: 1vw;
 }
 
 .prev,
 .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 20;
   width: 5vw;
   height: 5vw;
+  position: absolute;
+  top: 50%;
+  z-index: 20;
   color: gray;
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  transform: translateY(-50%);
 }
 
 .prev {
@@ -63,20 +63,22 @@
   right: 1vw;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .carousel {
     width: 100%;
     height: 40vh;
   }
+
   .card {
     width: 70%;
     height: 80%;
-    border-radius: var(--borderRadiusMobile);
     border: var(--borderMobile);
+    border-radius: var(--borderRadiusMobile);
   }
+
   .title {
-    font-size: 7vw;
     margin-bottom: 1vw;
+    font-size: 7vw;
   }
 
   .content {
@@ -86,6 +88,7 @@
   .company {
     font-size: 4vw;
   }
+
   .prev,
   .next {
     width: 15vw;
@@ -101,10 +104,10 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-}
+/* @media (width >= 768px) and (width <= 1024px) {
+} */
 
-@media (min-width: 1025px) and (max-width: 1919px) {
+@media (width >= 1025px) and (width <= 1919px) {
   .prev {
     left: -1.5vw;
   }
@@ -114,5 +117,5 @@
   }
 }
 
-@media (min-width: 1920px) {
-}
+/* @media (width >= 1920px) {
+} */

@@ -1,29 +1,29 @@
 .primary {
-  -webkit-tap-highlight-color: transparent;
-  place-self: center;
-  cursor: pointer;
-  font-family: "bahnschriftRegular", sans-serif;
-  background-color: var(--accent);
-  border-radius: var(--borderRadius);
-  font-size: 1.5vw;
   padding: 1vw 2vw;
-  text-align: center;
   border: none;
+  border-radius: var(--borderRadius);
+  font-family: bahnschriftRegular, sans-serif;
+  font-size: 1.5vw;
+  text-align: center;
+  background-color: var(--accent);
+  cursor: pointer;
+  place-self: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .primary {
+    padding: 4vw 8vw;
     border-radius: var(--borderRadiusMobile);
     font-size: 5vw;
-    padding: 4vw 8vw;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+/* @media (width >= 768px) and (width <= 1024px) {
 }
 
-@media (min-width: 1025px) and (max-width: 1919px) {
+@media (width >= 1025px) and (width <= 1919px) {
 }
 
-@media (min-width: 1920px) {
-}
+@media (width >= 1920px) {
+} */

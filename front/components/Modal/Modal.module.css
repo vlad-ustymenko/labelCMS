@@ -28,15 +28,15 @@
   padding: 4vw;
   border-radius: 1.5vw;
   position: relative;
-  background-color: white;
   color: var(--background);
+  background-color: white;
 }
 
 .title {
-  font-family: "bahnschrift", sans-serif;
+  margin-bottom: 1vw;
+  font-family: bahnschrift, sans-serif;
   font-size: 2vw;
   line-height: 2vw;
-  margin-bottom: 1vw;
 }
 
 .content {
@@ -50,13 +50,13 @@
 }
 
 .imageWrapper {
-  position: relative;
-  flex: 1;
-  width: 50%;
-  height: 30vw;
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
+  width: 50%;
+  height: 30vw;
+  position: relative;
 }
 
 .image {
@@ -83,8 +83,8 @@
 }
 
 .label {
-  font-size: 1vw;
   margin: 0.5vw 0;
+  font-size: 1vw;
 }
 
 .input {
@@ -92,9 +92,10 @@
   border: 0.15vw solid var(--background);
   border-radius: 0.5vw;
   font-size: 1vw;
-  background-color: white;
+
   /* color: white; */
   color: var(--background);
+  background-color: white;
 }
 
 .inputError {
@@ -102,8 +103,8 @@
 }
 
 .input:focus {
-  outline: none;
   border: 0.15vw solid var(--accent);
+  outline: none;
 }
 
 .input:-webkit-autofill {
@@ -112,39 +113,39 @@
 }
 
 .requiredSpan {
+  margin-top: 0.2vw;
   font-size: 0.8vw;
   color: red;
-  margin-top: 0.2vw;
 }
 
 .button {
-  border: none;
   padding: 0.8vw 1vw;
-  font-size: 0.9vw;
-  border-radius: 0.5vw;
-  background-color: var(--accent);
   margin-top: 2vw;
+  border: none;
+  border-radius: 0.5vw;
+  font-size: 0.9vw;
+  background-color: var(--accent);
 }
 
 .highlight {
   color: var(--accent);
 }
 
-@media (width >= 768px) and (width <= 1024px) {
-}
+/* @media (width >= 768px) and (width <= 1024px) {
+} */
 
 @media (width <= 767px) {
   .contentWrapper {
     flex-direction: column;
     gap: 8vw;
-    padding: 8vw;
     width: 90%;
+    padding: 8vw;
   }
 
   .title {
+    margin-bottom: 5vw;
     font-size: 6vw;
     line-height: 1;
-    margin-bottom: 5vw;
   }
 
   .content {
@@ -178,8 +179,8 @@
   }
 
   .label {
-    font-size: 4vw;
     margin: 0.5vw 0;
+    font-size: 4vw;
   }
 
   .input {
@@ -194,10 +195,10 @@
   }
 
   .button {
-    border: none;
     padding: 3vw 1vw;
-    font-size: 4vw;
-    border-radius: 2vw;
     margin-top: 8vw;
+    border: none;
+    border-radius: 2vw;
+    font-size: 4vw;
   }
 }

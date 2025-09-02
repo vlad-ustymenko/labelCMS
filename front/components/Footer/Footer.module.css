@@ -6,18 +6,17 @@
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 3fr 1fr;
-  border-top: var(--border);
-  padding: 4vw 0;
   gap: 4vw;
+  padding: 4vw 0;
+  border-top: var(--border);
 }
 
 .phone {
-  -webkit-tap-highlight-color: transparent;
-  font-family: "bahnschriftRegular", sans-serif;
+  font-family: bahnschriftRegular, sans-serif;
   font-size: 3.5vw;
   line-height: 1;
   text-align: center;
-  align-self: top;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .phone:hover {
@@ -25,120 +24,135 @@
 }
 
 .order {
-  -webkit-tap-highlight-color: transparent;
-  place-self: center;
-  cursor: pointer;
-  font-family: "bahnschriftRegular", sans-serif;
-  background-color: var(--accent);
-  border-radius: var(--borderRadius);
-  font-size: 1.5vw;
   padding: 1vw 2vw;
+  border-radius: var(--borderRadius);
+  font-family: bahnschriftRegular, sans-serif;
+  font-size: 1.5vw;
   text-align: center;
+  background-color: var(--accent);
+  cursor: pointer;
+  place-self: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .copyright {
-  align-self: top;
   font-size: 1vw;
 }
 
 .social {
-  justify-self: right;
   display: flex;
   justify-content: center;
   gap: 2vw;
+  justify-self: right;
 }
+
 .title {
   font-size: 1.5vw;
   line-height: 1;
 }
+
 .address {
   font-size: 0.9vw;
   line-height: 1;
 }
+
 .contentPhone {
-  -webkit-tap-highlight-color: transparent;
   display: block;
   font-size: 0.9vw;
   line-height: 1;
-}
-.contentEmail {
   -webkit-tap-highlight-color: transparent;
+}
+
+.contentEmail {
   font-size: 0.9vw;
   line-height: 1;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .iconWrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 3vw;
   height: 3vw;
 }
+
 .icon {
-  -webkit-tap-highlight-color: transparent;
-  cursor: pointer;
   width: 1.5vw;
   height: 1.5vw;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .wrapper {
     display: grid;
     grid-template-columns: 1fr;
     border-top: var(--borderMobile);
   }
+
   .order {
-    grid-column: 1;
-    grid-row: 1;
+    padding: 3vw 7vw;
+    margin-top: 3vw;
     border: var(--borderMobile);
     border-radius: var(--borderRadiusMobile);
     font-size: 5vw;
-    padding: 3vw 7vw;
-    margin-top: 3vw;
+    grid-column: 1;
+    grid-row: 1;
   }
+
   .phone {
+    margin-top: 3vw;
+    font-size: 8vw;
     grid-column: 1;
     grid-row: 2;
-    font-size: 8vw;
-    margin-top: 3vw;
   }
+
   .phone:hover {
     color: white;
   }
+
   .title {
     font-size: 6vw;
   }
+
   .address {
     font-size: 4vw;
   }
+
   .contentPhone {
     font-size: 4vw;
   }
+
   .contentEmail {
     font-size: 4vw;
   }
+
   .copyright {
     font-size: 4vw;
   }
+
   .social {
-    justify-self: center;
     gap: 10vw;
+    justify-self: center;
   }
+
   .iconWrapper {
     width: 10vw;
     height: 10vw;
   }
+
   .icon {
     width: 7vw;
     height: 7vw;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+/* @media (width >= 768px) and (width <= 1024px) {
 }
 
-@media (min-width: 1025px) and (max-width: 1919px) {
+@media (width >= 1025px) and (width <= 1919px) {
 }
 
-@media (min-width: 1920px) {
-}
+@media (width >= 1920px) {
+} */

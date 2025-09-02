@@ -7,11 +7,22 @@
 }
 
 .cardWrapper {
-  cursor: pointer;
   opacity: 0;
-  transform-style: preserve-3d;
+  cursor: pointer;
   backface-visibility: hidden;
   -webkit-tap-highlight-color: transparent;
+  transform-style: preserve-3d;
+}
+
+.image {
+  transition: transform 0.3s ease;
+  transform: scale(1);
+}
+
+.title {
+  padding-top: 0.6vw;
+  font-family: bahnschrift, sans-serif;
+  font-size: 1.5vw;
 }
 
 .cardWrapper:hover .title {
@@ -22,75 +33,65 @@
   transform: scale(1.1);
 }
 
-.image {
-  transform: scale(1);
-  transition: transform 0.3s ease;
-}
-
-.title {
-  font-family: "bahnschrift", sans-serif;
-  font-size: 1.5vw;
-  padding-top: 0.6vw;
-}
-
 .description,
 .customer {
-  font-family: "bahnschriftRegular", sans-serif;
+  padding-bottom: 0.6vw;
+  font-family: bahnschriftRegular, sans-serif;
   font-size: 0.8vw;
   color: gray;
-  padding-bottom: 0.6vw;
 }
 
 .year {
-  font-family: "bahnschriftRegular", sans-serif;
+  padding-top: 0.6vw;
+  font-family: bahnschriftRegular, sans-serif;
   font-size: 0.65vw;
   color: gray;
-  padding-top: 0.6vw;
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .wrapper {
     grid-template-columns: 1fr;
     gap: 5vw;
     padding: 0 3vw;
   }
+
+  .title {
+    padding-top: 5vw;
+    font-size: 6vw;
+  }
+
   .cardWrapper:hover .title {
     color: white;
   }
+
   .cardWrapper:hover .image {
     transform: scale(1);
-  }
-  .title {
-    font-size: 6vw;
-    padding-top: 5vw;
   }
 
   .description,
   .customer {
-    font-size: 4vw;
     padding-bottom: 5vw;
+    font-size: 4vw;
   }
 
   .year {
-    font-size: 3vw;
     padding-top: 5vw;
+    font-size: 3vw;
   }
 }
 
 /* Планшет */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (width >= 768px) and (width <= 1024px) {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Малий десктоп */
-@media (min-width: 1025px) and (max-width: 1919px) {
-}
+/* @media (width >= 1025px) and (width <= 1919px) {
+} */
 
-/* Великий десктоп */
-@media (min-width: 1920px) {
+@media (width >= 1920px) {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
