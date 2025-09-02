@@ -57,7 +57,7 @@ const Sections = ({
         ease: "none",
         scrollTrigger: {
           trigger: triggerEl,
-          scroller: "[data-scroll-container]",
+          scroller: isMobile ? "body" : "[data-scroll-container]",
           start: "top bottom",
           end: "bottom top",
           scrub: true,
