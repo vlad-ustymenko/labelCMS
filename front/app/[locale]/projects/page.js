@@ -1,63 +1,27 @@
-// import { projects } from "@/DTO/projects";
+import { fetchStrapi } from "@/lib/strapi";
+import { projectsPopulate } from "@/lib/populates";
 import ProjectsPage from "@/components/ProjectsPage/ProjectsPage";
-import qs from "qs";
 import Button from "@/components/Button/Button";
+import StrapiError from "@/components/StrapiError/StrapiError";
 import st from "./projects.module.css";
 
-async function getData(path, locale) {
-  const baseUrl = process.env.STRAPI_BASE_URL;
-
-  const query = qs.stringify({
+export default async function Projects({ params }) {
+  const { locale } = params;
+  const strapiData = await fetchStrapi(
+    process.env.PROJECTS_URL,
     locale,
-    fields: ["title", "description", "slug", "year", "customer", "createdAt"],
-    populate: {
-      mainImage: {
-        fields: ["url"],
-      },
-    },
-  });
-
-  const url = new URL(path, baseUrl);
-  url.search = query;
-
-  try {
-    const res = await fetch(url.href, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      console.error(`Strapi error: ${res.status} ${res.statusText}`);
-    }
-
-    const data = await res.json();
-    return data.data;
-  } catch (err) {
-    console.error("Fetch failed:", err.message);
-  }
-}
-
-const Page = async ({ params }) => {
-  const { locale } = await params;
-  const strapiData = await getData(process.env.PROJECTS_URL, locale);
+    projectsPopulate,
+    true
+  );
 
   if (!strapiData) {
-    return (
-      <div style={{ padding: "2rem", textAlign: "center", color: "crimson" }}>
-        <h2>Не вдалося отримати дані 😢</h2>
-        <p>
-          Перевір, чи запущено Strapi, і чи доступний шлях{" "}
-          <code>{process.env.HOME_URL}</code>.
-        </p>
-      </div>
-    );
+    return <StrapiError locale={locale} />;
   }
 
   return (
     <>
-      <Button title="Label" className={st.button} link></Button>
+      <Button title="Label" className={st.button} link />
       <ProjectsPage projects={strapiData} locale={locale} />
     </>
   );
-};
-
-export default Page;
+}
