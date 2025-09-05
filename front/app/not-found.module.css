@@ -4,32 +4,33 @@
   align-items: center;
   justify-content: center;
   height: 100svh;
+  padding: 10vw;
+  text-align: center;
   color: white;
   background-color: var(--background);
 }
 
 .title {
-  margin-bottom: 2vw;
-  font-family: MariupolBold, sans-serif;
   font-size: 3.5vw;
 }
 
-.text {
+.subtitle {
   margin-bottom: 2vw;
-  font-family: MariupolBold, sans-serif;
+  font-size: 3vw;
+}
+
+.textTitle {
+  margin-bottom: 2vw;
+  font-size: 2vw;
+  font-weight: 600;
+}
+
+.text {
   font-size: 2vw;
 }
 
-.link {
-  padding: 2vw 3vw;
-  border: none;
-  border-radius: 0.8vw;
-  font-family: MariupolMedium, sans-serif;
-  font-size: 2vw;
-  color: white;
-  background-color: var(--accent);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+.text:last-of-type {
+  margin-bottom: 2vw;
 }
 
 @media (width >= 768px) and (width <= 1279px) {
@@ -42,28 +43,29 @@
     margin-bottom: 10vw;
     font-size: 4vw;
   }
-
-  .link {
-    padding: 5vw 10vw;
-    border-radius: 1.5vw;
-    font-size: 5vw;
-  }
 }
 
 @media (width <= 767px) {
   .title {
-    margin-bottom: 10vw;
     font-size: 7vw;
   }
 
+  .subtitle {
+    margin-bottom: 7vw;
+    font-size: 6vw;
+  }
+
+  .textTitle {
+    margin-bottom: 7vw;
+    font-size: 5vw;
+    font-weight: 600;
+  }
+
   .text {
-    margin-bottom: 10vw;
     font-size: 4vw;
   }
 
-  .link {
-    padding: 5vw 10vw;
-    border-radius: 1.5vw;
-    font-size: 5vw;
+  .text:last-of-type {
+    margin-bottom: 7vw;
   }
 }
