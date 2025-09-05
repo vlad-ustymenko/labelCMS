@@ -1,79 +1,28 @@
-// "use client";
-import React from "react";
-// import { projects } from "@/DTO/projects";
+import { fetchStrapi } from "@/lib/strapi";
+import { projectPopulate } from "@/lib/populates";
 import { notFound } from "next/navigation";
-import { usePageTransition } from "../../../../hooks/usePageTransition";
-import Button from "@/components/Button/Button";
-import Markdown from "react-markdown";
-import Link from "next/link";
-import qs from "qs";
-import Image from "next/image";
-import st from "./page.module.css";
-import Carousel from "@/components/Carousel/Carousel";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
+import StrapiError from "@/components/StrapiError/StrapiError";
+import st from "./page.module.css";
 
-async function getData(path, locale) {
-  const baseUrl = process.env.STRAPI_BASE_URL;
+export default async function Page({ params }) {
+  const { locale, slug } = params;
 
-  const query = qs.stringify({
+  const strapiData = await fetchStrapi(
+    process.env.PROJECTS_URL,
     locale,
-    fields: ["title", "description", "slug", "year", "customer", "createdAt"],
-    populate: {
-      mainImage: {
-        fields: ["url"],
-      },
-      images: {
-        fields: ["url"],
-      },
-      paragraphs: {
-        fields: ["paragraphs"],
-      },
-    },
-  });
-
-  const url = new URL(path, baseUrl);
-  url.search = query;
-
-  try {
-    const res = await fetch(url.href, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      console.error(`Strapi error: ${res.status} ${res.statusText}`);
-    }
-
-    const data = await res.json();
-    return data.data;
-  } catch (err) {
-    console.error("Fetch failed:", err.message);
-  }
-}
-
-const Page = async ({ params }) => {
-  const { locale, slug } = await params;
-  // const params = useParams();
-  // const animateTransition = usePageTransition();
-  // const id = params?.id;
-
-  const strapiData = await getData(process.env.PROJECTS_URL, locale);
+    projectPopulate,
+    true
+  );
 
   if (!strapiData) {
-    return (
-      <div style={{ padding: "2rem", textAlign: "center", color: "crimson" }}>
-        <h2>Не вдалося отримати дані 😢</h2>
-        <p>
-          Перевір, чи запущено Strapi, і чи доступний шлях{" "}
-          <code>{process.env.HOME_URL}</code>.
-        </p>
-      </div>
-    );
+    return <StrapiError locale={locale} />;
   }
 
-  const project = strapiData.find((project) => project.slug === slug);
+  const project = strapiData.find((p) => p.slug === slug);
 
   if (!project) {
-    notFound(); // <-- якщо проект не знайдено, викликаємо цю функцію
+    notFound();
   }
 
   return (
@@ -81,6 +30,4 @@ const Page = async ({ params }) => {
       <ProjectPage project={project} />
     </main>
   );
-};
-
-export default Page;
+}
