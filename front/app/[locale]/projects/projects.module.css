@@ -24,9 +24,8 @@
   }
 }
 
-/* Малий десктоп */
-@media (width >= 1025px) and (width <= 1919px) {
-}
+/* @media (width >= 1025px) and (width <= 1919px) {
+} */
 
 /* Великий десктоп */
 @media (width >= 1920px) {

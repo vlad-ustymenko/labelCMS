@@ -64,7 +64,6 @@ const Roadmap = ({ data }) => {
         start: isVertical ? "top bottom" : "top center",
         end: "bottom bottom",
         scrub: true,
-        markers: true,
       },
     });
 
