@@ -108,6 +108,7 @@ export interface BlocksModal extends Struct.ComponentSchema {
     displayName: 'Modal';
   };
   attributes: {
+    button: Schema.Attribute.String & Schema.Attribute.Required;
     highlightTitle: Schema.Attribute.String;
     mainError: Schema.Attribute.String & Schema.Attribute.Required;
     nameLabel: Schema.Attribute.String & Schema.Attribute.Required;

@@ -40,6 +40,10 @@
     },
     "highlightTitle": {
       "type": "string"
+    },
+    "button": {
+      "type": "string",
+      "required": true
     }
   }
 }
