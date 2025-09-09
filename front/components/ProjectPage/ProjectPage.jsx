@@ -2,7 +2,6 @@
 import React from "react";
 import ProjectMobileView from "../ProjectMobileView/ProjectMobileView";
 import ProjectDesktopView from "../ProjectDesktopView/ProjectDesktopView";
-import Container from "../Container/Container";
 
 const ProjectPage = ({ project }) => {
   const [isMobile, setIsMobile] = React.useState(false);
