@@ -1,19 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useMenuContext } from "@/context/MenuContext";
 import Link from "next/link";
 import { usePageTransition } from "../../hooks/usePageTransition";
-import { useParams } from "next/navigation";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-
+import { useParams, usePathname } from "next/navigation";
 import st from "./Menu.module.css";
 
 const Menu = ({ data }) => {
   const { locale } = useParams();
   const animateTransition = usePageTransition();
   const { activeMenu, setActiveMenu } = useMenuContext();
-  const [business, setBusiness] = React.useState(false);
   const pathname = usePathname();
 
   const {
@@ -26,6 +22,15 @@ const Menu = ({ data }) => {
     phone,
   } = data;
 
+  const isBusiness = pathname.includes("business");
+
+  const handleNav = (e, href) => {
+    e.preventDefault();
+    animateTransition(href);
+    setActiveMenu(false);
+  };
+
+  // Блокування скролу
   useEffect(() => {
     if (activeMenu) {
       document.documentElement.classList.add("bodyHidden");
@@ -34,60 +39,36 @@ const Menu = ({ data }) => {
     }
   }, [activeMenu]);
 
-  useEffect(() => {
-    if (pathname.includes("business")) {
-      setBusiness(true);
-    } else {
-      setBusiness(false);
-    }
-  }, [pathname]);
-
   return (
-    <div className={`${st.menu} ${activeMenu ? st.active : ""}`}>
-      {business ? (
-        <Link
-          href={mainHref}
-          onClick={(e) => {
-            e.preventDefault();
-            animateTransition(`/${locale}`);
-            setTimeout(() => {
-              setActiveMenu(false);
-            }, 900);
-          }}
-        >
+    <nav
+      className={`${st.menu} ${activeMenu ? st.active : ""}`}
+      role="navigation"
+      aria-label="Main menu"
+    >
+      {isBusiness ? (
+        <Link href={mainHref} onClick={(e) => handleNav(e, `/${locale}`)}>
           {mainButton}
         </Link>
       ) : (
         <Link
           href={businessHref}
-          onClick={(e) => {
-            e.preventDefault();
-            animateTransition(`/${locale}${businessHref}`);
-            setTimeout(() => {
-              setActiveMenu(false);
-            }, 900);
-          }}
+          onClick={(e) => handleNav(e, `/${locale}${businessHref}`)}
         >
           {businessButton}
         </Link>
       )}
+
       <Link
         href={projectsHref}
-        onClick={(e) => {
-          e.preventDefault();
-          animateTransition(`/${locale}${projectsHref}`);
-          setTimeout(() => {
-            setActiveMenu(false);
-          }, 900);
-        }}
+        onClick={(e) => handleNav(e, `/${locale}${projectsHref}`)}
       >
         {projectsButton}
       </Link>
 
       <Link className={st.phone} href={`tel:${phone}`}>
-        {phone}
+        <span aria-label="Phone number">{phone}</span>
       </Link>
-    </div>
+    </nav>
   );
 };
 
