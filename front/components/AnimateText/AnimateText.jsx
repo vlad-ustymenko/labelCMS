@@ -16,21 +16,27 @@ const AnimateText = ({
   firstWord,
 }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef(null);
+  const splitRef = useRef([]);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
 
-  const containerRef = useRef(null);
-
+  // Анімація тексту
   useEffect(() => {
     if (!containerRef.current) return;
+
+    // очищаємо попередні SplitType
+    splitRef.current.forEach((split) => split.revert());
+    splitRef.current = [];
 
     const spans = containerRef.current.querySelectorAll(`.${st.splitText}`);
     const allLines = [];
 
     spans.forEach((span) => {
       const split = new SplitType(span, { types: "lines" });
+      splitRef.current.push(split);
       allLines.push(...split.lines);
     });
 
@@ -54,37 +60,31 @@ const AnimateText = ({
     }
 
     return () => {
+      // очищаємо SplitType і ScrollTrigger при анмаунті
+      splitRef.current.forEach((split) => split.revert());
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [isMobile, duration, stagger]);
 
   if (!children) return null;
 
+  // Функція підсвічування тексту
   const getHighlightedText = (text) => {
     if (firstWord) {
       const [first, ...rest] = text.split(" ");
       return (
         <>
-          <span className={st.highlight}>{first}</span>
-          {rest.length > 0 ? " " + rest.join(" ") : ""}
+          <span className={st.highlight}>{first}</span> {rest.join(" ")}
         </>
       );
     }
+
     if (!highlight) return text;
 
-    const words = highlight
-      // .split(/[^\p{L}\p{N}]+/u) // Розділяє по всьому, що НЕ літера і НЕ цифра\
-      .split(/([ -]+)/)
-      .map((w) => w.trim())
-      .filter(Boolean);
-
-    if (words.length === 0) return text;
-
-    const parts = text.match(/[\p{L}\p{N}]+|[^\p{L}\p{N}]/gu) || [];
-
-    return parts.map((part, index) =>
-      words.some((word) => part === word) ? (
-        <span key={index} className={st.highlight}>
+    const words = highlight.split(" ").filter(Boolean);
+    return text.split(/(\s+)/).map((part, idx) =>
+      words.includes(part) ? (
+        <span key={idx} className={st.highlight}>
           {part}
         </span>
       ) : (
