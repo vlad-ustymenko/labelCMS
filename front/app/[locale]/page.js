@@ -6,7 +6,7 @@ import Menu from "@/components/Menu/Menu";
 import StrapiError from "@/components/StrapiError/StrapiError";
 
 export default async function Home({ params }) {
-  const { locale } = params;
+  const { locale } = await params;
   const strapiData = await fetchStrapi(
     process.env.HOME_URL,
     locale,

@@ -6,7 +6,7 @@ import StrapiError from "@/components/StrapiError/StrapiError";
 import st from "./page.module.css";
 
 export default async function Page({ params }) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
 
   const strapiData = await fetchStrapi(
     process.env.PROJECTS_URL,
