@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import AnimateText from "../AnimateText/AnimateText";
 import st from "./CountList.module.css";
@@ -8,127 +9,102 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const CountList = ({ list, className }) => {
-  const itemsRef = useRef([]);
-  const numberRefs = useRef([]);
-  const symbolRefs = useRef([]);
-
+  const itemsRefs = useRef([]);
+  itemsRefs.current = [];
   const [isMobile, setIsMobile] = useState(false);
 
+  const setRefs = (el, index) => {
+    itemsRefs.current[index] = el;
+  };
+
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    // Анімація бордерів
-    itemsRef.current.forEach((el, index) => {
-      const itemsEl = itemsRef.current[index].querySelector(
-        `.${st.borderLine}`
-      );
-      if (!itemsEl) return;
+    const ctx = gsap.context(() => {
+      const createScrollTrigger = (el) => ({
+        trigger: el,
+        scroller: isMobile ? "body" : "[data-scroll-container]",
+        start: "top bottom",
+        toggleActions: "restart none none reverse",
+      });
 
-      gsap.fromTo(
-        itemsEl,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: 2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: itemsEl,
-            scroller: isMobile ? "body" : "[data-scroll-container]",
-            start: "top bottom",
-            toggleActions: "restart none none reverse",
-          },
+      itemsRefs.current.forEach((itemEl) => {
+        if (!itemEl) return;
+
+        const numberEl = itemEl.querySelector(`.${st.number}`);
+        const symbolEl = itemEl.querySelector(`.${st.symbol}`);
+        const borderEl = itemEl.querySelector(`.${st.borderLine}`);
+
+        if (borderEl) {
+          gsap.fromTo(
+            borderEl,
+            { scaleX: 0 },
+            {
+              scaleX: 1,
+              duration: 2,
+              ease: "power3.out",
+              scrollTrigger: createScrollTrigger(borderEl),
+            }
+          );
         }
-      );
+
+        if (numberEl) {
+          const targetValue = parseInt(numberEl.dataset.value, 10);
+          gsap.fromTo(
+            numberEl,
+            { textContent: 0, opacity: 0 },
+            {
+              textContent: targetValue,
+              opacity: 1,
+              duration: 2,
+              ease: "power3.out",
+              snap: { textContent: 1 },
+              modifiers: {
+                textContent: (value) =>
+                  parseInt(value, 10).toLocaleString("uk-UA"),
+              },
+              scrollTrigger: createScrollTrigger(borderEl),
+            }
+          );
+        }
+
+        if (symbolEl) {
+          gsap.fromTo(
+            symbolEl,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 2,
+              ease: "power3.out",
+              scrollTrigger: createScrollTrigger(borderEl),
+            }
+          );
+        }
+      });
     });
 
-    // Анімація чисел
-    numberRefs.current.forEach((el, index) => {
-      const numberEl = itemsRef.current[index].querySelector(
-        `.${st.borderLine}`
-      );
-
-      if (!el) return;
-
-      const targetValue = parseInt(el.dataset.value, 10);
-      gsap.fromTo(
-        el,
-        { textContent: 0, opacity: 0 },
-        {
-          textContent: targetValue,
-          opacity: 1,
-          duration: 2,
-          ease: "power3.out",
-          snap: { textContent: 1 },
-          modifiers: {
-            textContent: (value) => parseInt(value, 10).toLocaleString("uk-UA"),
-          },
-          scrollTrigger: {
-            trigger: numberEl,
-            scroller: isMobile ? "body" : "[data-scroll-container]",
-            start: "top bottom",
-            toggleActions: "restart none none reverse",
-            once: false,
-          },
-        }
-      );
-    });
-
-    // Анімація символів
-    symbolRefs.current.forEach((el, index) => {
-      const symbolEl = itemsRef.current[index].querySelector(
-        `.${st.borderLine}`
-      );
-      if (!el) return;
-
-      gsap.fromTo(
-        el,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: symbolEl,
-            scroller: isMobile ? "body" : "[data-scroll-container]",
-            start: "top bottom",
-            toggleActions: "restart none none reverse",
-            once: false,
-          },
-        }
-      );
-    });
+    return () => ctx.revert();
   }, [isMobile]);
 
   return (
     <ul className={`${st.list} ${className}`}>
       {list.map((item, i) => (
-        <li
-          key={i}
-          className={st.listItem}
-          ref={(el) => (itemsRef.current[i] = el)}
-        >
+        <li key={i} className={st.listItem} ref={(el) => setRefs(el, i)}>
           <div className={st.counterWrapper}>
             <div className={st.counter}>
-              <span
-                className={st.number}
-                ref={(el) => (numberRefs.current[i] = el)}
-                data-value={item.count}
-              >
+              <span className={st.number} data-value={item.count}>
                 {item.count}
               </span>
-              <span
-                className={st.symbol}
-                ref={(el) => (symbolRefs.current[i] = el)}
-              >
-                {item.symbol}
-              </span>
+              <span className={st.symbol}>{item.symbol}</span>
             </div>
             <AnimateText stagger={0.2} duration={0.5} className={st.text}>
               {item.text}
             </AnimateText>
-            {/* <div className={st.text}></div> */}
           </div>
           <div className={st.borderLine}></div>
         </li>
