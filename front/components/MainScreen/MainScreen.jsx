@@ -1,5 +1,11 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  useLayoutEffect,
+} from "react";
 import st from "./MainScreen.module.css";
 import Sofa from "@/components/Sofa/Sofa";
 import SofaVideo from "../SofaVideo/SofaVideo";
@@ -16,34 +22,13 @@ import Main3D from "../Main3D/Main3D";
 gsap.registerPlugin(ScrollTrigger);
 
 const MainScreen = ({ data }) => {
-  const isWebmSupported = useWebmSupport();
   const { slogan, companyName, companySubname, header, spinningText, title } =
     data;
   const pathname = usePathname();
 
-  const [business, setBusiness] = React.useState(false);
+  const business = useMemo(() => pathname.includes("business"), [pathname]);
 
   useEffect(() => {
-    if (pathname.includes("business")) {
-      setBusiness(true);
-    } else {
-      setBusiness(false);
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    // const body = document.body;
-
-    // gsap.fromTo(
-    //   body,
-    //   { opacity: 0, y: 300 }, // початковий стан
-    //   {
-    //     opacity: 1,
-    //     y: 0,
-    //     duration: 1,
-    //     ease: "power2.out",
-    //   }
-    // );
     setTimeout(() => {
       const scrollContainer =
         window.innerWidth < 1025 ? "body" : "[data-scroll-container]";
@@ -119,10 +104,8 @@ const MainScreen = ({ data }) => {
       )}
       <div className={st.slogan}>{slogan}</div>
       <SpinningText textArray={spinningText} className={st.spinningText} />
-      {/* <Sofa></Sofa> */}
-      {/* <Main3D></Main3D> */}
+
       {!business ? <Main3D></Main3D> : <Sofa></Sofa>}
-      {/* <Menu data={header}></Menu> */}
     </section>
   );
 };
