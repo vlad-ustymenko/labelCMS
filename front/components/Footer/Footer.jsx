@@ -49,6 +49,7 @@ const Footer = ({ data }) => {
             href="https://www.facebook.com/label.studio"
             target="_blank"
             className={st.iconWrapper}
+            aria-label="Facebook"
           >
             <FaFacebookF className={st.icon} />
           </a>
@@ -56,6 +57,7 @@ const Footer = ({ data }) => {
             href="https://www.instagram.com/label.studio/"
             target="_blank"
             className={st.iconWrapper}
+            aria-label="Instagram"
           >
             <FaInstagram className={st.icon} />
           </a>
@@ -63,6 +65,7 @@ const Footer = ({ data }) => {
             href="https://t.me/label_studio"
             target="_blank"
             className={st.iconWrapper}
+            aria-label="Telegram"
           >
             <FaTelegramPlane className={st.icon} />
           </a>
