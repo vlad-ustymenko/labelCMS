@@ -5,7 +5,7 @@ import Footer from "@/components/Footer/Footer";
 
 const blockMap = {
   "blocks.main-screen": (block) => <MainScreen key={block.id} data={block} />,
-  "blocks.about": (block) => <Sections key={block.id} data={block} />,
+  "blocks.about": (block) => <Sections key={block.id} data={block} about />,
   "blocks.services": (block) => (
     <Sections key={block.id} data={block} services />
   ),
