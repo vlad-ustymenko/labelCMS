@@ -4,6 +4,7 @@ import st from "./Footer.module.css";
 import { FaFacebookF, FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import { useModalContext } from "@/context/ModalContext";
 import Container from "../Container/Container";
+import Button from "../Button/Button";
 
 const Footer = ({ data }) => {
   const { setActiveModal } = useModalContext();
@@ -36,9 +37,8 @@ const Footer = ({ data }) => {
             {email}
           </a>
         </div>
-        <div className={st.order} onClick={handleClick}>
-          {buttonTitle}
-        </div>
+        <Button className={st.order} primary title={buttonTitle} />
+
         <div></div>
         <div className={st.copyright}>© 2022 Label studio</div>
         <a className={st.phone} href="tel:+380953195758">
