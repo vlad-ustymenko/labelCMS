@@ -23,6 +23,7 @@ const Menu = ({ data }) => {
   } = data;
 
   const isBusiness = pathname.includes("business");
+  const isProjects = pathname.includes("projects");
 
   const handleNav = (e, href) => {
     e.preventDefault();
@@ -45,8 +46,8 @@ const Menu = ({ data }) => {
       role="navigation"
       aria-label="Main menu"
     >
-      {isBusiness ? (
-        <Link href={mainHref} onClick={(e) => handleNav(e, `/${locale}`)}>
+      {isBusiness || isProjects ? (
+        <Link href={`/${locale}`} onClick={(e) => handleNav(e, `/${locale}`)}>
           {mainButton}
         </Link>
       ) : (
@@ -58,12 +59,18 @@ const Menu = ({ data }) => {
         </Link>
       )}
 
-      <Link
-        href={projectsHref}
-        onClick={(e) => handleNav(e, `/${locale}${projectsHref}`)}
-      >
-        {projectsButton}
-      </Link>
+      {isProjects ? (
+        <Link href={businessHref} onClick={(e) => handleNav(e, `/${locale}`)}>
+          {businessButton}
+        </Link>
+      ) : (
+        <Link
+          href={projectsHref}
+          onClick={(e) => handleNav(e, `/${locale}${projectsHref}`)}
+        >
+          {projectsButton}
+        </Link>
+      )}
 
       <Link className={st.phone} href={`tel:${phone}`}>
         <span aria-label="Phone number">{phone}</span>
