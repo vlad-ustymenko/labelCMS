@@ -117,7 +117,6 @@
   position: absolute;
   top: 5vw;
   right: 15vw;
-  transform: translate(-50%, -50%);
 }
 
 @media (width <= 767px) {
@@ -212,9 +211,10 @@
 
   .button {
     position: absolute;
-    top: 5vw;
-    right: 15vw;
-    transform: translate(-50%, -50%);
+    top: 20%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    white-space: nowrap;
   }
 }
 

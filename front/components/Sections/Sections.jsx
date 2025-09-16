@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-
+import { usePathname } from "next/navigation";
 import AnimateText from "../AnimateText/AnimateText";
 import List from "../List/List";
 import Container from "../Container/Container";
@@ -28,6 +28,8 @@ const Sections = ({
   const containerRef = useRef(null);
   const aboutImageRef = useRef(null);
   const achievementsImageRef = useRef(null);
+
+  const pathname = usePathname();
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -158,16 +160,15 @@ const Sections = ({
               {title}
             </AnimateText>
           </h2>
-          {services && (
+          {/* {services && !pathname.includes("business") && (
             <Button
               title="Замовити консультацію"
               primary
               className={st.button}
               data-scroll
               data-scroll-speed="-1"
-              style={{ top: isMobile ? "17%" : "1.5vw" }}
             ></Button>
-          )}
+          )} */}
 
           <div className={st.grid}>
             <div
@@ -194,7 +195,15 @@ const Sections = ({
           </div>
         </Container>
       </div>
-
+      {services && !pathname.includes("business") && (
+        <Button
+          title="Замовити консультацію"
+          primary
+          className={st.button}
+          data-scroll
+          data-scroll-speed="-1"
+        />
+      )}
       {/* Фонові відео */}
       {(services || business) && (
         <video
