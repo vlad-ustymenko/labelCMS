@@ -13,13 +13,20 @@
 }
 
 .circle {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   position: relative;
   background: #e0e0e0;
   box-shadow: 0 0 10px rgb(0 0 0 / 10%);
   overflow: hidden;
+}
+
+.text {
+  margin-top: 2vw;
+  font-size: 2vw;
+  font-weight: 500;
+  color: white;
 }
 
 .wave {
@@ -44,11 +51,4 @@
   100% {
     transform: translateY(100%);
   }
-}
-
-.text {
-  margin-top: 16px;
-  font-size: 18px;
-  font-weight: 500;
-  color: white;
 }

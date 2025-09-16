@@ -10,7 +10,7 @@ import Loader from "../Loader/Loader";
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.css";
 
-const Modal = ({ data }) => {
+const Modal = ({ data, locale }) => {
   const { activeModal, setActiveModal, status, setStatus } = useModalContext();
 
   const {
@@ -269,7 +269,7 @@ const Modal = ({ data }) => {
 
   return createPortal(
     status === "loading" ? (
-      <Loader />
+      <Loader locale={locale} />
     ) : (
       <div
         className={`${styles.container} ${activeModal ? styles.active : ""}`}
