@@ -55,7 +55,7 @@
             "right",
             "bottom",
             "left",
-            "trasform",
+            "transform",
             "z-index"
           ]
         },
