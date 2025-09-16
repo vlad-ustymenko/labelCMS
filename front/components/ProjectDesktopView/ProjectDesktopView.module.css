@@ -34,25 +34,25 @@
 }
 
 .listItem {
-  /* margin-top: 1rem; */
   margin-bottom: 1rem;
+  margin-left: 1rem;
   position: relative;
 }
 
-.listItem::before {
+.listItem::after {
   width: 5px;
   height: 5px;
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: -1rem;
+  transform: translateY(-50%);
   background: #5297f8;
   content: "";
-  transform: translateY(-50%);
 }
 
 .contentWrapper::-webkit-scrollbar {
-  width: 6px; /* залишаємо лише вузьку смужку для thumb */
+  width: 6px;
   background: transparent;
 }
 
@@ -76,4 +76,9 @@
 .paragraph {
   padding-bottom: 2rem;
   font-family: bahnschriftRegular, sans-serif;
+}
+
+.footer {
+  margin: 1.8rem 0;
+  font-style: italic;
 }

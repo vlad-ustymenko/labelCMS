@@ -8,7 +8,6 @@ const ProjectDesktopView = ({ project }) => {
   return (
     <>
       <Carousel images={project.images} />
-      {/* <Image src={project.url} alt={project.title} fill sizes="100%"></Image> */}
       <div className={st.container}>
         <div className={st.contentWrapper}>
           <header className={st.header}>
@@ -33,6 +32,11 @@ const ProjectDesktopView = ({ project }) => {
           ))}
           <p>{project.year}</p>
           <p>{project.customer}</p>
+          <div className={st.footer}>
+            Правова інформація: використання будь-яких матеріалів, розміщених на
+            сайті www.lineup.com, без письмового дозволу компанії ТОВ «LineUp»,
+            є порушенням закону про авторське право.
+          </div>
         </div>
       </div>
     </>

@@ -68,9 +68,9 @@
   position: absolute;
   top: 50%;
   left: -1rem;
+  transform: translateY(-50%);
   background: #5297f8;
   content: "";
-  transform: translateY(-50%);
 }
 
 .paragraph {
