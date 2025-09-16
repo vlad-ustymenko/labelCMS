@@ -2,13 +2,19 @@
   padding: 1vw 2vw;
   border: none;
   border-radius: var(--borderRadius);
+  z-index: 100;
   font-family: bahnschriftRegular, sans-serif;
   font-size: 1.5vw;
   text-align: center;
+  color: white;
   background-color: var(--accent);
   cursor: pointer;
   place-self: center;
   -webkit-tap-highlight-color: transparent;
+}
+
+.primary:hover {
+  background-color: var(--accentHover);
 }
 
 @media (width <= 767px) {
@@ -16,6 +22,10 @@
     padding: 4vw 8vw;
     border-radius: var(--borderRadiusMobile);
     font-size: 5vw;
+  }
+
+  .primary:hover {
+    background-color: var(--accent);
   }
 }
 
