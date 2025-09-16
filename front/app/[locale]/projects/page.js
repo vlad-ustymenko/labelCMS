@@ -1,8 +1,11 @@
 import { fetchStrapi } from "@/lib/strapi";
 import { projectsPopulate } from "@/lib/populates";
+import { homePopulate } from "@/lib/populates";
 import ProjectsPage from "@/components/ProjectsPage/ProjectsPage";
 import Button from "@/components/Button/Button";
 import StrapiError from "@/components/StrapiError/StrapiError";
+import HeaderProjects from "@/components/HeaderProjects/HeaderProjects";
+import Menu from "@/components/Menu/Menu";
 import st from "./projects.module.css";
 
 export default async function Projects({ params }) {
@@ -14,14 +17,25 @@ export default async function Projects({ params }) {
     true
   );
 
+  const homeData = await fetchStrapi(
+    process.env.HOME_URL,
+    locale,
+    homePopulate
+  );
+
+  const { blocks } = homeData;
+
   if (!strapiData) {
     return <StrapiError locale={locale} />;
   }
 
+  const menuData = blocks.find((b) => b.__component === "blocks.menu");
+
   return (
     <>
-      <Button title="Label" className={st.button} link />
+      <HeaderProjects />
       <ProjectsPage projects={strapiData} locale={locale} />
+      <Menu data={menuData} />
     </>
   );
 }
