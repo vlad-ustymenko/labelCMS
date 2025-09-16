@@ -1,0 +1,88 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2% 5%;
+  position: relative;
+  z-index: 3;
+  font-family: bahnschriftRegular, sans-serif;
+  font-size: 1.3vw;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: -5%;
+  font-family: bahnschrift, sans-serif;
+  font-size: 2rem;
+}
+
+.hamburger {
+  display: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.hamburger input {
+  display: none;
+}
+
+.hamburger svg {
+  height: 2em;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  fill: none;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.lineTopBottom {
+  stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked + svg {
+  transform: rotate(-45deg);
+}
+
+.hamburger input:checked + svg .lineTopBottom {
+  stroke-dasharray: 20 300;
+  stroke-dashoffset: -32.42;
+}
+
+@media (width <= 767px) {
+  .wrapper {
+    font-size: 6vw;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .button {
+    display: none;
+  }
+}
+
+@media (width >= 768px) and (width <= 1024px) {
+  .wrapper {
+    font-size: 5vw;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .button {
+    display: none;
+  }
+}
