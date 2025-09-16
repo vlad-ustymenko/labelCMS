@@ -35,6 +35,7 @@ export default function ScrollWrapper({ children }) {
         el: scrollContainer,
         smooth: true,
         lerp: 0.08,
+        scrollbarClass: "c-scrollbar",
       });
 
       locoScrollRef.current = locoScroll;
