@@ -24,7 +24,7 @@ export default async function Business({ params }) {
   return (
     <>
       <main>{blocks.map(renderBlock)}</main>
-      <Modal data={modalData} />
+      <Modal data={modalData} locale={locale} />
       <Menu data={menuData} />
     </>
   );
