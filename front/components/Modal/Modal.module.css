@@ -124,7 +124,13 @@
   border: none;
   border-radius: 0.5vw;
   font-size: 0.9vw;
+  color: white;
   background-color: var(--accent);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--accentHover);
 }
 
 .highlight {
@@ -200,5 +206,9 @@
     border: none;
     border-radius: 2vw;
     font-size: 4vw;
+  }
+
+  .button:hover {
+    background-color: var(--accent);
   }
 }

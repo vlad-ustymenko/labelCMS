@@ -10,6 +10,7 @@
   z-index: 3;
   font-family: bahnschriftRegular, sans-serif;
   font-size: 1.3vw;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .wrapper {
@@ -23,7 +24,6 @@
   display: none;
   position: relative;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger input {
@@ -56,10 +56,6 @@
 .hamburger input:checked + svg .lineTopBottom {
   stroke-dasharray: 20 300;
   stroke-dashoffset: -32.42;
-}
-
-.lang {
-  -webkit-tap-highlight-color: transparent;
 }
 
 @media (width <= 767px) {
