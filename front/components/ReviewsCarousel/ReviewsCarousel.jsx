@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import gsap from "gsap";
 import styles from "./ReviewsCarousel.module.css";
+import Arrow from "../Arrow/Arrow";
 
 export default function ReviewsCarousel({ list }) {
   const [index, setIndex] = useState(0);
@@ -119,42 +120,9 @@ export default function ReviewsCarousel({ list }) {
             <span className={styles.company}>{card.company}</span>
           </div>
         ))}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={`lucide lucide-chevron-left-icon lucide-chevron-left ${styles.prev}`}
-          onClick={handlePrev}
-        >
-          <path d="m15 18-6-6 6-6" />
-        </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={`lucide lucide-chevron-right-icon lucide-chevron-right ${styles.next}`}
-          onClick={handleNext}
-        >
-          <path d="m9 18 6-6-6-6" />
-        </svg>
-        {/* <button onClick={handlePrev} className={styles.prev}>
-          Назад
-        </button> */}
-        {/* <button onClick={handleNext} className={styles.next}>
-          Вперед
-        </button> */}
+
+        <Arrow direction="left" onClick={handlePrev} className={styles.prev} />
+        <Arrow direction="right" onClick={handlePrev} className={styles.next} />
       </div>
 
       <div className={styles.controls}></div>
