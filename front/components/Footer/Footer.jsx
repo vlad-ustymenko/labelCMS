@@ -1,19 +1,11 @@
-"use client";
 import React from "react";
-import st from "./Footer.module.css";
 import { FaFacebookF, FaInstagram, FaTelegramPlane } from "react-icons/fa";
-import { useModalContext } from "@/context/ModalContext";
 import Container from "../Container/Container";
 import Button from "../Button/Button";
+import st from "./Footer.module.css";
 
 const Footer = ({ data }) => {
-  const { setActiveModal } = useModalContext();
-
   const { title, address, phone, email, copyright, ipn, buttonTitle } = data;
-
-  const handleClick = () => {
-    setActiveModal(true);
-  };
 
   return (
     <Container className={st.grid}>
@@ -40,7 +32,7 @@ const Footer = ({ data }) => {
         <Button className={st.order} primary title={buttonTitle} />
 
         <div></div>
-        <div className={st.copyright}>© 2022 Label studio</div>
+        <div className={st.copyright}>{copyright}</div>
         <a className={st.phone} href="tel:+380953195758">
           {phone}
         </a>
