@@ -23,8 +23,8 @@
 }
 
 .image {
-  transition: transform 0.3s ease;
   transform: scale(1);
+  transition: transform 0.3s ease;
 }
 
 .title {
