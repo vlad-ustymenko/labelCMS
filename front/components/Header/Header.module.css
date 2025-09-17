@@ -13,6 +13,14 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.business:hover,
+.main:hover,
+.projects:hover,
+.lang:hover,
+.phone:hover {
+  color: var(--accent);
+}
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -103,6 +111,14 @@
 
   .left {
     display: none;
+  }
+
+  .business:hover,
+  .main:hover,
+  .projects:hover,
+  .lang:hover,
+  .phone:hover {
+    color: #fcfcfc;
   }
 }
 
