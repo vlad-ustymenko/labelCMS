@@ -18,7 +18,7 @@
   width: fit-content;
   padding: -5%;
   font-family: bahnschrift, sans-serif;
-  font-size: 2rem;
+  font-size: 1.8vw;
 }
 
 .hamburger {
@@ -59,6 +59,11 @@
   stroke-dashoffset: -32.42;
 }
 
+.button:hover,
+.lang:hover {
+  color: var(--accent);
+}
+
 @media (width <= 767px) {
   .wrapper {
     font-size: 6vw;
@@ -70,6 +75,11 @@
 
   .button {
     display: none;
+  }
+
+  .button:hover,
+  .lang:hover {
+    color: #fcfcfc;
   }
 }
 
@@ -84,5 +94,10 @@
 
   .button {
     display: none;
+  }
+
+  .button:hover,
+  .lang:hover {
+    color: #fcfcfc;
   }
 }
