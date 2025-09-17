@@ -44,6 +44,7 @@ const Header = ({ data }) => {
               e.preventDefault();
               animateTransition(`/${locale}${businessHref}`);
             }}
+            className={st.business}
           >
             {businessButton}
           </Link>
@@ -54,6 +55,7 @@ const Header = ({ data }) => {
               e.preventDefault();
               animateTransition(`/${locale}`);
             }}
+            className={st.main}
           >
             {mainButton}
           </Link>
@@ -64,6 +66,7 @@ const Header = ({ data }) => {
             e.preventDefault();
             animateTransition(`/${locale}${projectsHref}`);
           }}
+          className={st.projects}
         >
           {projectsButton}
         </Link>
