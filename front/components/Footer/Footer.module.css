@@ -19,10 +19,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.phone:hover {
-  color: var(--accent);
-}
-
 .order {
   padding: 1vw 2vw;
   border-radius: var(--borderRadius);
@@ -84,6 +80,14 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.phone:hover,
+.address:hover,
+.contentPhone:hover,
+.contentEmail:hover,
+.icon:hover {
+  color: var(--accent);
+}
+
 @media (width <= 767px) {
   .wrapper {
     display: grid;
@@ -106,10 +110,6 @@
     font-size: 8vw;
     grid-column: 1;
     grid-row: 2;
-  }
-
-  .phone:hover {
-    color: white;
   }
 
   .title {
@@ -145,6 +145,14 @@
   .icon {
     width: 7vw;
     height: 7vw;
+  }
+
+  .phone:hover,
+  .address:hover,
+  .contentPhone:hover,
+  .contentEmail:hover,
+  .icon:hover {
+    color: #fcfcfc;
   }
 }
 
