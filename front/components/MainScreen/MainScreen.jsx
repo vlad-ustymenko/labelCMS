@@ -18,6 +18,7 @@ import { usePathname } from "next/navigation";
 import { useWebmSupport } from "../../hooks/useWebmSupport";
 import Menu from "../Menu/Menu";
 import Main3D from "../Main3D/Main3D";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,7 +106,14 @@ const MainScreen = ({ data }) => {
       <div className={st.slogan}>{slogan}</div>
       <SpinningText textArray={spinningText} className={st.spinningText} />
 
-      {!business ? <Main3D></Main3D> : <Sofa></Sofa>}
+      {!business ? (
+        <div className={st.imagesWrapper}>
+          <Image src="/Main2.png" alt="Sofa" fill className={st.image2}></Image>
+          <Image src="/Main.png" alt="Sofa" fill className={st.image}></Image>
+        </div>
+      ) : (
+        <Sofa></Sofa>
+      )}
     </section>
   );
 };
