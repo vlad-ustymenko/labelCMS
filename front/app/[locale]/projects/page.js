@@ -1,6 +1,6 @@
-import { fetchStrapi } from "@/lib/strapi";
-import { projectsPopulate } from "@/lib/populates";
-import { homePopulate } from "@/lib/populates";
+import { fetchStrapi } from "@/lib/strapi/strapi";
+import { projectsPopulate } from "@/lib/strapi/populates";
+import { homePopulate } from "@/lib/strapi/populates";
 import ProjectsPage from "@/components/ProjectsPage/ProjectsPage";
 import Button from "@/components/Button/Button";
 import StrapiError from "@/components/StrapiError/StrapiError";

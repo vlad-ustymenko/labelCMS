@@ -1,6 +1,6 @@
-import { fetchStrapi } from "@/lib/strapi";
-import { homePopulate } from "@/lib/populates";
-import { renderBlock } from "@/lib/blockRenderer";
+import { fetchStrapi } from "@/lib/strapi/strapi";
+import { homePopulate } from "@/lib/strapi/populates";
+import { renderBlock } from "@/lib/strapi/blockRenderer";
 import Modal from "@/components/Modal/Modal";
 import Menu from "@/components/Menu/Menu";
 import StrapiError from "@/components/StrapiError/StrapiError";

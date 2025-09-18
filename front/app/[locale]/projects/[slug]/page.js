@@ -1,5 +1,5 @@
-import { fetchStrapi } from "@/lib/strapi";
-import { projectPopulate } from "@/lib/populates";
+import { fetchStrapi } from "@/lib/strapi/strapi";
+import { projectPopulate } from "@/lib/strapi/populates";
 import { notFound } from "next/navigation";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
 import StrapiError from "@/components/StrapiError/StrapiError";
