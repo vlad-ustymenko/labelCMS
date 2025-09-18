@@ -101,11 +101,11 @@
   }
 
   .prev {
-    left: -5vw;
+    left: -4vw;
   }
 
   .next {
-    right: -5vw;
+    right: -4vw;
   }
 
   .prev:hover,

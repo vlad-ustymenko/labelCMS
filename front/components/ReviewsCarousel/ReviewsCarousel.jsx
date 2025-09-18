@@ -122,7 +122,7 @@ export default function ReviewsCarousel({ list }) {
         ))}
 
         <Arrow direction="left" onClick={handlePrev} className={styles.prev} />
-        <Arrow direction="right" onClick={handlePrev} className={styles.next} />
+        <Arrow direction="right" onClick={handleNext} className={styles.next} />
       </div>
 
       <div className={styles.controls}></div>

@@ -9,7 +9,7 @@
   position: absolute;
   top: 0;
   left: 100vw;
-  z-index: 2;
+  z-index: 4;
   font-family: bahnschriftRegular, sans-serif;
   font-size: 8vw;
   background-color: var(--background);
