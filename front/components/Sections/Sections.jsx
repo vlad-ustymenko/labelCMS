@@ -118,6 +118,7 @@ const Sections = ({
               height={1000}
               className={st.background}
               ref={aboutImageRef}
+              loading="lazy"
             />
           )}
 
@@ -129,17 +130,23 @@ const Sections = ({
               height={1000}
               className={st.background2}
               ref={achievementsImageRef}
+              loading="lazy"
             />
           )}
 
           {services && (
             <Image
-              src="/apartment.png"
+              src={
+                pathname.includes("business")
+                  ? "/apartment.png"
+                  : "/apartment3.png"
+              }
               alt="background"
               width={1000}
               height={1000}
               className={st.background3}
               ref={achievementsImageRef}
+              loading="lazy"
             />
           )}
 
